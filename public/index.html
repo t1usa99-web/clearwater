@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClearWater — Is Your Tap Water Safe? Free EPA Water Quality Lookup</title>
+  <meta name="description" content="Search by ZIP code to instantly see EPA violations, lead &amp; copper test results, and a safety grade for any of 160,000+ US water systems. Free, no sign-up required.">
+  <meta property="og:title" content="ClearWater — Is Your Tap Water Safe?">
+  <meta property="og:description" content="Free EPA water quality data for any US city. Search by ZIP code to see violations, lead levels, and a safety grade.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://clearwaterreport.com/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ClearWater — Is Your Tap Water Safe?">
+  <meta name="twitter:description" content="Free EPA water quality data for any US city. Search by ZIP code.">
+  <link rel="canonical" href="https://clearwaterreport.com/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── HEADER ──────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo" id="logo-link">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <path d="M14 2C14 2 4 12 4 18a10 10 0 0 0 20 0C24 12 14 2 14 2z" fill="#0ea5e9"/>
+          <path d="M14 8C14 8 8 15 8 18a6 6 0 0 0 12 0C20 15 14 8 14 8z" fill="#38bdf8" opacity=".5"/>
+        </svg>
+        <span>ClearWater</span>
+      </a>
+      <a class="header-link" href="https://www.epa.gov/ground-water-and-drinking-water" target="_blank" rel="noopener">EPA Data Source ↗</a>
+    </div>
+  </header>
+
+  <!-- ── MAIN APP ────────────────────────────────────────────────── -->
+  <main id="app">
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║  VIEW: SEARCH                     ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <div id="view-search" class="view active">
+      <section class="hero">
+        <div class="hero-content container">
+          <div class="hero-badge">Free · Powered by EPA Data</div>
+          <h1 class="hero-title">What's in your<br>tap water?</h1>
+          <p class="hero-subtitle">Enter your ZIP code to see real EPA data about contaminants, violations, and safety concerns — explained in plain English.</p>
+
+          <form id="search-form" class="search-form" autocomplete="off">
+            <div class="search-box">
+              <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16z" stroke="#94a3b8" stroke-width="2"/>
+                <path d="M19 19l-4.35-4.35" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <input
+                type="text"
+                id="zip-input"
+                class="zip-input"
+                placeholder="Enter ZIP code"
+                maxlength="5"
+                inputmode="numeric"
+                pattern="\d{5}"
+                aria-label="ZIP code"
+                autocomplete="postal-code"
+              >
+              <button type="submit" class="search-btn" id="search-btn">
+                Search
+              </button>
+            </div>
+            <p id="search-error" class="search-error" role="alert" aria-live="polite"></p>
+          </form>
+
+          <div class="hero-trust">
+            <span>📊 Data from EPA's SDWIS</span>
+            <span>·</span>
+            <span>🔄 Updated quarterly</span>
+            <span>·</span>
+            <span>🏛️ 160,000+ water systems</span>
+          </div>
+
+          <div class="popular-cities">
+            <p class="popular-label">Popular searches:</p>
+            <div class="popular-links">
+              <a href="/zip/10001">New York City, NY</a>
+              <a href="/zip/90001">Los Angeles, CA</a>
+              <a href="/zip/60601">Chicago, IL</a>
+              <a href="/zip/77001">Houston, TX</a>
+              <a href="/zip/85001">Phoenix, AZ</a>
+              <a href="/zip/19101">Philadelphia, PA</a>
+              <a href="/zip/78201">San Antonio, TX</a>
+              <a href="/zip/92101">San Diego, CA</a>
+              <a href="/zip/75201">Dallas, TX</a>
+              <a href="/zip/98101">Seattle, WA</a>
+              <a href="/zip/80201">Denver, CO</a>
+              <a href="/zip/94101">San Francisco, CA</a>
+              <a href="/zip/30301">Atlanta, GA</a>
+              <a href="/zip/89101">Las Vegas, NV</a>
+              <a href="/zip/97201">Portland, OR</a>
+              <a href="/zip/37201">Nashville, TN</a>
+              <a href="/zip/85701">Tucson, AZ</a>
+              <a href="/zip/95801">Sacramento, CA</a>
+              <a href="/zip/46201">Indianapolis, IN</a>
+              <a href="/zip/28201">Charlotte, NC</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-wave" aria-hidden="true">
+          <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+            <path d="M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,80 L0,80 Z" fill="var(--bg)"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="features container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🏷️</div>
+            <h3>Safety Grade</h3>
+            <p>We compute an overall water quality grade based on violations and health risks — not just legal compliance.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🩺</div>
+            <h3>Health Context</h3>
+            <p>Every contaminant comes with plain-English health effects, who's most at risk, and what to do.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>Violation History</h3>
+            <p>See every time your water exceeded legal limits or missed required testing — up to 10 years back.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💡</div>
+            <h3>Recommendations</h3>
+            <p>Get specific, actionable suggestions — whether that's a filter type, a test kit, or nothing at all.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="disclaimer container">
+        <p><strong>About this data:</strong> ClearWater uses the EPA's Safe Drinking Water Information System (SDWIS). Data is for public water systems only — private wells are not included. <em>Legal limits (MCLs) are minimum standards; some contaminants may still pose health risks below legal thresholds.</em></p>
+      </section>
+    </div>
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║  VIEW: LOADING                    ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <div id="view-loading" class="view">
+      <div class="loading-wrap container">
+        <div class="spinner" aria-hidden="true">
+          <svg viewBox="0 0 50 50" width="48" height="48">
+            <circle cx="25" cy="25" r="20" fill="none" stroke="#0ea5e9" stroke-width="4" stroke-dasharray="80 40"/>
+          </svg>
+        </div>
+        <p class="loading-text" id="loading-text">Querying EPA database…</p>
+        <p class="loading-sub">Fetching from the Safe Drinking Water Information System</p>
+      </div>
+    </div>
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║  VIEW: SELECT SYSTEM              ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <div id="view-select" class="view">
+      <div class="container">
+        <button class="back-btn" id="back-from-select">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to search
+        </button>
+
+        <div class="select-header">
+          <h2>Water systems near <span id="select-zip" class="highlight"></span></h2>
+          <p class="select-sub">Select the utility that serves your address. Check your water bill if you're unsure.</p>
+        </div>
+
+        <div id="systems-list" class="systems-grid" role="list"></div>
+
+        <div class="select-footer">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="7" stroke="#64748b" stroke-width="1.5"/>
+            <path d="M8 7v4M8 5v.5" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Multiple utilities may serve the same ZIP code. Your bill shows your utility name.
+        </div>
+      </div>
+    </div>
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║  VIEW: REPORT                     ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <div id="view-report" class="view">
+      <!-- SSR_CONTENT_PLACEHOLDER -->
+      <div class="container">
+        <button class="back-btn" id="back-from-report">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Change system
+        </button>
+
+        <!-- System info + grade -->
+        <div id="report-header" class="report-header"></div>
+
+        <!-- Summary stats -->
+        <div id="report-stats" class="report-stats"></div>
+
+        <!-- Section jump nav -->
+        <nav class="section-nav" id="section-nav" aria-label="Report sections">
+          <a class="section-link active" href="#sec-recs">What To Do</a>
+          <a class="section-link" href="#sec-lead">
+            Lead &amp; Copper
+            <span class="section-count" id="tab-count-lead"></span>
+          </a>
+          <a class="section-link" href="#sec-violations">
+            Violations
+            <span class="section-count" id="tab-count-violations"></span>
+          </a>
+        </nav>
+
+        <!-- Section: What To Do -->
+        <section id="sec-recs" class="report-section">
+          <h2 class="section-heading">What To Do</h2>
+          <div id="recs-content"></div>
+        </section>
+
+        <!-- Section: Lead & Copper -->
+        <section id="sec-lead" class="report-section">
+          <h2 class="section-heading">Lead &amp; Copper</h2>
+          <div id="lead-copper-content"></div>
+        </section>
+
+        <!-- Section: Violations -->
+        <section id="sec-violations" class="report-section">
+          <h2 class="section-heading">Violations</h2>
+          <div class="violations-controls">
+            <div class="filter-group">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="health">Health-Based</button>
+              <button class="filter-btn" data-filter="monitoring">Monitoring</button>
+            </div>
+            <label class="active-only-label">
+              <input type="checkbox" id="active-only"> Active only
+            </label>
+          </div>
+          <div id="violations-list"></div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║  VIEW: NO RESULTS                 ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <div id="view-noresults" class="view">
+      <div class="container status-wrap">
+        <div class="status-icon">🔍</div>
+        <h2>No water systems found</h2>
+        <p id="noresults-msg">We couldn't find a public water system for ZIP code <strong id="noresults-zip"></strong>.</p>
+        <ul class="noresults-tips">
+          <li>Double-check the ZIP code</li>
+          <li>Some rural areas are served by private wells — which are not in the EPA database</li>
+          <li>Try a neighboring ZIP code</li>
+        </ul>
+        <a href="https://enviro.epa.gov/enviro/ef_metadata_html.ef_metadata_table?p_topic=SDWIS" target="_blank" rel="noopener" class="btn btn-outline">
+          Search EPA directly ↗
+        </a>
+        <button class="btn btn-primary" id="noresults-back">Try another ZIP</button>
+      </div>
+    </div>
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║  VIEW: ERROR                      ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <div id="view-error" class="view">
+      <div class="container status-wrap">
+        <div class="status-icon">⚠️</div>
+        <h2>Something went wrong</h2>
+        <p id="error-msg">An error occurred while fetching data from the EPA.</p>
+        <button class="btn btn-primary" id="error-back">Go back</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <svg width="20" height="20" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <path d="M14 2C14 2 4 12 4 18a10 10 0 0 0 20 0C24 12 14 2 14 2z" fill="#38bdf8"/>
+        </svg>
+        <strong>ClearWater</strong>
+      </div>
+      <p class="footer-note">
+        Data from the EPA's <a href="https://www.epa.gov/ground-water-and-drinking-water/safe-drinking-water-information-system-sdwis-federal-reporting" target="_blank" rel="noopener">Safe Drinking Water Information System (SDWIS)</a>, updated quarterly.
+        For the latest information, contact your water utility or visit
+        <a href="https://enviro.epa.gov/facts/sdwis/search.html" target="_blank" rel="noopener">EPA's search tool</a>.
+      </p>
+      <p class="footer-disclaimer">
+        ClearWater is an informational tool, not a substitute for official notices. Legal limits (MCLs) reflect regulatory thresholds — some contaminants may pose health risks below these limits.
+      </p>
+      <div class="footer-states">
+        <p class="footer-states-label">Water quality by state</p>
+        <div class="footer-states-links">
+          <a href="/state/al">Alabama</a><a href="/state/ak">Alaska</a><a href="/state/az">Arizona</a>
+          <a href="/state/ar">Arkansas</a><a href="/state/ca">California</a><a href="/state/co">Colorado</a>
+          <a href="/state/ct">Connecticut</a><a href="/state/de">Delaware</a><a href="/state/fl">Florida</a>
+          <a href="/state/ga">Georgia</a><a href="/state/hi">Hawaii</a><a href="/state/id">Idaho</a>
+          <a href="/state/il">Illinois</a><a href="/state/in">Indiana</a><a href="/state/ia">Iowa</a>
+          <a href="/state/ks">Kansas</a><a href="/state/ky">Kentucky</a><a href="/state/la">Louisiana</a>
+          <a href="/state/me">Maine</a><a href="/state/md">Maryland</a><a href="/state/ma">Massachusetts</a>
+          <a href="/state/mi">Michigan</a><a href="/state/mn">Minnesota</a><a href="/state/ms">Mississippi</a>
+          <a href="/state/mo">Missouri</a><a href="/state/mt">Montana</a><a href="/state/ne">Nebraska</a>
+          <a href="/state/nv">Nevada</a><a href="/state/nh">New Hampshire</a><a href="/state/nj">New Jersey</a>
+          <a href="/state/nm">New Mexico</a><a href="/state/ny">New York</a><a href="/state/nc">North Carolina</a>
+          <a href="/state/nd">North Dakota</a><a href="/state/oh">Ohio</a><a href="/state/ok">Oklahoma</a>
+          <a href="/state/or">Oregon</a><a href="/state/pa">Pennsylvania</a><a href="/state/ri">Rhode Island</a>
+          <a href="/state/sc">South Carolina</a><a href="/state/sd">South Dakota</a><a href="/state/tn">Tennessee</a>
+          <a href="/state/tx">Texas</a><a href="/state/ut">Utah</a><a href="/state/vt">Vermont</a>
+          <a href="/state/va">Virginia</a><a href="/state/wa">Washington</a><a href="/state/wv">West Virginia</a>
+          <a href="/state/wi">Wisconsin</a><a href="/state/wy">Wyoming</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
