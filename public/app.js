@@ -32,6 +32,33 @@ const CONTAMINANTS = {
   '0014': { name: 'Cyanide',                    mcl: 0.2,     unit: 'mg/L',  cat: 'Inorganic',       health: 'Nerve damage and thyroid problems. From steel and plastics factories, fertilizer production.' },
   '0015': { name: 'Nickel',                     mcl: 0.1,     unit: 'mg/L',  cat: 'Inorganic',       health: 'Allergic dermatitis. Metal industries and natural deposits.' },
   '0016': { name: 'Thallium',                   mcl: 0.002,   unit: 'mg/L',  cat: 'Inorganic',       health: 'Hair loss, changes in blood and kidneys, intestines, and liver. Leaching from ore-processing and electronics. Rare.' },
+  // Inorganic aliases — SDWIS violation table uses 1xxx codes for the same inorganic contaminants
+  '1010': { name: 'Arsenic',                    mcl: 0.010,   unit: 'mg/L',  cat: 'Inorganic',       health: 'Long-term exposure linked to skin damage, circulatory problems, and increased cancer risk. Occurs naturally in rock and soil.' },
+  '1017': { name: 'Beryllium',                  mcl: 0.004,   unit: 'mg/L',  cat: 'Inorganic',       health: 'Intestinal lesions. Discharge from metal refineries and aerospace industries.' },
+  '1020': { name: 'Cadmium',                    mcl: 0.005,   unit: 'mg/L',  cat: 'Inorganic',       health: 'Kidney damage from long-term exposure. Comes from galvanized pipe corrosion and industrial discharge.' },
+  '1025': { name: 'Chromium',                   mcl: 0.1,     unit: 'mg/L',  cat: 'Inorganic',       health: 'Allergic dermatitis. Occurs naturally and from industrial discharges.' },
+  '1030': { name: 'Fluoride',                   mcl: 4.0,     unit: 'mg/L',  cat: 'Inorganic',       health: 'At high levels, can cause dental and skeletal fluorosis. Most water systems add fluoride for dental health.' },
+  '1035': { name: 'Mercury (inorganic)',        mcl: 0.002,   unit: 'mg/L',  cat: 'Heavy Metal',     health: 'Kidney damage from long-term exposure. Enters water from industrial waste and natural deposits.' },
+  '1038': { name: 'Nickel',                     mcl: 0.1,     unit: 'mg/L',  cat: 'Inorganic',       health: 'Allergic dermatitis. Metal industries and natural deposits.' },
+  '1045': { name: 'Selenium',                   mcl: 0.05,    unit: 'mg/L',  cat: 'Inorganic',       health: 'Hair and fingernail loss, numbness in extremities. Found naturally and in mining/industrial discharge.' },
+  '1050': { name: 'Antimony',                   mcl: 0.006,   unit: 'mg/L',  cat: 'Inorganic',       health: 'Nausea, vomiting, and increased blood cholesterol. From industrial chemicals and natural deposits.' },
+  '1055': { name: 'Arsenic',                    mcl: 0.010,   unit: 'mg/L',  cat: 'Inorganic',       health: 'Long-term exposure linked to skin damage, circulatory problems, and increased cancer risk. Occurs naturally in rock and soil.' },
+  '1060': { name: 'Barium',                     mcl: 2,       unit: 'mg/L',  cat: 'Inorganic',       health: 'Elevated levels may increase blood pressure. Found naturally in rock and used industrially.' },
+  '1065': { name: 'Thallium',                   mcl: 0.002,   unit: 'mg/L',  cat: 'Inorganic',       health: 'Hair loss, changes in blood and kidneys, intestines, and liver. Leaching from ore-processing and electronics. Rare.' },
+  '1074': { name: 'Cyanide',                    mcl: 0.2,     unit: 'mg/L',  cat: 'Inorganic',       health: 'Nerve damage and thyroid problems. From steel and plastics factories, fertilizer production.' },
+  '1076': { name: 'Nitrate',                    mcl: 10,      unit: 'mg/L',  cat: 'Inorganic',       health: 'Serious blood disorder in infants under 6 months ("blue baby syndrome"). Less risk for adults. Common from fertilizer and septic runoff.' },
+  '1077': { name: 'Nitrite',                    mcl: 1,       unit: 'mg/L',  cat: 'Inorganic',       health: 'Same concern as nitrate — dangerous for infants under 6 months. Short-term exposure is the main risk.' },
+  '1024': { name: 'Cyanide',                    mcl: 0.2,     unit: 'mg/L',  cat: 'Inorganic',       health: 'Nerve damage and thyroid problems. From steel and plastics factories, fertilizer production.' },
+  '1028': { name: 'Iron',                       mcl: 0.3,     unit: 'mg/L',  cat: 'Inorganic',       health: 'Not a primary health standard — regulated for aesthetics. High iron causes rusty color, metallic taste, and staining. Found naturally in groundwater.' },
+  '1032': { name: 'Manganese',                  mcl: 0.05,    unit: 'mg/L',  cat: 'Inorganic',       health: 'Secondary aesthetic standard for taste and staining. Emerging research suggests long-term exposure above 0.3 mg/L may affect neurological development in children, though the primary MCL has not yet been set.' },
+  '1036': { name: 'Nickel',                     mcl: 0.1,     unit: 'mg/L',  cat: 'Inorganic',       health: 'Allergic dermatitis. Metal industries and natural deposits.' },
+  '1041': { name: 'Nitrite',                    mcl: 1,       unit: 'mg/L',  cat: 'Inorganic',       health: 'Same concern as nitrate — dangerous for infants under 6 months. Short-term exposure is the main risk.' },
+  '1052': { name: 'Sodium',                     mcl: null,    unit: 'mg/L',  cat: 'Inorganic',       health: 'No federal MCL. Systems serving sensitive populations (people on low-sodium diets) must notify if levels exceed 20 mg/L. Sodium in water is rarely a health concern for most people.' },
+  '1075': { name: 'Beryllium',                  mcl: 0.004,   unit: 'mg/L',  cat: 'Inorganic',       health: 'Intestinal lesions. Discharge from metal refineries and aerospace industries.' },
+  '1085': { name: 'Thallium',                   mcl: 0.002,   unit: 'mg/L',  cat: 'Inorganic',       health: 'Hair loss, changes in blood and kidneys, intestines, and liver. Leaching from ore-processing and electronics. Rare.' },
+  '1915': { name: 'Total Hardness',             mcl: null,    unit: 'mg/L',  cat: 'Inorganic',       health: 'Not a regulated contaminant. Hard water (high calcium and magnesium) is not a health risk, but can cause scale buildup in pipes and appliances and affect soap lathering.' },
+  '1095': { name: 'Lead',                       mcl: 0.015,   unit: 'mg/L',  cat: 'Heavy Metal',     health: 'Serious brain and nervous system damage, especially in children and fetuses. Usually enters water from old pipes and fixtures, not the source water itself.' },
+  '1100': { name: 'Copper',                     mcl: 1.3,     unit: 'mg/L',  cat: 'Heavy Metal',     health: 'Copper can cause short-term gastrointestinal distress. Long-term exposure can cause liver and kidney damage. Usually comes from home plumbing.' },
   '1001': { name: 'Benzene',                    mcl: 0.005,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'Anemia and immune system damage; known human carcinogen. From factories, gas stations, underground fuel storage.' },
   '1002': { name: 'Carbon Tetrachloride',       mcl: 0.005,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver problems and increased cancer risk. From industrial chemical use.' },
   '1003': { name: 'Chlorobenzene',              mcl: 0.1,     unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver and kidney effects. Discharge from chemical and agricultural chemical factories.' },
@@ -48,6 +75,9 @@ const CONTAMINANTS = {
   '2051': { name: 'Fecal Coliform / E. coli',   mcl: 0,       unit: 'presence', cat: 'Microbial',     health: 'Indicates the possible presence of fecal contamination. Can cause serious gastrointestinal illness.' },
   '2049': { name: 'E. coli',                    mcl: 0,       unit: 'presence', cat: 'Microbial',     health: 'Fecal contamination indicator. Gastrointestinal illness risk; especially dangerous for immunocompromised individuals.' },
   '3100': { name: 'Turbidity',                  mcl: 1,       unit: 'NTU',   cat: 'Physical',         health: 'High turbidity can interfere with disinfection and indicate the presence of contaminants. May cause stomach or gut illness.' },
+  // Turbidity monitoring codes — SDWIS uses different codes for the same parameter under different rules
+  '0700': { name: 'Turbidity',                  mcl: 0.3,     unit: 'NTU',   cat: 'Physical',         health: 'A measure of water clarity. Cloudy or murky water can harbor pathogens and interfere with disinfection. Monitored under the Surface Water Treatment Rule. Must stay below 0.3 NTU in filtered systems.' },
+  '0800': { name: 'Turbidity (LT1ESWTR)',       mcl: 0.3,     unit: 'NTU',   cat: 'Physical',         health: 'Combined filter effluent turbidity monitored under the Long-Term 1 Enhanced Surface Water Treatment Rule. Must remain below 0.3 NTU. Failure indicates filtration may not be removing pathogens effectively.' },
   '4010': { name: 'Chloramines (as Cl₂)',       mcl: 4,       unit: 'mg/L',  cat: 'Disinfectant',     health: 'Eye and nose irritation, stomach discomfort, anemia at very high levels. Used as a water disinfectant.' },
   '4020': { name: 'Chlorine (as Cl₂)',          mcl: 4,       unit: 'mg/L',  cat: 'Disinfectant',     health: 'Eye and nose irritation, stomach discomfort at high levels. Intentionally added for disinfection.' },
   '4030': { name: 'Chlorine Dioxide (as ClO₂)', mcl: 0.8,     unit: 'mg/L',  cat: 'Disinfectant',     health: 'Anemia and nervous system effects in infants and young children. Used as an alternative disinfectant.' },
@@ -63,6 +93,73 @@ const CONTAMINANTS = {
   // Radionuclide MCL codes (rule group 300)
   '5000': { name: 'Gross Alpha Particle Activity', mcl: 15, unit: 'pCi/L', cat: 'Radionuclide', health: 'Naturally occurring radioactive particles found in some groundwater. Long-term exposure above the MCL increases cancer risk.' },
   '4000': { name: 'Gross Alpha (incl. Radium-226, excl. Radon)', mcl: 15, unit: 'pCi/L', cat: 'Radionuclide', health: 'Naturally occurring radioactivity. Long-term exposure above 15 pCi/L increases cancer risk.' },
+  // Radionuclide monitoring codes
+  '1040': { name: 'Gross Alpha (excl. Radon & Uranium)', mcl: 15, unit: 'pCi/L', cat: 'Radionuclide', health: 'A measure of total radioactivity from naturally occurring elements like radium and thorium in groundwater. Long-term exposure above 15 pCi/L increases cancer risk. Common in areas with granite bedrock.' },
+  '5200': { name: 'Beta Particles & Photon Emitters',   mcl: 4,   unit: 'mrem/yr', cat: 'Radionuclide', health: 'A measure of radioactivity from beta-emitting isotopes (like strontium-90) and gamma radiation. Monitored under the Radionuclides Rule. Long-term exposure above 4 mrem/year increases cancer risk. Can be naturally occurring or from industrial discharge.' },
+  '4100': { name: 'Gross Beta Particle Activity',       mcl: 50,  unit: 'pCi/L', cat: 'Radionuclide', health: 'Total beta radioactivity measured in drinking water. If above 50 pCi/L, individual radionuclides are identified and compared to specific limits. Naturally occurring in some groundwater; can also come from nuclear facilities.' },
+  '4006': { name: 'Uranium',                            mcl: 0.030, unit: 'mg/L', cat: 'Radionuclide', health: 'Kidney toxicity and increased cancer risk from long-term exposure. Occurs naturally in certain rock formations and soil. Monitoring code used under the Radionuclides Rule.' },
+  // VOC (Volatile Organic Chemical) monitoring codes — 2900s range
+  '2959': { name: 'Xylenes (Total)',              mcl: 10,      unit: 'mg/L',  cat: 'Volatile Organic', health: 'Solvents found in gasoline, paint, and adhesives. Nervous system effects at high levels. Usually enter water from fuel spills or underground storage tank leaks.' },
+  '2964': { name: 'Bromodichloromethane',         mcl: 0.080,   unit: 'mg/L',  cat: 'Disinfection Byproduct', health: 'A trihalomethane (THM) formed when chlorine reacts with natural organic matter. Regulated as part of the Total THM limit (0.080 mg/L). Long-term exposure linked to increased cancer risk.' },
+  '2965': { name: 'Dibromochloromethane',         mcl: 0.080,   unit: 'mg/L',  cat: 'Disinfection Byproduct', health: 'A trihalomethane formed during chlorination. Regulated under the Total THM limit. Long-term exposure linked to cancer and reproductive effects.' },
+  '2968': { name: 'Chloroform',                   mcl: 0.080,   unit: 'mg/L',  cat: 'Disinfection Byproduct', health: 'The most common trihalomethane, formed when chlorine reacts with organic matter. Regulated under the Total THM limit. Long-term exposure above limits linked to liver damage and cancer risk.' },
+  '2969': { name: 'Bromoform',                    mcl: 0.080,   unit: 'mg/L',  cat: 'Disinfection Byproduct', health: 'A trihalomethane formed during chlorination in bromide-rich water. Regulated under the Total THM limit. Long-term exposure linked to cancer risk.' },
+  '2976': { name: 'Benzene',                      mcl: 0.005,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'A known human carcinogen — causes leukemia with long-term exposure. Enters water from fuel spills, industrial discharge, or leaking underground storage tanks.' },
+  '2977': { name: 'Carbon Tetrachloride',         mcl: 0.005,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'Causes liver, kidney, and nervous system damage. Increased cancer risk. Used as a solvent; enters water from industrial discharge and improper waste disposal.' },
+  '2978': { name: 'Chlorobenzene',                mcl: 0.1,     unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver and kidney damage. Discharge from chemical and agricultural manufacturing.' },
+  '2979': { name: 'o-Dichlorobenzene',            mcl: 0.6,     unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver, kidney, and circulatory system effects. Discharge from industrial chemical factories.' },
+  '2980': { name: 'p-Dichlorobenzene',            mcl: 0.075,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver and kidney effects; possible cancer risk. Used in moth balls and air fresheners. Discharge from industrial facilities.' },
+  '2981': { name: '1,2-Dichloroethane',           mcl: 0.005,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'Increased cancer risk. Discharge from industrial chemical factories.' },
+  '2982': { name: '1,1-Dichloroethylene',         mcl: 0.007,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver damage and increased cancer risk. Discharge from industrial chemical factories.' },
+  '2983': { name: 'trans-1,2-Dichloroethylene',   mcl: 0.1,     unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver, kidney, and nervous system effects. Discharge from industrial chemical factories.' },
+  '2984': { name: 'Methylene Chloride',           mcl: 0.005,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver damage and increased cancer risk. Used as a paint stripper and solvent; enters water from industrial discharge and landfill leaching.' },
+  '2985': { name: 'cis-1,2-Dichloroethylene',     mcl: 0.07,    unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver, kidney, and nervous system effects. Discharge from industrial chemical factories.' },
+  '2987': { name: 'Ethylbenzene',                 mcl: 0.7,     unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver and kidney effects. Found in gasoline; enters water from fuel spills and underground storage tank leaks.' },
+  '2989': { name: 'Styrene',                      mcl: 0.1,     unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver, kidney, and circulatory system effects. Discharge from rubber and plastic factories.' },
+  '2990': { name: 'Tetrachloroethylene (PERC)',   mcl: 0.005,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver and kidney problems; increased cancer risk. Used in dry cleaning; enters water from dry cleaning facilities and improper waste disposal.' },
+  '2991': { name: 'Toluene',                      mcl: 1.0,     unit: 'mg/L',  cat: 'Volatile Organic', health: 'Nervous system, kidney, and liver effects. Found in gasoline; enters water from fuel spills and underground storage tank leaks.' },
+  '2992': { name: '1,2,4-Trichlorobenzene',       mcl: 0.07,    unit: 'mg/L',  cat: 'Volatile Organic', health: 'Adrenal gland changes. Used in herbicide manufacturing; enters water from industrial discharge.' },
+  '2993': { name: '1,1,1-Trichloroethane',        mcl: 0.2,     unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver, nervous system, or circulatory system problems. Discharge from metal degreasing sites and other factories.' },
+  '2996': { name: 'Trichloroethylene (TCE)',      mcl: 0.005,   unit: 'mg/L',  cat: 'Volatile Organic', health: 'Liver problems and increased cancer risk. Used as a metal degreaser; enters water from industrial discharge and improper waste disposal.' },
+  // SOC (Synthetic Organic Chemical / Pesticide) monitoring codes — 2000-2500s range
+  '2005': { name: 'Alachlor',                     mcl: 0.002,   unit: 'mg/L',  cat: 'Pesticide',        health: 'Eye, liver, kidney, or spleen problems; anemia; increased cancer risk. Runoff from herbicide use on row crops.' },
+  '2010': { name: 'Atrazine',                     mcl: 0.003,   unit: 'mg/L',  cat: 'Pesticide',        health: 'Cardiovascular and reproductive problems. Widely used herbicide; runoff from agricultural fields.' },
+  '2015': { name: 'Benzo(a)pyrene',               mcl: 0.0002,  unit: 'mg/L',  cat: 'Pesticide',        health: 'Reproductive difficulties; increased cancer risk. Leaching from linings of water storage tanks and distribution lines.' },
+  '2020': { name: 'Carbofuran',                   mcl: 0.04,    unit: 'mg/L',  cat: 'Pesticide',        health: 'Problems with blood, nervous system, or reproductive system. Leaching of soil fumigant used on rice and alfalfa.' },
+  '2031': { name: 'Lindane',                      mcl: 0.0002,  unit: 'mg/L',  cat: 'Pesticide',        health: 'Liver or kidney problems. Historically used as an insecticide on cattle and lumber; now banned for most uses.' },
+  '2035': { name: 'Endothall',                    mcl: 0.1,     unit: 'mg/L',  cat: 'Pesticide',        health: 'Stomach and intestinal problems. Herbicide used on crops and aquatic weeds.' },
+  '2037': { name: 'Epichlorohydrin',              mcl: null,    unit: 'TT',    cat: 'Pesticide',        health: 'Increased cancer risk; stomach problems. Used in making epoxy resins; found in some water treatment chemicals.' },
+  '2039': { name: 'Glyphosate',                   mcl: 0.7,     unit: 'mg/L',  cat: 'Pesticide',        health: 'Kidney problems; reproductive difficulties. Herbicide runoff from farm fields. MCL is conservative — levels that cause health effects are far above what is typically found in drinking water.' },
+  '2040': { name: 'Methoxychlor',                 mcl: 0.04,    unit: 'mg/L',  cat: 'Pesticide',        health: 'Reproductive difficulties. Runoff from insecticide used on fruits, vegetables, and alfalfa.' },
+  '2041': { name: 'Endrin',                       mcl: 0.002,   unit: 'mg/L',  cat: 'Pesticide',        health: 'Nervous system effects. Residue of banned insecticide; now rarely found in water.' },
+  '2042': { name: 'Heptachlor',                   mcl: 0.0004,  unit: 'mg/L',  cat: 'Pesticide',        health: 'Liver damage; increased cancer risk. Residue of banned termiticide; now rarely found in drinking water.' },
+  '2045': { name: 'Heptachlor Epoxide',           mcl: 0.0002,  unit: 'mg/L',  cat: 'Pesticide',        health: 'Liver damage; increased cancer risk. Breakdown product of heptachlor, a banned pesticide.' },
+  '2065': { name: 'Dioxin (2,3,7,8-TCDD)',        mcl: 0.00000003, unit: 'mg/L', cat: 'Pesticide',      health: 'Reproductive difficulties; increased cancer risk. One of the most toxic industrial contaminants; byproduct of certain manufacturing and incineration. Its MCL is the lowest of any regulated contaminant.' },
+  '2067': { name: 'Di(2-ethylhexyl) Phthalate',  mcl: 0.006,   unit: 'mg/L',  cat: 'Pesticide',        health: 'Reproductive difficulties; liver problems; increased cancer risk. Used in PVC plastics; enters water from leaching of plastic materials and industrial waste.' },
+  '2070': { name: 'Picloram',                     mcl: 0.5,     unit: 'mg/L',  cat: 'Pesticide',        health: 'Liver problems; kidney or spleen damage. Herbicide runoff from fields and rights of way.' },
+  '2076': { name: 'Di(2-ethylhexyl) Adipate',    mcl: 0.4,     unit: 'mg/L',  cat: 'Pesticide',        health: 'General toxic effects or reproductive difficulties. Used in PVC plastics and synthetic lubricants.' },
+  '2077': { name: 'Oxamyl (Vydate)',              mcl: 0.2,     unit: 'mg/L',  cat: 'Pesticide',        health: 'Slight nervous system effects. Insecticide runoff from apple orchards and potato and tomato fields.' },
+  '2110': { name: 'Carbofuran',                   mcl: 0.04,    unit: 'mg/L',  cat: 'Pesticide',        health: 'Problems with blood, nervous system, or reproductive system. Leaching of soil fumigant used on rice and alfalfa.' },
+  '2210': { name: '1,2-Dibromo-3-chloropropane (DBCP)', mcl: 0.0002, unit: 'mg/L', cat: 'Pesticide',   health: 'Reproductive difficulties; increased cancer risk. Residue of banned soil fumigant.' },
+  '2214': { name: 'Ethylene Dibromide (EDB)',     mcl: 0.00005, unit: 'mg/L',  cat: 'Pesticide',        health: 'Liver, stomach, and reproductive system problems; increased cancer risk. Residue of banned soil fumigant used on soybeans, cotton, pineapple, and citrus.' },
+  '2306': { name: 'Pentachlorophenol',            mcl: 0.001,   unit: 'mg/L',  cat: 'Pesticide',        health: 'Liver or kidney problems; increased cancer risk. Discharge from wood-preserving factories.' },
+  '2326': { name: 'Dalapon',                      mcl: 0.2,     unit: 'mg/L',  cat: 'Pesticide',        health: 'Minor kidney changes. Runoff from herbicide use on rights of way.' },
+  '2378': { name: 'Dioxin (2,3,7,8-TCDD)',        mcl: 0.00000003, unit: 'mg/L', cat: 'Pesticide',      health: 'Reproductive difficulties; increased cancer risk. Extremely potent industrial contaminant; byproduct of certain manufacturing and incineration processes.' },
+  '2380': { name: 'Chlordane',                    mcl: 0.002,   unit: 'mg/L',  cat: 'Pesticide',        health: 'Liver or nervous system problems; increased cancer risk. Residue of banned termiticide; persists in soil for decades.' },
+  '2440': { name: 'Hexachlorobenzene',            mcl: 0.001,   unit: 'mg/L',  cat: 'Pesticide',        health: 'Liver or kidney problems; reproductive difficulties; increased cancer risk. Discharge from metal refineries and agricultural chemical factories.' },
+  '2274': { name: 'Hexachlorobenzene',            mcl: 0.001,   unit: 'mg/L',  cat: 'Pesticide',        health: 'Liver or kidney problems; reproductive difficulties; increased cancer risk. Discharge from metal refineries and agricultural chemical factories.' },
+  '2595': { name: 'Metribuzin',                   mcl: 0.1,     unit: 'mg/L',  cat: 'Pesticide',        health: 'Herbicide used on soybeans, potatoes, and other crops. Runoff from agricultural fields. Liver effects at high levels.' },
+  // Additional SOC/pesticide monitoring codes
+  '2104': { name: '2,4,5-TP (Silvex)',            mcl: 0.05,    unit: 'mg/L',  cat: 'Pesticide',        health: 'A banned chlorinated herbicide formerly used on crops, orchards, and rights-of-way. Liver problems. Residues persist in the environment. EPA banned most uses in 1985.' },
+  '2105': { name: '2,4-D',                        mcl: 0.07,    unit: 'mg/L',  cat: 'Pesticide',        health: 'One of the most widely used herbicides in the US, applied to lawns, crops, and rights-of-way. Kidney, liver, or adrenal gland problems at high levels. Enters water through agricultural and residential runoff.' },
+  '2106': { name: 'Hexachlorocyclopentadiene',    mcl: 0.05,    unit: 'mg/L',  cat: 'Pesticide',        health: 'An industrial chemical used in the manufacture of pesticides and flame retardants. Kidney and stomach problems. Enters water from discharge of chemical plants.' },
+  '2107': { name: 'Simazine',                     mcl: 0.004,   unit: 'mg/L',  cat: 'Pesticide',        health: 'A triazine herbicide used to control broadleaf weeds in agriculture and on lawns. May cause problems in blood, liver, kidney, and adrenal glands. Enters water from crop and residential runoff.' },
+  '2300': { name: 'Aldicarb',                     mcl: 0.003,   unit: 'mg/L',  cat: 'Pesticide',        health: 'A carbamate insecticide used on cotton and potatoes. Nervous system effects — one of the most acutely toxic pesticides. Leaches readily into groundwater. Many states have set their own limits.' },
+  '2335': { name: 'Aldicarb Sulfoxide',           mcl: 0.004,   unit: 'mg/L',  cat: 'Pesticide',        health: 'A breakdown product of aldicarb. Causes the same nervous system effects as aldicarb. Leaches into groundwater from treated agricultural soils.' },
+  '2338': { name: 'Aldicarb Sulfone',             mcl: 0.002,   unit: 'mg/L',  cat: 'Pesticide',        health: 'Another breakdown product of aldicarb, also harmful to the nervous system. Persists longer in groundwater than aldicarb itself.' },
+  '2017': { name: 'Diquat',                       mcl: 0.02,    unit: 'mg/L',  cat: 'Pesticide',        health: 'A non-selective herbicide used to control aquatic weeds and crops. Cataracts with long-term exposure. Runoff from herbicide use on crops.' },
+  '2302': { name: 'Dinoseb',                      mcl: 0.007,   unit: 'mg/L',  cat: 'Pesticide',        health: 'A nitrophenol herbicide and pesticide. Reproductive difficulties. Runoff from use on soybeans and vegetables. Most uses were cancelled by EPA in 1986.' },
+  '2259': { name: 'Toxaphene',                    mcl: 0.003,   unit: 'mg/L',  cat: 'Pesticide',        health: 'A banned chlorinated pesticide used on cotton and livestock. Kidney, liver, and thyroid problems; increased cancer risk. Residues in soil and sediment persist for decades.' },
   // Lead & Copper Rule codes used in VIOLATION table
   '0300': { name: 'Copper',  mcl: 1.3,   unit: 'mg/L',  cat: 'Heavy Metal',  health: 'Copper can cause short-term gastrointestinal distress. Excessive long-term exposure can cause liver and kidney damage. Copper in water usually comes from home plumbing.' },
   '0301': { name: 'Lead',    mcl: 0.015, unit: 'mg/L',  cat: 'Heavy Metal',  health: 'No safe level of lead exposure is known. It causes serious developmental and neurological harm, especially in children under 6 and pregnant women. Lead enters water from pipes and fixtures, not the source water.' },
@@ -222,7 +319,8 @@ function isActive(v) {
 }
 
 function getViolationCategory(v) {
-  const cat = (v.violationCategory || '').trim().toUpperCase();
+  let cat = (v.violationCategory || '').trim().toUpperCase();
+  if (cat === 'MR') cat = 'M/R'; // SDWIS uses both 'MR' and 'M/R'
   return VIOLATION_CATEGORIES[cat] || VIOLATION_CATEGORIES['Other'];
 }
 
@@ -344,9 +442,9 @@ function renderViolationCard(v) {
       ? '<span class="badge badge-warn">Monitoring</span>'
       : '<span class="badge badge-purple">Reporting</span>';
 
-  const healthCallout = contaminantInfo && v.isHealthBased
-    ? `<div class="health-callout">
-        <span class="health-callout-icon">🩺</span>
+  const healthCallout = contaminantInfo
+    ? `<div class="health-callout${v.isHealthBased ? '' : ' health-callout-info'}">
+        <span class="health-callout-icon">${v.isHealthBased ? '🩺' : 'ℹ️'}</span>
         <span>${escapeHtml(contaminantInfo.health)}</span>
        </div>`
     : '';
@@ -477,7 +575,7 @@ function renderRecommendations(violations, samples, system) {
   const leadOver      = leadSamples.filter(s => s.result > 0.015);
   const hasTthms      = violations.some(v => v.contaminantCode === '1005' && isActive(v));
   const hasNitrate    = violations.some(v => ['0008','0009'].includes(v.contaminantCode));
-  const hasBacteria   = violations.some(v => ['2050','2051','2049'].includes(v.contaminantCode));
+  const hasBacteria   = violations.some(v => ['2050','2051','2049'].includes(v.contaminantCode) && isActive(v));
   const hasRecentHealth = violations.filter(v => {
     const d = parseDate(v.beginDate);
     return v.isHealthBased && d && d > new Date(Date.now() - 5*365*24*60*60*1000);
@@ -493,7 +591,7 @@ function renderRecommendations(violations, samples, system) {
     });
   }
 
-  if (hasBacteria || violations.some(v => ['2050','2051','2049'].includes(v.contaminantCode) && isActive(v))) {
+  if (hasBacteria) {
     recs.push({
       icon: '🦠',
       title: 'Boil water advisory may be needed',
@@ -831,6 +929,9 @@ $('active-only').addEventListener('change', () => {
 
 // ─── Browser back / forward ───────────────────────────────────────
 window.addEventListener('popstate', async (e) => {
+  // Hash anchor clicks (tab navigation) fire popstate with null state — ignore them
+  if (!e.state && window.location.hash) return;
+
   const s = e.state;
   if (s && s.pwsid) {
     // Navigating to a report — use cached report if available, otherwise fetch
