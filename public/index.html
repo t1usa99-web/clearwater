@@ -24,6 +24,63 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.checkclearwater.com/#website",
+        "name": "ClearWater",
+        "url": "https://www.checkclearwater.com/",
+        "description": "Free EPA water quality lookup for any US ZIP code. See violations, lead levels, and a plain-English safety grade for 160,000+ water systems.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.checkclearwater.com/zip/{zip_code}"
+          },
+          "query-input": "required name=zip_code"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://www.checkclearwater.com/#organization",
+        "name": "ClearWater",
+        "url": "https://www.checkclearwater.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.checkclearwater.com/og-image.png",
+          "width": 1200,
+          "height": 630
+        },
+        "description": "ClearWater provides free EPA drinking water quality data for over 160,000 US public water systems, helping Americans understand what's in their tap water."
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://www.checkclearwater.com/#app",
+        "name": "ClearWater — EPA Water Quality Lookup",
+        "url": "https://www.checkclearwater.com/",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Search any US ZIP code to instantly see EPA violations, lead & copper test results, and a water safety grade — explained in plain English.",
+        "featureList": [
+          "EPA SDWIS violation history up to 10 years",
+          "Lead and copper test results",
+          "Overall water safety grade",
+          "Plain-English health risk explanations",
+          "Coverage of 160,000+ US public water systems"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
