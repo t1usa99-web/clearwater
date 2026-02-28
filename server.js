@@ -359,7 +359,14 @@ const renderSSRPage = async (system, violations, samples) => {
   const pop      = system.population > 0 ? `${system.population.toLocaleString()} people served` : '';
   const source   = SOURCE_LABELS[system.sourceType] || '';
 
-  const title = `${system.name} — ${location} Water Quality | ClearWater`;
+  // Avoid "CHICAGO — CHICAGO, IL" when the system name IS the city name
+  const nameUpper = (system.name || '').toUpperCase().trim();
+  const cityUpper = (system.city || '').toUpperCase().trim();
+  const titleLocation = cityUpper && nameUpper === cityUpper
+    ? [system.name, system.state].filter(Boolean).join(', ')   // "CHICAGO, IL"
+    : `${system.name}${location ? ` — ${location}` : ''}`;     // "Metro Water — Chicago, IL"
+
+  const title = `${titleLocation} Water Quality | ClearWater`;
   const desc  = `Water quality for ${system.name}${location ? `, ${location}` : ''}. `
     + `Grade ${grade}: ${label}. ${violations.length} total violations on record. Free EPA data.`;
   const canonical = `${BASE_URL}/report/${escHtml(system.pwsid)}`;
