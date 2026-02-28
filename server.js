@@ -1,5 +1,5 @@
 /**
- * ClearWater — Node.js server (no npm dependencies)
+ * ClearWater - Node.js server (no npm dependencies)
  * Uses only Node.js built-in modules: http, fs, path, url
  * Requires Node.js 18+ (for built-in fetch)
  *
@@ -14,8 +14,8 @@
  *   GET /public/*               → Static files
  *
  * Data sources:
- *   api.zippopotam.us           — ZIP code → city + state
- *   data.epa.gov/efservice       — EPA Envirofacts SDWIS API
+ *   api.zippopotam.us           - ZIP code -> city + state
+ *   data.epa.gov/efservice       - EPA Envirofacts SDWIS API
  */
 
 import http   from 'http';
@@ -130,7 +130,7 @@ const sendHTML = async (req, res, html, status = 200) => {
   res.end(out);
 };
 
-// Static files — long-lived cache for versioned assets (CSS, JS, fonts, icons)
+// Static files - long-lived cache for versioned assets (CSS, JS, fonts, icons)
 const STATIC_CACHEABLE = new Set(['.css', '.js', '.ico', '.svg', '.png', '.woff2', '.woff']);
 const serveStatic = (req, res, filePath) => {
   fs.readFile(filePath, (err, data) => {
@@ -235,11 +235,11 @@ const computeGradeServer = (violations) => {
   else                                    grade = 'A';
 
   const labels = {
-    A: 'Meets all standards — no recent health-based violations',
-    B: '1 recent health-based violation — generally safe',
-    C: 'Multiple violations — some concern warranted',
-    D: 'Significant health-based violations — take precautions',
-    F: 'Active health violation — check with your utility immediately',
+    A: 'Meets all standards: no recent health-based violations',
+    B: '1 recent health-based violation, generally safe',
+    C: 'Multiple violations, some concern warranted',
+    D: 'Significant health-based violations: take precautions',
+    F: 'Active health violation: check with your utility immediately',
   };
 
   return { grade, label: labels[grade], activeHealth: activeHealth.length, recentHealth: recentHealth.length };
@@ -311,7 +311,7 @@ const fetchReportData = async (pwsid) => {
   console.log(`[report] Fetching ${pwsid}`);
 
   // EPA Envirofacts: rows/0:500 max for filtered queries to avoid HTTP 500.
-  // LCR_SAMPLE_RESULT has no date — join dates from LCR_SAMPLE by sample_id.
+  // LCR_SAMPLE_RESULT has no date - join dates from LCR_SAMPLE by sample_id.
   const [violResult, sampleResult, lcrSampleResult, sysResult] = await Promise.allSettled([
     fetchJSON(`${EPA_BASE}/VIOLATION/pwsid/${pwsid}/rows/0:500/JSON`),
     fetchJSON(`${EPA_BASE}/LCR_SAMPLE_RESULT/pwsid/${pwsid}/rows/0:200/JSON`),
@@ -359,12 +359,12 @@ const renderSSRPage = async (system, violations, samples) => {
   const pop      = system.population > 0 ? `${system.population.toLocaleString()} people served` : '';
   const source   = SOURCE_LABELS[system.sourceType] || '';
 
-  // Avoid "CHICAGO — CHICAGO, IL" when the system name IS the city name
+  // Avoid "CHICAGO, CHICAGO, IL" when the system name IS the city name
   const nameUpper = (system.name || '').toUpperCase().trim();
   const cityUpper = (system.city || '').toUpperCase().trim();
   const titleLocation = cityUpper && nameUpper === cityUpper
     ? [system.name, system.state].filter(Boolean).join(', ')   // "CHICAGO, IL"
-    : `${system.name}${location ? ` — ${location}` : ''}`;     // "Metro Water — Chicago, IL"
+    : `${system.name}${location ? `, ${location}` : ''}`;     // "Metro Water, Chicago, IL"
 
   const title = `${titleLocation} Water Quality | ClearWater`;
   const desc  = `Water quality for ${system.name}${location ? `, ${location}` : ''}. `
@@ -378,7 +378,7 @@ const renderSSRPage = async (system, violations, samples) => {
     ? `<ul>${healthViolations.map(v => {
         const status = isActiveServer(v) ? 'Active' : 'Resolved';
         const name   = v.contaminantName || `Contaminant #${v.contaminantCode}`;
-        return `<li>${escHtml(name)} — ${escHtml(v.violationCategory)} (${status})</li>`;
+        return `<li>${escHtml(name)}: ${escHtml(v.violationCategory)} (${status})</li>`;
       }).join('')}</ul>`
     : '<p>No health-based violations on record.</p>';
 
@@ -404,7 +404,7 @@ const renderSSRPage = async (system, violations, samples) => {
   <meta property="og:image" content="${BASE_URL}/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="ClearWater — Is Your Tap Water Safe? Free EPA water quality lookup.">
+  <meta property="og:image:alt" content="ClearWater: Is Your Tap Water Safe? Free EPA water quality lookup.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escHtml(title)}">
   <meta name="twitter:description" content="${escHtml(desc)}">
@@ -413,7 +413,7 @@ const renderSSRPage = async (system, violations, samples) => {
   <script type="application/ld+json">${jsonLd}</script>
   <script>window.__PRELOADED__=${JSON.stringify({ system, violations, samples })};</script>`;
 
-  // SSR summary injected into the placeholder — visible to non-JS crawlers
+  // SSR summary injected into the placeholder - visible to non-JS crawlers
   const ssrSummary = `
     <div id="ssr-summary" style="padding:2rem;max-width:800px;margin:0 auto;font-family:system-ui,sans-serif">
       <a href="/" style="color:#0ea5e9;text-decoration:none;font-size:14px">← Search another ZIP code</a>
@@ -522,8 +522,8 @@ const fetchSystemsForState = async (stateCode) => {
 };
 
 const renderStatePage = (stateCode, stateName, systems) => {
-  const title    = `${stateName} Tap Water Quality — Water Systems &amp; Safety Grades | ClearWater`;
-  const titleStr = `${stateName} Tap Water Quality — Water Systems & Safety Grades | ClearWater`;
+  const title    = `${stateName} Tap Water Quality: Water Systems &amp; Safety Grades | ClearWater`;
+  const titleStr = `${stateName} Tap Water Quality: Water Systems & Safety Grades | ClearWater`;
   const desc     = `Find EPA water quality data for ${stateName} water utilities. Search violations, lead & copper test results, and safety grades for ${systems.length}+ water systems.`;
   const canonical = `${BASE_URL}/state/${stateCode.toLowerCase()}`;
   const totalPop  = systems.reduce((s, x) => s + x.population, 0);
@@ -561,7 +561,7 @@ const renderStatePage = (stateCode, stateName, systems) => {
   <meta property="og:image" content="${BASE_URL}/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="ClearWater — Is Your Tap Water Safe? Free EPA water quality lookup.">
+  <meta property="og:image:alt" content="ClearWater: Is Your Tap Water Safe? Free EPA water quality lookup.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="${BASE_URL}/og-image.png">
   <link rel="canonical" href="${canonical}">

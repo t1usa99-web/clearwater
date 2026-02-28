@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   ClearWater — Design System
+   ClearWater - Design System
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
@@ -790,6 +790,7 @@ button { cursor: pointer; font-family: inherit; }
   align-items: flex-start;
 }
 .health-callout-icon { flex-shrink: 0; font-size: 14px; }
+.health-callout.health-callout-info { background: #eff6ff; border-left: 3px solid #93c5fd; }
 
 /* Empty state for violations */
 .empty-state {
