@@ -554,6 +554,7 @@ const renderStatePage = (stateCode, stateName, systems) => {
   <meta property="og:type" content="website">
   <meta property="og:url" content="${canonical}">
   <link rel="canonical" href="${canonical}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <script type="application/ld+json">${jsonLd}</script>
   <link rel="stylesheet" href="/style.css">
@@ -761,6 +762,7 @@ const server = http.createServer(async (req, res) => {
   // Special files
   if (pathname === '/sitemap.xml') return handleSitemap(res);
   if (pathname === '/robots.txt')  return handleRobots(res);
+  if (pathname === '/favicon.ico') return serveStatic(req, res, path.join(PUBLIC, 'favicon.svg'));
 
   // SSR report page: /report/:pwsid
   const reportMatch = pathname.match(/^\/report\/([A-Za-z0-9]{3,14})$/);

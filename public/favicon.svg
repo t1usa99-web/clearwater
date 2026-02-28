@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Dark rounded background — matches site header -->
+  <rect width="32" height="32" rx="7" fill="#0f172a"/>
+  <!-- Outer water drop -->
+  <path d="M16 5C16 5 7 14.5 7 20a9 9 0 0 0 18 0C25 14.5 16 5 16 5z" fill="#0ea5e9"/>
+  <!-- Inner highlight -->
+  <path d="M16 11C16 11 11 17 11 20a5 5 0 0 0 10 0C21 17 16 11 16 11z" fill="#7dd3fc" opacity=".55"/>
+</svg>
