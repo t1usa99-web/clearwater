@@ -401,9 +401,14 @@ const renderSSRPage = async (system, violations, samples) => {
   <meta property="og:description" content="${escHtml(desc)}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${canonical}">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="${BASE_URL}/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ClearWater — Is Your Tap Water Safe? Free EPA water quality lookup.">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escHtml(title)}">
   <meta name="twitter:description" content="${escHtml(desc)}">
+  <meta name="twitter:image" content="${BASE_URL}/og-image.png">
   <link rel="canonical" href="${canonical}">
   <script type="application/ld+json">${jsonLd}</script>
   <script>window.__PRELOADED__=${JSON.stringify({ system, violations, samples })};</script>`;
@@ -553,6 +558,12 @@ const renderStatePage = (stateCode, stateName, systems) => {
   <meta property="og:description" content="${escHtml(desc)}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${canonical}">
+  <meta property="og:image" content="${BASE_URL}/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ClearWater — Is Your Tap Water Safe? Free EPA water quality lookup.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="${BASE_URL}/og-image.png">
   <link rel="canonical" href="${canonical}">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -758,6 +769,7 @@ const server = http.createServer(async (req, res) => {
   // API routes
   if (pathname === '/api/systems') return handleSystems(req, res, u.searchParams);
   if (pathname === '/api/report')  return handleReport(req, res, u.searchParams);
+
 
   // Special files
   if (pathname === '/sitemap.xml') return handleSitemap(res);

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>OG Image Preview — ClearWater</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; }
+
+    .card {
+      width: 1200px;
+      height: 630px;
+      background: #0f172a;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background glow orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 480px; height: 480px;
+      background: rgba(14,165,233,0.18);
+      top: -100px; left: -80px;
+    }
+    .orb-2 {
+      width: 360px; height: 360px;
+      background: rgba(14,165,233,0.10);
+      bottom: -80px; right: 200px;
+    }
+
+    /* Left column */
+    .left {
+      width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      gap: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .drop-wrap {
+      width: 180px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-name {
+      font-size: 48px;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: -1px;
+    }
+    .brand-tagline {
+      font-size: 16px;
+      font-weight: 500;
+      color: #38bdf8;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Divider */
+    .divider {
+      position: absolute;
+      left: 460px;
+      top: 80px;
+      bottom: 80px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(56,189,248,0.3) 30%, rgba(56,189,248,0.3) 70%, transparent);
+      z-index: 1;
+    }
+
+    /* Right column */
+    .right {
+      flex: 1;
+      padding: 60px 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .headline {
+      font-size: 52px;
+      font-weight: 800;
+      color: #f8fafc;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+    .headline em {
+      font-style: normal;
+      color: #38bdf8;
+    }
+
+    .sub {
+      font-size: 20px;
+      color: #94a3b8;
+      line-height: 1.5;
+      font-weight: 400;
+      max-width: 560px;
+    }
+
+    .pills {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      background: rgba(14,165,233,0.12);
+      border: 1px solid rgba(14,165,233,0.25);
+      color: #7dd3fc;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 999px;
+    }
+
+    .url {
+      font-size: 18px;
+      font-weight: 600;
+      color: #475569;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- Left: logo + brand name -->
+    <div class="left">
+      <div class="drop-wrap">
+        <svg width="160" height="160" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2C14 2 4 12 4 18a10 10 0 0 0 20 0C24 12 14 2 14 2z" fill="#0ea5e9"/>
+          <path d="M14 8C14 8 8 15 8 18a6 6 0 0 0 12 0C20 15 14 8 14 8z" fill="#7dd3fc" opacity=".6"/>
+        </svg>
+      </div>
+      <div class="brand">
+        <div class="brand-name">ClearWater</div>
+        <div class="brand-tagline">Free · Powered by EPA</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Right: headline + details -->
+    <div class="right">
+      <div class="headline">Is Your Tap<br>Water <em>Safe?</em></div>
+      <div class="sub">Search any US ZIP code to see real EPA violations, lead levels, and a plain-English safety grade.</div>
+      <div class="pills">
+        <span class="pill">📊 160,000+ water systems</span>
+        <span class="pill">🔄 Updated quarterly</span>
+        <span class="pill">🆓 Always free</span>
+      </div>
+      <div class="url">checkclearwater.com</div>
+    </div>
+  </div>
+</body>
+</html>
