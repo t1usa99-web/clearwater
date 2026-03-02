@@ -196,6 +196,7 @@ REQUIREMENTS:
 - Structured with H2 and H3 headings optimized for search and featured snippets
 - Naturally mention ClearWater's free ZIP code lookup 1-2 times where it's genuinely helpful (not forced)
 - Do NOT include any affiliate links or product recommendations with prices
+- Do NOT use em dashes (—) anywhere in the text. Use commas, periods, or rewrite the sentence instead
 
 OUTPUT: Return ONLY valid JSON with no markdown code fences, no preamble, no explanation. Just the raw JSON object:
 {
