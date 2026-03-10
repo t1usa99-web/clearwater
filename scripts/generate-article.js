@@ -180,6 +180,40 @@ function callClaude(prompt) {
   });
 }
 
+// ─── Auto topic generation ────────────────────────────────────────
+async function generateTopic(existingArticles) {
+  const publishedTitles = existingArticles.map(a => a.title).join('\n- ');
+
+  const prompt = `You are an SEO content strategist for ClearWater (checkclearwater.com), a free EPA drinking water quality lookup tool.
+
+Already published articles:
+- ${publishedTitles}
+
+Generate ONE new article topic about drinking water quality that:
+- Has not been covered yet
+- Targets a specific high-value search query (e.g. "is [city/state] tap water safe", "[contaminant] in drinking water", "how to [water safety action]")
+- Fits one of these categories: contaminants, guides, states
+- Would genuinely help homeowners, renters, or parents understand or improve their tap water safety
+
+Return ONLY valid JSON with no markdown, no explanation:
+{
+  "slug": "url-friendly-slug-with-hyphens",
+  "title": "Full Article Title for SEO",
+  "category": "contaminants|guides|states",
+  "focus": "2-4 sentence description of what the article should cover, including specific facts, stats, regulations, or geographic focus to make it authoritative"
+}`;
+
+  const response = await callClaude(prompt);
+  if (response.error) throw new Error(`API error generating topic: ${JSON.stringify(response.error)}`);
+
+  const rawText = response.content[0].text.trim()
+    .replace(/^```(?:json)?\s*/i, '')
+    .replace(/\s*```$/, '')
+    .trim();
+
+  return JSON.parse(rawText);
+}
+
 // ─── Article generation ───────────────────────────────────────────
 async function generateArticle(topic) {
   const prompt = `You are writing a long-form SEO pillar article for ClearWater (checkclearwater.com), a free EPA drinking water quality lookup tool that helps Americans understand what's in their tap water.
@@ -253,13 +287,14 @@ async function main() {
     }
   }
 
-  // Find next unpublished topic
+  // Find next unpublished topic — or generate one automatically
   const published = new Set(articles.map(a => a.slug));
-  const topic     = TOPICS.find(t => !published.has(t.slug));
+  let topic = TOPICS.find(t => !published.has(t.slug));
 
   if (!topic) {
-    console.log('✅  All topics have been published. Add more to the TOPICS array to continue.');
-    process.exit(0);
+    console.log('📋  All predefined topics published. Generating a new topic automatically...');
+    topic = await generateTopic(articles);
+    console.log(`    Generated topic: "${topic.title}"`);
   }
 
   console.log(`\n📝  Generating: "${topic.title}"`);
