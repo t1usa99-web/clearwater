@@ -1,172 +1,134 @@
 [
   {
-    "state": "NJ",
-    "stateName": "New Jersey",
+    "state": "AK",
+    "stateName": "Alaska",
     "labs": [
       {
-        "name": "Garden State Labs",
-        "address": "410 Hillside Avenue",
-        "city": "Hillside",
-        "zip": "07205",
-        "phone": "1-800-273-8901",
-        "certifications": ["microbiology", "chemistry", "drinking water", "wastewater"],
-        "website": "https://www.gslabs.com/"
+        "name": "Alaska Water Laboratories LLC",
+        "address": "2913 Bering St",
+        "city": "Anchorage",
+        "zip": "99503",
+        "phone": "(907) 276-3322",
+        "certifications": [
+          "drinking water",
+          "DEC certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://akwaterlabs.com/"
       },
       {
-        "name": "South Jersey Water Test, LLC",
-        "address": "4077 S Black Horse Pike",
-        "city": "Williamstown",
-        "zip": "08094",
-        "phone": "(856) 875-3507",
-        "certifications": ["drinking water chemistry", "NJDEP certified"],
-        "website": "https://sjwatertest.com/"
+        "name": "Mat-Su Test Lab LLC",
+        "address": "9131 E Frontage Rd Ste 15",
+        "city": "Palmer",
+        "zip": "99645",
+        "phone": "(907) 745-3005",
+        "certifications": [
+          "drinking water",
+          "DEC certified"
+        ],
+        "website": "https://www.matsutestlab.com/"
       },
       {
-        "name": "York Analytical Laboratories",
-        "address": "2161 Whitesville Rd",
-        "city": "Toms River",
-        "zip": "08755",
-        "phone": "(203) 325-1371",
-        "certifications": ["drinking water", "PFAS", "NJDEP certified"],
-        "website": "https://yorklab.com/new-jersey-laboratory/"
-      },
-      {
-        "name": "EMSL Analytical",
-        "address": "200 Route 130 N",
-        "city": "Cinnaminson",
-        "zip": "08077",
-        "phone": "1-800-220-3675",
-        "certifications": ["drinking water", "PWTA", "environmental"],
-        "website": "https://www.emsl.com/"
-      },
-      {
-        "name": "New Jersey Analytical Laboratories",
-        "address": "1580 Reed Rd",
-        "city": "Pennington",
-        "zip": "08534",
-        "phone": "(609) 737-3477",
-        "certifications": ["drinking water", "environmental testing", "NJDEP certified"],
-        "website": "https://njal.com/"
-      },
-      {
-        "name": "Vineland Environmental Laboratories",
-        "address": "782 S Brewster Rd, Suite B-1",
-        "city": "Vineland",
-        "zip": "08361",
-        "phone": "(856) 692-6800",
-        "certifications": ["drinking water", "microbiology", "NJDEP certified"],
-        "website": "https://www.vinelandlab.com/"
+        "name": "SGS North America — Alaska Environmental Lab",
+        "address": "200 W Potter Dr",
+        "city": "Anchorage",
+        "zip": "99518",
+        "phone": "(907) 562-2343",
+        "certifications": [
+          "drinking water",
+          "chemistry",
+          "DEC certified"
+        ],
+        "website": "https://www.sgs.com/"
       }
     ]
   },
   {
-    "state": "TX",
-    "stateName": "Texas",
+    "state": "AL",
+    "stateName": "Alabama",
     "labs": [
       {
-        "name": "A & B Labs",
-        "address": "10100 East Freeway, Suite 100",
-        "city": "Houston",
-        "zip": "77076",
-        "phone": "(713) 453-6060",
-        "certifications": ["drinking water", "TCEQ approved", "ISO/IEC 17025", "NELAP"],
-        "website": "https://ablabs.com/"
+        "name": "Alabama Department of Public Health Laboratory",
+        "address": "8140 AUM Dr",
+        "city": "Montgomery",
+        "zip": "36117",
+        "phone": "(334) 260-3401",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.alabamapublichealth.gov/"
       },
       {
-        "name": "Chaparral Laboratories, Inc.",
-        "address": "861 TX-19",
-        "city": "Huntsville",
-        "zip": "77320",
-        "phone": "(936) 291-1881",
-        "certifications": ["drinking water", "TCEQ approved", "environmental"],
-        "website": "https://chaparrallabs.com/"
+        "name": "ALS Environmental",
+        "address": "4101 Greenbriar St",
+        "city": "Birmingham",
+        "zip": "35242",
+        "phone": "(205) 941-6220",
+        "certifications": [
+          "drinking water",
+          "ADEM certified"
+        ],
+        "website": "https://www.alsglobal.com/"
       },
       {
-        "name": "Envirodyne Laboratories Inc",
-        "address": "11011 Brooklet Drive, Suite 230",
-        "city": "Houston",
-        "zip": "77099",
-        "phone": "(281) 568-7880",
-        "certifications": ["drinking water", "wastewater", "TCEQ approved"],
-        "website": "https://envirodyne.com/"
-      },
-      {
-        "name": "Eastex Environmental Laboratory",
-        "address": "1119 S University Drive",
-        "city": "Nacogdoches",
-        "zip": "75961",
-        "phone": "(936) 569-8879",
-        "certifications": ["drinking water", "TCEQ approved", "environmental"],
-        "website": "https://www.eastexlabs.com/"
-      },
-      {
-        "name": "North Water District Laboratory Services",
-        "address": "1717 Turning Basin Dr",
-        "city": "Houston",
-        "zip": "77029",
-        "phone": "(936) 321-6060",
-        "certifications": ["drinking water", "TCEQ approved", "environmental analysis"],
-        "website": "https://nwdls.com/"
-      },
-      {
-        "name": "Tarrant County Regional Laboratory",
-        "address": "1101 South Main Street, Suite 1700",
-        "city": "Fort Worth",
-        "zip": "76104",
-        "phone": "(817) 321-4778",
-        "certifications": ["drinking water", "total coliform", "E. coli", "TCEQ accredited"],
-        "website": "https://www.tarrantcountytx.gov/"
+        "name": "Pace Analytical Services",
+        "address": "1915 Jamestown Blvd",
+        "city": "Dothan",
+        "zip": "36301",
+        "phone": "(800) 224-1150",
+        "certifications": [
+          "drinking water",
+          "ADEM certified",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
       }
     ]
   },
   {
-    "state": "MI",
-    "stateName": "Michigan",
+    "state": "AR",
+    "stateName": "Arkansas",
     "labs": [
       {
-        "name": "Michigan EGLE Drinking Water Laboratory",
-        "address": "3350 N. Martin Luther King Jr Blvd",
-        "city": "Lansing",
-        "zip": "48906",
-        "phone": "(517) 335-8184",
-        "certifications": ["chemistry", "microbiology", "EPA certified", "NELAC accredited"],
-        "website": "https://www.michigan.gov/egle"
+        "name": "Arkansas Department of Health Public Health Laboratory",
+        "address": "4815 W Markham St",
+        "city": "Little Rock",
+        "zip": "72205",
+        "phone": "(501) 661-2153",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.healthy.arkansas.gov/"
       },
       {
-        "name": "Great Lakes Water Quality Lab",
-        "address": "6461 Sunset Dr",
-        "city": "Lake Ann",
-        "zip": "49650",
-        "phone": "(231) 275-7382",
-        "certifications": ["drinking water", "Michigan certified"],
-        "website": "https://www.greatlakeswaterlab.net/"
+        "name": "ALS Environmental",
+        "address": "10200 Little Rock Rd",
+        "city": "Little Rock",
+        "zip": "72206",
+        "phone": "(501) 562-6090",
+        "certifications": [
+          "drinking water",
+          "ADEQ certified"
+        ],
+        "website": "https://www.alsglobal.com/"
       },
       {
-        "name": "B&B Water/Wastewater Consultants Inc",
-        "address": "4402 Division St",
-        "city": "Wayland",
-        "zip": "49348",
-        "phone": "(616) 877-4196",
-        "certifications": ["microbiology", "total coliforms", "E. coli", "inorganic chemistry"],
-        "website": "http://bbwater-wastewater.com/"
-      },
-      {
-        "name": "Enviro Lab Services",
-        "address": "4150 Arrow Street",
-        "city": "Oscoda",
-        "zip": "48750",
-        "phone": "(989) 387-2758",
-        "certifications": ["drinking water", "PFAS", "EGLE certified"],
-        "website": "https://envirolabservice.com/"
-      },
-      {
-        "name": "City of Ann Arbor Environmental Laboratory",
-        "address": "1400 S. State Street",
-        "city": "Ann Arbor",
-        "zip": "48104",
-        "phone": "(734) 794-6426",
-        "certifications": ["drinking water", "EGLE certified"],
-        "website": "https://www.a2gov.org/"
+        "name": "Pace Analytical Services",
+        "address": "3750 E Kiehl Ave",
+        "city": "Sherwood",
+        "zip": "72120",
+        "phone": "(501) 835-7460",
+        "certifications": [
+          "drinking water",
+          "ADEQ certified",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
       }
     ]
   },
@@ -180,7 +142,11 @@
         "city": "Tucson",
         "zip": "85745",
         "phone": "(520) 882-5880",
-        "certifications": ["drinking water", "trace metals", "AZDHS certified"],
+        "certifications": [
+          "drinking water",
+          "trace metals",
+          "AZDHS certified"
+        ],
         "website": "http://turnerlabs.com/"
       },
       {
@@ -189,7 +155,11 @@
         "city": "Phoenix",
         "zip": "85034",
         "phone": "(602) 273-7248",
-        "certifications": ["drinking water", "soil analysis", "AZDHS certified"],
+        "certifications": [
+          "drinking water",
+          "soil analysis",
+          "AZDHS certified"
+        ],
         "website": "https://iaslabs.com/"
       },
       {
@@ -198,7 +168,10 @@
         "city": "Chandler",
         "zip": "85226",
         "phone": "(480) 963-2495",
-        "certifications": ["drinking water", "agricultural", "AZDHS certified"],
+        "certifications": [
+          "drinking water",
+          "AZDHS certified"
+        ],
         "website": ""
       },
       {
@@ -207,8 +180,1280 @@
         "city": "Tempe",
         "zip": "85282",
         "phone": "(602) 437-0762",
-        "certifications": ["drinking water", "trace metals", "mineral analysis", "AZDHS certified"],
+        "certifications": [
+          "drinking water",
+          "trace metals",
+          "AZDHS certified"
+        ],
         "website": ""
+      }
+    ]
+  },
+  {
+    "state": "CA",
+    "stateName": "California",
+    "labs": [
+      {
+        "name": "Babcock Laboratories Inc",
+        "address": "6747 Whitestone Rd",
+        "city": "Riverside",
+        "zip": "92503",
+        "phone": "(951) 653-3351",
+        "certifications": [
+          "drinking water",
+          "ELAP certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://www.babcocklabs.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "5900 88th St",
+        "city": "Sacramento",
+        "zip": "95828",
+        "phone": "(916) 381-4975",
+        "certifications": [
+          "drinking water",
+          "ELAP certified",
+          "PFAS",
+          "trace metals"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "National Testing Laboratories",
+        "address": "6151 W Century Blvd",
+        "city": "Los Angeles",
+        "zip": "90045",
+        "phone": "(800) 458-3330",
+        "certifications": [
+          "drinking water",
+          "NSF certified",
+          "lead",
+          "nitrates"
+        ],
+        "website": "https://www.ntllabs.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "9888 Chesapeake Dr",
+        "city": "San Diego",
+        "zip": "92123",
+        "phone": "(858) 467-1557",
+        "certifications": [
+          "drinking water",
+          "ELAP certified",
+          "PFAS"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "CO",
+    "stateName": "Colorado",
+    "labs": [
+      {
+        "name": "Colorado Department of Public Health & Environment Lab",
+        "address": "8100 Lowry Blvd",
+        "city": "Denver",
+        "zip": "80230",
+        "phone": "(303) 692-3090",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://cdphe.colorado.gov/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "9901 E 58th Ave",
+        "city": "Denver",
+        "zip": "80238",
+        "phone": "(303) 893-5000",
+        "certifications": [
+          "drinking water",
+          "CDPHE certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "1881 W 92nd Ave",
+        "city": "Federal Heights",
+        "zip": "80260",
+        "phone": "(303) 428-6266",
+        "certifications": [
+          "drinking water",
+          "CDPHE certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "CT",
+    "stateName": "Connecticut",
+    "labs": [
+      {
+        "name": "Connecticut Department of Public Health Laboratory",
+        "address": "395 W St",
+        "city": "Rocky Hill",
+        "zip": "06067",
+        "phone": "(860) 920-6400",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://portal.ct.gov/DPH"
+      },
+      {
+        "name": "Analytical Services Inc",
+        "address": "1 Brewer Lane",
+        "city": "Wilton",
+        "zip": "06897",
+        "phone": "(203) 761-9990",
+        "certifications": [
+          "drinking water",
+          "CTDPH certified",
+          "NELAP"
+        ],
+        "website": "https://www.asilabs.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "4 Research Pkwy",
+        "city": "Wallingford",
+        "zip": "06492",
+        "phone": "(203) 294-9500",
+        "certifications": [
+          "drinking water",
+          "CTDPH certified",
+          "PFAS"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "DE",
+    "stateName": "Delaware",
+    "labs": [
+      {
+        "name": "Delaware Division of Public Health Laboratories",
+        "address": "29 N Walnut St",
+        "city": "Dover",
+        "zip": "19904",
+        "phone": "(302) 741-2975",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.dhss.delaware.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "901 Elkton Rd",
+        "city": "Newark",
+        "zip": "19711",
+        "phone": "(302) 738-7600",
+        "certifications": [
+          "drinking water",
+          "DDPH certified",
+          "chemistry"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "150 Corporate Blvd",
+        "city": "Newark",
+        "zip": "19702",
+        "phone": "(302) 731-9100",
+        "certifications": [
+          "drinking water",
+          "DDPH certified",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "FL",
+    "stateName": "Florida",
+    "labs": [
+      {
+        "name": "Florida Department of Health Bureau of Laboratories",
+        "address": "1217 Pearl St",
+        "city": "Jacksonville",
+        "zip": "32202",
+        "phone": "(904) 791-1500",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.floridahealth.gov/"
+      },
+      {
+        "name": "Florida Spectrum Environmental Services",
+        "address": "1460 W McNab Rd",
+        "city": "Pompano Beach",
+        "zip": "33069",
+        "phone": "(954) 975-3600",
+        "certifications": [
+          "drinking water",
+          "FDOH certified",
+          "PFAS",
+          "trace metals"
+        ],
+        "website": "https://www.flspec.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "6931 NW 12th St",
+        "city": "Miami",
+        "zip": "33126",
+        "phone": "(305) 594-1117",
+        "certifications": [
+          "drinking water",
+          "FDOH certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "4505 Vineland Rd",
+        "city": "Orlando",
+        "zip": "32811",
+        "phone": "(407) 481-2100",
+        "certifications": [
+          "drinking water",
+          "FDOH certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "GA",
+    "stateName": "Georgia",
+    "labs": [
+      {
+        "name": "Georgia Division of Public Health Laboratory",
+        "address": "1749 Clairmont Rd",
+        "city": "Decatur",
+        "zip": "30033",
+        "phone": "(404) 327-7900",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://dph.georgia.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "3000 Northwoods Pkwy NW",
+        "city": "Norcross",
+        "zip": "30071",
+        "phone": "(770) 840-9811",
+        "certifications": [
+          "drinking water",
+          "GAEPD certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "1900 Northbrook Pkwy",
+        "city": "Suwanee",
+        "zip": "30024",
+        "phone": "(770) 614-8272",
+        "certifications": [
+          "drinking water",
+          "GAEPD certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "HI",
+    "stateName": "Hawaii",
+    "labs": [
+      {
+        "name": "Hawaii State Laboratories Division",
+        "address": "2725 Waimano Home Rd",
+        "city": "Pearl City",
+        "zip": "96782",
+        "phone": "(808) 453-6652",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://health.hawaii.gov/labs/"
+      },
+      {
+        "name": "Analytical Laboratories of Hawaii LLC",
+        "address": "702 Kakoi St",
+        "city": "Honolulu",
+        "zip": "96819",
+        "phone": "(808) 841-2551",
+        "certifications": [
+          "drinking water",
+          "DOH certified",
+          "chemistry"
+        ],
+        "website": "https://www.alh-hawaii.com/"
+      }
+    ]
+  },
+  {
+    "state": "ID",
+    "stateName": "Idaho",
+    "labs": [
+      {
+        "name": "Idaho Bureau of Laboratories",
+        "address": "2220 Old Penitentiary Rd",
+        "city": "Boise",
+        "zip": "83712",
+        "phone": "(208) 334-2235",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://healthandwelfare.idaho.gov/"
+      },
+      {
+        "name": "Analytical Laboratories Inc",
+        "address": "1804 N 33rd St",
+        "city": "Boise",
+        "zip": "83703",
+        "phone": "(208) 336-9293",
+        "certifications": [
+          "drinking water",
+          "IDEQ certified",
+          "chemistry"
+        ],
+        "website": "https://www.analyticallab.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "3320 Americana Terrace",
+        "city": "Boise",
+        "zip": "83706",
+        "phone": "(208) 343-4743",
+        "certifications": [
+          "drinking water",
+          "IDEQ certified",
+          "PFAS"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "IL",
+    "stateName": "Illinois",
+    "labs": [
+      {
+        "name": "Suburban Laboratories Inc",
+        "address": "1950 Aucutt Rd",
+        "city": "Montgomery",
+        "zip": "60538",
+        "phone": "(630) 897-9494",
+        "certifications": [
+          "drinking water",
+          "IEPA certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://www.suburbanlabs.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "1402 W Collins Ave",
+        "city": "Orange",
+        "zip": "92867",
+        "phone": "(773) 763-9012",
+        "certifications": [
+          "drinking water",
+          "IEPA certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "2620 Finley Rd",
+        "city": "Downers Grove",
+        "zip": "60515",
+        "phone": "(630) 964-1930",
+        "certifications": [
+          "drinking water",
+          "IEPA certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Illinois EPA Division of Laboratories",
+        "address": "9511 Harrison Ave",
+        "city": "Des Plaines",
+        "zip": "60016",
+        "phone": "(847) 294-4000",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://epa.illinois.gov/"
+      }
+    ]
+  },
+  {
+    "state": "IN",
+    "stateName": "Indiana",
+    "labs": [
+      {
+        "name": "Indiana State Department of Health Laboratories",
+        "address": "550 W 16th St",
+        "city": "Indianapolis",
+        "zip": "46202",
+        "phone": "(317) 921-5500",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.in.gov/isdh/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "9901 Allisonville Rd",
+        "city": "Fishers",
+        "zip": "46038",
+        "phone": "(317) 577-1701",
+        "certifications": [
+          "drinking water",
+          "IDEM certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "8014 Zionsville Rd",
+        "city": "Indianapolis",
+        "zip": "46268",
+        "phone": "(317) 871-6940",
+        "certifications": [
+          "drinking water",
+          "IDEM certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "IA",
+    "stateName": "Iowa",
+    "labs": [
+      {
+        "name": "State Hygienic Laboratory at University of Iowa",
+        "address": "2490 Crosspark Rd",
+        "city": "Coralville",
+        "zip": "52241",
+        "phone": "(319) 335-4500",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://www.shl.uiowa.edu/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "2851 SE Creekview Dr",
+        "city": "Ankeny",
+        "zip": "50021",
+        "phone": "(515) 287-0111",
+        "certifications": [
+          "drinking water",
+          "DNR certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "4120 E 29th St",
+        "city": "Davenport",
+        "zip": "52807",
+        "phone": "(563) 332-7000",
+        "certifications": [
+          "drinking water",
+          "DNR certified",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "KS",
+    "stateName": "Kansas",
+    "labs": [
+      {
+        "name": "KDHE Bureau of Environmental Laboratories",
+        "address": "6810 SE Dwight St",
+        "city": "Topeka",
+        "zip": "66620",
+        "phone": "(785) 296-1620",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.kdhe.ks.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "534 S Kansas Ave",
+        "city": "Wichita",
+        "zip": "67211",
+        "phone": "(316) 267-8361",
+        "certifications": [
+          "drinking water",
+          "KDHE certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "9000 Quivira Rd",
+        "city": "Lenexa",
+        "zip": "66215",
+        "phone": "(913) 599-2410",
+        "certifications": [
+          "drinking water",
+          "KDHE certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "KY",
+    "stateName": "Kentucky",
+    "labs": [
+      {
+        "name": "Kentucky Division of Laboratory Services",
+        "address": "100 Sower Blvd",
+        "city": "Frankfort",
+        "zip": "40601",
+        "phone": "(502) 564-4446",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://chfs.ky.gov/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "2222 Regency Rd",
+        "city": "Lexington",
+        "zip": "40503",
+        "phone": "(859) 277-7678",
+        "certifications": [
+          "drinking water",
+          "KDEP certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "7820 Brier Creek Pkwy",
+        "city": "Louisville",
+        "zip": "40258",
+        "phone": "(502) 935-5000",
+        "certifications": [
+          "drinking water",
+          "KDEP certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "LA",
+    "stateName": "Louisiana",
+    "labs": [
+      {
+        "name": "Louisiana Department of Health Laboratories",
+        "address": "1450 Poydras St",
+        "city": "New Orleans",
+        "zip": "70112",
+        "phone": "(504) 568-5050",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://ldh.la.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "17368 Highland Rd",
+        "city": "Baton Rouge",
+        "zip": "70810",
+        "phone": "(225) 756-7670",
+        "certifications": [
+          "drinking water",
+          "LDEQ certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "8050 Florida Blvd",
+        "city": "Baton Rouge",
+        "zip": "70806",
+        "phone": "(225) 927-0050",
+        "certifications": [
+          "drinking water",
+          "LDEQ certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "ME",
+    "stateName": "Maine",
+    "labs": [
+      {
+        "name": "Maine Health and Environmental Testing Laboratory",
+        "address": "221 State St",
+        "city": "Augusta",
+        "zip": "04333",
+        "phone": "(207) 287-2727",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://www.maine.gov/dhhs/mecdc/public-health-systems/hetl/"
+      },
+      {
+        "name": "Northeast Laboratory Services",
+        "address": "5 Southgate Dr",
+        "city": "Winslow",
+        "zip": "04901",
+        "phone": "(207) 873-7711",
+        "certifications": [
+          "drinking water",
+          "MeDEP certified",
+          "NELAP"
+        ],
+        "website": "https://www.nelabservices.com/"
+      }
+    ]
+  },
+  {
+    "state": "MD",
+    "stateName": "Maryland",
+    "labs": [
+      {
+        "name": "Maryland Department of Health Laboratories",
+        "address": "1770 Ashland Ave",
+        "city": "Baltimore",
+        "zip": "21205",
+        "phone": "(410) 767-6100",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://health.maryland.gov/"
+      },
+      {
+        "name": "Chesapeake Environmental Laboratories",
+        "address": "3060 Old Washington Rd",
+        "city": "Waldorf",
+        "zip": "20601",
+        "phone": "(301) 645-1155",
+        "certifications": [
+          "drinking water",
+          "MDE certified",
+          "chemistry",
+          "PFAS"
+        ],
+        "website": "https://www.chesenv.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "9840 Patuxent Woods Dr",
+        "city": "Columbia",
+        "zip": "21046",
+        "phone": "(410) 290-0700",
+        "certifications": [
+          "drinking water",
+          "MDE certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "8625 Old Annapolis Rd",
+        "city": "Columbia",
+        "zip": "21045",
+        "phone": "(410) 910-7670",
+        "certifications": [
+          "drinking water",
+          "MDE certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "MA",
+    "stateName": "Massachusetts",
+    "labs": [
+      {
+        "name": "Massachusetts State Laboratory Institute",
+        "address": "305 South St",
+        "city": "Jamaica Plain",
+        "zip": "02130",
+        "phone": "(617) 983-6200",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.mass.gov/orgs/state-public-health-laboratory"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "107 Audubon Rd",
+        "city": "Wakefield",
+        "zip": "01880",
+        "phone": "(781) 246-1980",
+        "certifications": [
+          "drinking water",
+          "MassDEP certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "90 New Pasture Rd",
+        "city": "Newburyport",
+        "zip": "01950",
+        "phone": "(978) 462-8822",
+        "certifications": [
+          "drinking water",
+          "MassDEP certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Analytical Services Inc",
+        "address": "1 Westinghouse Plaza",
+        "city": "Hyde Park",
+        "zip": "02136",
+        "phone": "(617) 325-5168",
+        "certifications": [
+          "drinking water",
+          "MassDEP certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.asilabs.com/"
+      }
+    ]
+  },
+  {
+    "state": "MI",
+    "stateName": "Michigan",
+    "labs": [
+      {
+        "name": "Michigan EGLE Drinking Water Laboratory",
+        "address": "3350 N. Martin Luther King Jr Blvd",
+        "city": "Lansing",
+        "zip": "48906",
+        "phone": "(517) 335-8184",
+        "certifications": [
+          "chemistry",
+          "microbiology",
+          "EPA certified",
+          "NELAC accredited"
+        ],
+        "website": "https://www.michigan.gov/egle"
+      },
+      {
+        "name": "Great Lakes Water Quality Lab",
+        "address": "6461 Sunset Dr",
+        "city": "Lake Ann",
+        "zip": "49650",
+        "phone": "(231) 275-7382",
+        "certifications": [
+          "drinking water",
+          "Michigan certified"
+        ],
+        "website": "https://www.greatlakeswaterlab.net/"
+      },
+      {
+        "name": "B&B Water/Wastewater Consultants Inc",
+        "address": "4402 Division St",
+        "city": "Wayland",
+        "zip": "49348",
+        "phone": "(616) 877-4196",
+        "certifications": [
+          "microbiology",
+          "total coliforms",
+          "E. coli",
+          "inorganic chemistry"
+        ],
+        "website": "http://bbwater-wastewater.com/"
+      },
+      {
+        "name": "Enviro Lab Services",
+        "address": "4150 Arrow Street",
+        "city": "Oscoda",
+        "zip": "48750",
+        "phone": "(989) 387-2758",
+        "certifications": [
+          "drinking water",
+          "PFAS",
+          "EGLE certified"
+        ],
+        "website": "https://envirolabservice.com/"
+      },
+      {
+        "name": "City of Ann Arbor Environmental Laboratory",
+        "address": "1400 S. State Street",
+        "city": "Ann Arbor",
+        "zip": "48104",
+        "phone": "(734) 794-6426",
+        "certifications": [
+          "drinking water",
+          "EGLE certified"
+        ],
+        "website": "https://www.a2gov.org/"
+      }
+    ]
+  },
+  {
+    "state": "MN",
+    "stateName": "Minnesota",
+    "labs": [
+      {
+        "name": "Minnesota Department of Health Public Health Laboratory",
+        "address": "601 Robert St N",
+        "city": "St. Paul",
+        "zip": "55155",
+        "phone": "(651) 201-5200",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.health.state.mn.us/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "1700 Elm St SE",
+        "city": "Minneapolis",
+        "zip": "55414",
+        "phone": "(612) 607-1700",
+        "certifications": [
+          "drinking water",
+          "MDH certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "5765 Central Ave NE",
+        "city": "Fridley",
+        "zip": "55432",
+        "phone": "(763) 785-0613",
+        "certifications": [
+          "drinking water",
+          "MDH certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "MS",
+    "stateName": "Mississippi",
+    "labs": [
+      {
+        "name": "Mississippi State Department of Health Laboratory",
+        "address": "570 E Woodrow Wilson Ave",
+        "city": "Jackson",
+        "zip": "39216",
+        "phone": "(601) 576-7582",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://msdh.ms.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "820 S President St",
+        "city": "Jackson",
+        "zip": "39201",
+        "phone": "(601) 960-0011",
+        "certifications": [
+          "drinking water",
+          "MSDH certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "7000 Goodman Rd",
+        "city": "Olive Branch",
+        "zip": "38654",
+        "phone": "(662) 890-9500",
+        "certifications": [
+          "drinking water",
+          "MSDH certified",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "MO",
+    "stateName": "Missouri",
+    "labs": [
+      {
+        "name": "Missouri Department of Natural Resources Laboratory",
+        "address": "P.O. Box 176",
+        "city": "Jefferson City",
+        "zip": "65102",
+        "phone": "(573) 751-3300",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://dnr.mo.gov/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "1555 Larkin Williams Rd",
+        "city": "Fenton",
+        "zip": "63026",
+        "phone": "(636) 343-6020",
+        "certifications": [
+          "drinking water",
+          "MDNR certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "4388 Digital Way",
+        "city": "Mason",
+        "zip": "45040",
+        "phone": "(314) 892-0080",
+        "certifications": [
+          "drinking water",
+          "MDNR certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "MT",
+    "stateName": "Montana",
+    "labs": [
+      {
+        "name": "Montana Department of Environmental Quality Laboratory",
+        "address": "1520 E 6th Ave",
+        "city": "Helena",
+        "zip": "59620",
+        "phone": "(406) 444-0544",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://deq.mt.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "1801 Rosebud Dr",
+        "city": "Billings",
+        "zip": "59102",
+        "phone": "(406) 248-6200",
+        "certifications": [
+          "drinking water",
+          "MDEQ certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "NE",
+    "stateName": "Nebraska",
+    "labs": [
+      {
+        "name": "Nebraska DHHS Public Health Laboratory",
+        "address": "3701 S 14th St",
+        "city": "Lincoln",
+        "zip": "68502",
+        "phone": "(402) 471-2122",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://dhhs.ne.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "3935 S 48th St",
+        "city": "Omaha",
+        "zip": "68117",
+        "phone": "(402) 734-1135",
+        "certifications": [
+          "drinking water",
+          "NDEQ certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "10832 Old Mill Rd",
+        "city": "Omaha",
+        "zip": "68154",
+        "phone": "(402) 895-5700",
+        "certifications": [
+          "drinking water",
+          "NDEQ certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "NH",
+    "stateName": "New Hampshire",
+    "labs": [
+      {
+        "name": "NH Division of Public Health Services Laboratory",
+        "address": "29 Hazen Dr",
+        "city": "Concord",
+        "zip": "03301",
+        "phone": "(603) 271-4651",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.nh.gov/dhhs/dphs/"
+      },
+      {
+        "name": "Northeast Laboratory Services",
+        "address": "33 Industrial Ave",
+        "city": "Sanford",
+        "zip": "04073",
+        "phone": "(207) 324-7300",
+        "certifications": [
+          "drinking water",
+          "NHDES certified",
+          "NELAP"
+        ],
+        "website": "https://www.nelabservices.com/"
+      },
+      {
+        "name": "Analytical Services Inc",
+        "address": "10 New Market Rd",
+        "city": "Durham",
+        "zip": "03824",
+        "phone": "(603) 868-7900",
+        "certifications": [
+          "drinking water",
+          "NHDES certified",
+          "PFAS"
+        ],
+        "website": "https://www.asilabs.com/"
+      }
+    ]
+  },
+  {
+    "state": "NJ",
+    "stateName": "New Jersey",
+    "labs": [
+      {
+        "name": "Garden State Labs",
+        "address": "410 Hillside Avenue",
+        "city": "Hillside",
+        "zip": "07205",
+        "phone": "1-800-273-8901",
+        "certifications": [
+          "microbiology",
+          "chemistry",
+          "drinking water",
+          "wastewater"
+        ],
+        "website": "https://www.gslabs.com/"
+      },
+      {
+        "name": "South Jersey Water Test, LLC",
+        "address": "4077 S Black Horse Pike",
+        "city": "Williamstown",
+        "zip": "08094",
+        "phone": "(856) 875-3507",
+        "certifications": [
+          "drinking water chemistry",
+          "NJDEP certified"
+        ],
+        "website": "https://sjwatertest.com/"
+      },
+      {
+        "name": "York Analytical Laboratories",
+        "address": "2161 Whitesville Rd",
+        "city": "Toms River",
+        "zip": "08755",
+        "phone": "(203) 325-1371",
+        "certifications": [
+          "drinking water",
+          "PFAS",
+          "NJDEP certified"
+        ],
+        "website": "https://yorklab.com/new-jersey-laboratory/"
+      },
+      {
+        "name": "EMSL Analytical",
+        "address": "200 Route 130 N",
+        "city": "Cinnaminson",
+        "zip": "08077",
+        "phone": "1-800-220-3675",
+        "certifications": [
+          "drinking water",
+          "PWTA",
+          "environmental"
+        ],
+        "website": "https://www.emsl.com/"
+      },
+      {
+        "name": "New Jersey Analytical Laboratories",
+        "address": "1580 Reed Rd",
+        "city": "Pennington",
+        "zip": "08534",
+        "phone": "(609) 737-3477",
+        "certifications": [
+          "drinking water",
+          "environmental testing",
+          "NJDEP certified"
+        ],
+        "website": "https://njal.com/"
+      },
+      {
+        "name": "Vineland Environmental Laboratories",
+        "address": "782 S Brewster Rd Suite B-1",
+        "city": "Vineland",
+        "zip": "08361",
+        "phone": "(856) 692-6800",
+        "certifications": [
+          "drinking water",
+          "microbiology",
+          "NJDEP certified"
+        ],
+        "website": "https://www.vinelandlab.com/"
+      }
+    ]
+  },
+  {
+    "state": "NM",
+    "stateName": "New Mexico",
+    "labs": [
+      {
+        "name": "New Mexico Scientific Laboratory Division",
+        "address": "1101 Camino de Salud NE",
+        "city": "Albuquerque",
+        "zip": "87102",
+        "phone": "(505) 383-9050",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.sld.nm.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "2401 Broadway Blvd SE",
+        "city": "Albuquerque",
+        "zip": "87102",
+        "phone": "(505) 345-1101",
+        "certifications": [
+          "drinking water",
+          "NMED certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "5301 Central Ave NE",
+        "city": "Albuquerque",
+        "zip": "87108",
+        "phone": "(505) 262-2435",
+        "certifications": [
+          "drinking water",
+          "NMED certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
       }
     ]
   },
@@ -218,63 +1463,946 @@
     "labs": [
       {
         "name": "Western Environmental Testing Laboratory",
-        "address": "3230 Polaris Ave, #3",
+        "address": "3230 Polaris Ave #3",
         "city": "Las Vegas",
         "zip": "89102",
         "phone": "(702) 475-8899",
-        "certifications": ["drinking water", "soil analysis", "hazardous waste"],
+        "certifications": [
+          "drinking water",
+          "soil analysis",
+          "hazardous waste"
+        ],
         "website": "https://www.wetlaboratory.com/"
       },
       {
         "name": "Southern Nevada Health District Laboratory",
-        "address": "330 S. Valley View Blvd",
+        "address": "330 S Valley View Blvd",
         "city": "Las Vegas",
         "zip": "89155",
         "phone": "(702) 759-1020",
-        "certifications": ["drinking water", "wastewater", "NDEP certified"],
+        "certifications": [
+          "drinking water",
+          "wastewater",
+          "NDEP certified"
+        ],
         "website": "https://www.southernnevadahealthdistrict.org/"
       },
       {
         "name": "Carson City Water Resource Recovery Facility",
-        "address": "3320 E. Fifth Street",
+        "address": "3320 E Fifth Street",
         "city": "Carson City",
         "zip": "89701",
         "phone": "(775) 887-2355",
-        "certifications": ["drinking water", "wastewater", "state certified"],
+        "certifications": [
+          "drinking water",
+          "wastewater",
+          "state certified"
+        ],
         "website": "https://www.carsoncity.gov/"
       }
     ]
   },
   {
-    "state": "AK",
-    "stateName": "Alaska",
+    "state": "NY",
+    "stateName": "New York",
     "labs": [
       {
-        "name": "Alaska Water Laboratories LLC",
-        "address": "2913 Bering St",
-        "city": "Anchorage",
-        "zip": "99503",
-        "phone": "(907) 276-3322",
-        "certifications": ["drinking water", "DEC certified", "microbiology", "chemistry"],
-        "website": "https://akwaterlabs.com/"
+        "name": "Wadsworth Center — NYS Dept of Health Laboratories",
+        "address": "Empire State Plaza",
+        "city": "Albany",
+        "zip": "12237",
+        "phone": "(518) 474-4177",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://www.wadsworth.org/"
       },
       {
-        "name": "Mat-Su Test Lab LLC",
-        "address": "9131 E Frontage Rd, Suite 15",
-        "city": "Palmer",
-        "zip": "99645",
-        "phone": "(907) 745-3005",
-        "certifications": ["drinking water", "DEC certified"],
-        "website": "https://www.matsutestlab.com/"
+        "name": "Pace Analytical Services",
+        "address": "5 West St",
+        "city": "Orchard Park",
+        "zip": "14127",
+        "phone": "(716) 648-5700",
+        "certifications": [
+          "drinking water",
+          "NYSDOH certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
       },
       {
-        "name": "SGS North America — Alaska Environmental Laboratory",
-        "address": "200 W Potter Dr",
-        "city": "Anchorage",
-        "zip": "99518",
-        "phone": "(907) 562-2343",
-        "certifications": ["drinking water", "chemistry", "microbiology", "DEC certified"],
-        "website": "https://www.sgs.com/"
+        "name": "ALS Environmental",
+        "address": "80 Red Schoolhouse Rd",
+        "city": "Chestnut Ridge",
+        "zip": "10977",
+        "phone": "(845) 426-4466",
+        "certifications": [
+          "drinking water",
+          "NYSDOH certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Eurofins TestAmerica",
+        "address": "18 Marway Cir",
+        "city": "Rochester",
+        "zip": "14624",
+        "phone": "(585) 436-2250",
+        "certifications": [
+          "drinking water",
+          "NYSDOH certified",
+          "PFAS",
+          "trace metals"
+        ],
+        "website": "https://www.eurofinsus.com/"
+      }
+    ]
+  },
+  {
+    "state": "NC",
+    "stateName": "North Carolina",
+    "labs": [
+      {
+        "name": "NC State Laboratory of Public Health",
+        "address": "4312 District Dr",
+        "city": "Raleigh",
+        "zip": "27607",
+        "phone": "(919) 733-7834",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://slph.ncdhhs.gov/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "7726 McCloud Rd",
+        "city": "Greensboro",
+        "zip": "27409",
+        "phone": "(336) 294-7788",
+        "certifications": [
+          "drinking water",
+          "NCDEQ certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "3300 Croasdaile Dr",
+        "city": "Durham",
+        "zip": "27705",
+        "phone": "(919) 596-2100",
+        "certifications": [
+          "drinking water",
+          "NCDEQ certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "ND",
+    "stateName": "North Dakota",
+    "labs": [
+      {
+        "name": "North Dakota Division of Laboratory Services",
+        "address": "2635 E Main Ave",
+        "city": "Bismarck",
+        "zip": "58501",
+        "phone": "(701) 328-6272",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.hhs.nd.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "4060 40th Ave S",
+        "city": "Fargo",
+        "zip": "58104",
+        "phone": "(701) 893-0100",
+        "certifications": [
+          "drinking water",
+          "NDDOH certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "OH",
+    "stateName": "Ohio",
+    "labs": [
+      {
+        "name": "Ohio Department of Health Laboratories",
+        "address": "1571 Perry St",
+        "city": "Columbus",
+        "zip": "43201",
+        "phone": "(614) 492-2181",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://odh.ohio.gov/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "1600 Laborie Dr",
+        "city": "Columbus",
+        "zip": "43085",
+        "phone": "(614) 436-2200",
+        "certifications": [
+          "drinking water",
+          "OEPA certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "5765 Landerbrook Dr",
+        "city": "Mayfield Heights",
+        "zip": "44124",
+        "phone": "(440) 585-0130",
+        "certifications": [
+          "drinking water",
+          "OEPA certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Eurofins TestAmerica",
+        "address": "4101 Shuffel Dr NW",
+        "city": "North Canton",
+        "zip": "44720",
+        "phone": "(330) 497-9396",
+        "certifications": [
+          "drinking water",
+          "OEPA certified",
+          "PFAS",
+          "trace metals"
+        ],
+        "website": "https://www.eurofinsus.com/"
+      }
+    ]
+  },
+  {
+    "state": "OK",
+    "stateName": "Oklahoma",
+    "labs": [
+      {
+        "name": "Oklahoma Department of Environmental Quality Laboratory",
+        "address": "707 N Robinson Ave",
+        "city": "Oklahoma City",
+        "zip": "73102",
+        "phone": "(405) 702-1095",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.deq.state.ok.us/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "6215 S Lewis Ave",
+        "city": "Tulsa",
+        "zip": "74136",
+        "phone": "(918) 665-1488",
+        "certifications": [
+          "drinking water",
+          "ODEQ certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "4334 NW Expressway",
+        "city": "Oklahoma City",
+        "zip": "73116",
+        "phone": "(405) 842-6000",
+        "certifications": [
+          "drinking water",
+          "ODEQ certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "OR",
+    "stateName": "Oregon",
+    "labs": [
+      {
+        "name": "Oregon Health Authority Public Health Division Lab",
+        "address": "800 NE Oregon St",
+        "city": "Portland",
+        "zip": "97232",
+        "phone": "(503) 229-5882",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.oregon.gov/oha/"
+      },
+      {
+        "name": "Eurofins Columbia Analytical Services",
+        "address": "1317 S 13th Ave",
+        "city": "Kelso",
+        "zip": "98626",
+        "phone": "(360) 577-7222",
+        "certifications": [
+          "drinking water",
+          "ODEQ certified",
+          "PFAS",
+          "chemistry"
+        ],
+        "website": "https://www.eurofinsus.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "4175 Research Way",
+        "city": "Eugene",
+        "zip": "97408",
+        "phone": "(541) 465-9797",
+        "certifications": [
+          "drinking water",
+          "ODEQ certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "PA",
+    "stateName": "Pennsylvania",
+    "labs": [
+      {
+        "name": "Pennsylvania Bureau of Laboratories",
+        "address": "P.O. Box 1467",
+        "city": "Harrisburg",
+        "zip": "17105",
+        "phone": "(717) 346-3463",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.dep.pa.gov/"
+      },
+      {
+        "name": "Lancaster Laboratories Environmental",
+        "address": "2425 New Holland Pike",
+        "city": "Lancaster",
+        "zip": "17601",
+        "phone": "(717) 656-2300",
+        "certifications": [
+          "drinking water",
+          "PADEP certified",
+          "PFAS",
+          "chemistry"
+        ],
+        "website": "https://www.lancasterlabs.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "1638 Roseytown Rd",
+        "city": "Greensburg",
+        "zip": "15601",
+        "phone": "(724) 850-5600",
+        "certifications": [
+          "drinking water",
+          "PADEP certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "630 Dresher Rd",
+        "city": "Horsham",
+        "zip": "19044",
+        "phone": "(215) 672-3400",
+        "certifications": [
+          "drinking water",
+          "PADEP certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "RI",
+    "stateName": "Rhode Island",
+    "labs": [
+      {
+        "name": "Rhode Island Department of Health Laboratories",
+        "address": "50 Orms St",
+        "city": "Providence",
+        "zip": "02904",
+        "phone": "(401) 222-5600",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://health.ri.gov/"
+      },
+      {
+        "name": "Analytical Services Inc",
+        "address": "1 Davol Square",
+        "city": "Providence",
+        "zip": "02903",
+        "phone": "(401) 453-5770",
+        "certifications": [
+          "drinking water",
+          "RIDEM certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.asilabs.com/"
+      }
+    ]
+  },
+  {
+    "state": "SC",
+    "stateName": "South Carolina",
+    "labs": [
+      {
+        "name": "SCDHEC Bureau of Laboratories",
+        "address": "8231 Parklane Rd",
+        "city": "Columbia",
+        "zip": "29223",
+        "phone": "(803) 896-0800",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.scdhec.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "7825 Parklane Rd",
+        "city": "Columbia",
+        "zip": "29223",
+        "phone": "(803) 419-7010",
+        "certifications": [
+          "drinking water",
+          "SCDHEC certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "2225 Technical Pkwy",
+        "city": "North Charleston",
+        "zip": "29406",
+        "phone": "(843) 760-5200",
+        "certifications": [
+          "drinking water",
+          "SCDHEC certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "SD",
+    "stateName": "South Dakota",
+    "labs": [
+      {
+        "name": "South Dakota Public Health Laboratory",
+        "address": "600 E Capitol Ave",
+        "city": "Pierre",
+        "zip": "57501",
+        "phone": "(605) 773-3368",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://doh.sd.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "1900 W 51st St",
+        "city": "Sioux Falls",
+        "zip": "57105",
+        "phone": "(605) 339-1788",
+        "certifications": [
+          "drinking water",
+          "SDDENR certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "TN",
+    "stateName": "Tennessee",
+    "labs": [
+      {
+        "name": "Tennessee Department of Health Laboratory",
+        "address": "630 Hart Ln",
+        "city": "Nashville",
+        "zip": "37216",
+        "phone": "(615) 262-6300",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.tn.gov/health/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "1904 Elm Hill Pike",
+        "city": "Nashville",
+        "zip": "37210",
+        "phone": "(615) 244-0020",
+        "certifications": [
+          "drinking water",
+          "TDEC certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "5252 Kingston Pike",
+        "city": "Knoxville",
+        "zip": "37919",
+        "phone": "(865) 524-6000",
+        "certifications": [
+          "drinking water",
+          "TDEC certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "TX",
+    "stateName": "Texas",
+    "labs": [
+      {
+        "name": "A & B Labs",
+        "address": "10100 East Freeway Suite 100",
+        "city": "Houston",
+        "zip": "77076",
+        "phone": "(713) 453-6060",
+        "certifications": [
+          "drinking water",
+          "TCEQ approved",
+          "ISO/IEC 17025",
+          "NELAP"
+        ],
+        "website": "https://ablabs.com/"
+      },
+      {
+        "name": "Chaparral Laboratories Inc",
+        "address": "861 TX-19",
+        "city": "Huntsville",
+        "zip": "77320",
+        "phone": "(936) 291-1881",
+        "certifications": [
+          "drinking water",
+          "TCEQ approved",
+          "environmental"
+        ],
+        "website": "https://chaparrallabs.com/"
+      },
+      {
+        "name": "Envirodyne Laboratories Inc",
+        "address": "11011 Brooklet Drive Suite 230",
+        "city": "Houston",
+        "zip": "77099",
+        "phone": "(281) 568-7880",
+        "certifications": [
+          "drinking water",
+          "wastewater",
+          "TCEQ approved"
+        ],
+        "website": "https://envirodyne.com/"
+      },
+      {
+        "name": "Eastex Environmental Laboratory",
+        "address": "1119 S University Drive",
+        "city": "Nacogdoches",
+        "zip": "75961",
+        "phone": "(936) 569-8879",
+        "certifications": [
+          "drinking water",
+          "TCEQ approved",
+          "environmental"
+        ],
+        "website": "https://www.eastexlabs.com/"
+      },
+      {
+        "name": "Tarrant County Regional Laboratory Services",
+        "address": "1101 S Main Street Suite 1700",
+        "city": "Fort Worth",
+        "zip": "76104",
+        "phone": "(817) 321-4778",
+        "certifications": [
+          "drinking water",
+          "total coliform",
+          "E. coli",
+          "TCEQ accredited"
+        ],
+        "website": "https://www.tarrantcountytx.gov/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "4101 Greenbriar Dr",
+        "city": "Houston",
+        "zip": "77098",
+        "phone": "(713) 942-9060",
+        "certifications": [
+          "drinking water",
+          "TCEQ approved",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "UT",
+    "stateName": "Utah",
+    "labs": [
+      {
+        "name": "Utah Bureau of Laboratory Services",
+        "address": "4431 S 2700 W",
+        "city": "Taylorsville",
+        "zip": "84129",
+        "phone": "(801) 584-8400",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://health.utah.gov/lab/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "2882 S Decker Lake Dr",
+        "city": "West Valley City",
+        "zip": "84119",
+        "phone": "(801) 975-3303",
+        "certifications": [
+          "drinking water",
+          "UDWS certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "1595 W 500 S",
+        "city": "Salt Lake City",
+        "zip": "84104",
+        "phone": "(801) 972-5868",
+        "certifications": [
+          "drinking water",
+          "UDWS certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "VT",
+    "stateName": "Vermont",
+    "labs": [
+      {
+        "name": "Vermont Department of Health Laboratory",
+        "address": "195 Colchester Ave",
+        "city": "Burlington",
+        "zip": "05401",
+        "phone": "(802) 863-7335",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://www.healthvermont.gov/"
+      },
+      {
+        "name": "Northeast Laboratory Services",
+        "address": "33 Industrial Ave",
+        "city": "Sanford",
+        "zip": "04073",
+        "phone": "(207) 324-7300",
+        "certifications": [
+          "drinking water",
+          "VT DEC certified",
+          "NELAP"
+        ],
+        "website": "https://www.nelabservices.com/"
+      }
+    ]
+  },
+  {
+    "state": "VA",
+    "stateName": "Virginia",
+    "labs": [
+      {
+        "name": "Virginia Division of Consolidated Laboratory Services",
+        "address": "600 N 5th St",
+        "city": "Richmond",
+        "zip": "23219",
+        "phone": "(804) 786-7905",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://www.dcls.virginia.gov/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "4051 Innslake Dr",
+        "city": "Glen Allen",
+        "zip": "23060",
+        "phone": "(804) 342-2890",
+        "certifications": [
+          "drinking water",
+          "VADEQ certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "621 Lynnhaven Pkwy",
+        "city": "Virginia Beach",
+        "zip": "23452",
+        "phone": "(757) 498-1105",
+        "certifications": [
+          "drinking water",
+          "VADEQ certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Eurofins TestAmerica",
+        "address": "14020 Thunderbolt Place",
+        "city": "Chantilly",
+        "zip": "20151",
+        "phone": "(703) 378-2260",
+        "certifications": [
+          "drinking water",
+          "VADEQ certified",
+          "PFAS",
+          "trace metals"
+        ],
+        "website": "https://www.eurofinsus.com/"
+      }
+    ]
+  },
+  {
+    "state": "WA",
+    "stateName": "Washington",
+    "labs": [
+      {
+        "name": "Washington State Dept of Ecology Environmental Lab",
+        "address": "300 Desmond Dr SE",
+        "city": "Lacey",
+        "zip": "98503",
+        "phone": "(360) 407-6700",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://ecology.wa.gov/"
+      },
+      {
+        "name": "Eurofins Columbia Analytical Services",
+        "address": "1317 S 13th Ave",
+        "city": "Kelso",
+        "zip": "98626",
+        "phone": "(360) 577-7222",
+        "certifications": [
+          "drinking water",
+          "DOH certified",
+          "PFAS",
+          "chemistry"
+        ],
+        "website": "https://www.eurofinsus.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "11519 NE 95th St",
+        "city": "Vancouver",
+        "zip": "98682",
+        "phone": "(360) 693-5700",
+        "certifications": [
+          "drinking water",
+          "DOH certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "900 Industry Dr",
+        "city": "Tukwila",
+        "zip": "98188",
+        "phone": "(206) 762-7100",
+        "certifications": [
+          "drinking water",
+          "DOH certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "WV",
+    "stateName": "West Virginia",
+    "labs": [
+      {
+        "name": "West Virginia Office of Laboratory Services",
+        "address": "167 11th Ave",
+        "city": "South Charleston",
+        "zip": "25303",
+        "phone": "(304) 558-3530",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology"
+        ],
+        "website": "https://dhhr.wv.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "4810 MacCorkle Ave SW",
+        "city": "Charleston",
+        "zip": "25309",
+        "phone": "(304) 766-3636",
+        "certifications": [
+          "drinking water",
+          "WVDEP certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "295 Main St E",
+        "city": "Bridgeport",
+        "zip": "26330",
+        "phone": "(304) 842-5000",
+        "certifications": [
+          "drinking water",
+          "WVDEP certified",
+          "NELAP",
+          "PFAS"
+        ],
+        "website": "https://www.pacecertified.com/"
+      }
+    ]
+  },
+  {
+    "state": "WI",
+    "stateName": "Wisconsin",
+    "labs": [
+      {
+        "name": "Wisconsin State Laboratory of Hygiene",
+        "address": "465 Henry Mall",
+        "city": "Madison",
+        "zip": "53706",
+        "phone": "(608) 262-1293",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://www.slh.wisc.edu/"
+      },
+      {
+        "name": "Pace Analytical Services",
+        "address": "6666 W Somers Ave",
+        "city": "Milwaukee",
+        "zip": "53218",
+        "phone": "(414) 464-6660",
+        "certifications": [
+          "drinking water",
+          "WDNR certified",
+          "PFAS",
+          "NELAP"
+        ],
+        "website": "https://www.pacecertified.com/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "1901 N Vel R Phillips Ave",
+        "city": "Milwaukee",
+        "zip": "53212",
+        "phone": "(414) 347-7680",
+        "certifications": [
+          "drinking water",
+          "WDNR certified"
+        ],
+        "website": "https://www.alsglobal.com/"
+      }
+    ]
+  },
+  {
+    "state": "WY",
+    "stateName": "Wyoming",
+    "labs": [
+      {
+        "name": "Wyoming Department of Environmental Quality Laboratory",
+        "address": "200 W 17th St",
+        "city": "Cheyenne",
+        "zip": "82002",
+        "phone": "(307) 777-7055",
+        "certifications": [
+          "drinking water",
+          "EPA certified",
+          "microbiology",
+          "chemistry"
+        ],
+        "website": "https://deq.wyoming.gov/"
+      },
+      {
+        "name": "ALS Environmental",
+        "address": "3180 E Yellowstone Hwy",
+        "city": "Casper",
+        "zip": "82609",
+        "phone": "(307) 233-3655",
+        "certifications": [
+          "drinking water",
+          "WDEQ certified"
+        ],
+        "website": "https://www.alsglobal.com/"
       }
     ]
   }
