@@ -1,0 +1,281 @@
+[
+  {
+    "state": "NJ",
+    "stateName": "New Jersey",
+    "labs": [
+      {
+        "name": "Garden State Labs",
+        "address": "410 Hillside Avenue",
+        "city": "Hillside",
+        "zip": "07205",
+        "phone": "1-800-273-8901",
+        "certifications": ["microbiology", "chemistry", "drinking water", "wastewater"],
+        "website": "https://www.gslabs.com/"
+      },
+      {
+        "name": "South Jersey Water Test, LLC",
+        "address": "4077 S Black Horse Pike",
+        "city": "Williamstown",
+        "zip": "08094",
+        "phone": "(856) 875-3507",
+        "certifications": ["drinking water chemistry", "NJDEP certified"],
+        "website": "https://sjwatertest.com/"
+      },
+      {
+        "name": "York Analytical Laboratories",
+        "address": "2161 Whitesville Rd",
+        "city": "Toms River",
+        "zip": "08755",
+        "phone": "(203) 325-1371",
+        "certifications": ["drinking water", "PFAS", "NJDEP certified"],
+        "website": "https://yorklab.com/new-jersey-laboratory/"
+      },
+      {
+        "name": "EMSL Analytical",
+        "address": "200 Route 130 N",
+        "city": "Cinnaminson",
+        "zip": "08077",
+        "phone": "1-800-220-3675",
+        "certifications": ["drinking water", "PWTA", "environmental"],
+        "website": "https://www.emsl.com/"
+      },
+      {
+        "name": "New Jersey Analytical Laboratories",
+        "address": "1580 Reed Rd",
+        "city": "Pennington",
+        "zip": "08534",
+        "phone": "(609) 737-3477",
+        "certifications": ["drinking water", "environmental testing", "NJDEP certified"],
+        "website": "https://njal.com/"
+      },
+      {
+        "name": "Vineland Environmental Laboratories",
+        "address": "782 S Brewster Rd, Suite B-1",
+        "city": "Vineland",
+        "zip": "08361",
+        "phone": "(856) 692-6800",
+        "certifications": ["drinking water", "microbiology", "NJDEP certified"],
+        "website": "https://www.vinelandlab.com/"
+      }
+    ]
+  },
+  {
+    "state": "TX",
+    "stateName": "Texas",
+    "labs": [
+      {
+        "name": "A & B Labs",
+        "address": "10100 East Freeway, Suite 100",
+        "city": "Houston",
+        "zip": "77076",
+        "phone": "(713) 453-6060",
+        "certifications": ["drinking water", "TCEQ approved", "ISO/IEC 17025", "NELAP"],
+        "website": "https://ablabs.com/"
+      },
+      {
+        "name": "Chaparral Laboratories, Inc.",
+        "address": "861 TX-19",
+        "city": "Huntsville",
+        "zip": "77320",
+        "phone": "(936) 291-1881",
+        "certifications": ["drinking water", "TCEQ approved", "environmental"],
+        "website": "https://chaparrallabs.com/"
+      },
+      {
+        "name": "Envirodyne Laboratories Inc",
+        "address": "11011 Brooklet Drive, Suite 230",
+        "city": "Houston",
+        "zip": "77099",
+        "phone": "(281) 568-7880",
+        "certifications": ["drinking water", "wastewater", "TCEQ approved"],
+        "website": "https://envirodyne.com/"
+      },
+      {
+        "name": "Eastex Environmental Laboratory",
+        "address": "1119 S University Drive",
+        "city": "Nacogdoches",
+        "zip": "75961",
+        "phone": "(936) 569-8879",
+        "certifications": ["drinking water", "TCEQ approved", "environmental"],
+        "website": "https://www.eastexlabs.com/"
+      },
+      {
+        "name": "North Water District Laboratory Services",
+        "address": "1717 Turning Basin Dr",
+        "city": "Houston",
+        "zip": "77029",
+        "phone": "(936) 321-6060",
+        "certifications": ["drinking water", "TCEQ approved", "environmental analysis"],
+        "website": "https://nwdls.com/"
+      },
+      {
+        "name": "Tarrant County Regional Laboratory",
+        "address": "1101 South Main Street, Suite 1700",
+        "city": "Fort Worth",
+        "zip": "76104",
+        "phone": "(817) 321-4778",
+        "certifications": ["drinking water", "total coliform", "E. coli", "TCEQ accredited"],
+        "website": "https://www.tarrantcountytx.gov/"
+      }
+    ]
+  },
+  {
+    "state": "MI",
+    "stateName": "Michigan",
+    "labs": [
+      {
+        "name": "Michigan EGLE Drinking Water Laboratory",
+        "address": "3350 N. Martin Luther King Jr Blvd",
+        "city": "Lansing",
+        "zip": "48906",
+        "phone": "(517) 335-8184",
+        "certifications": ["chemistry", "microbiology", "EPA certified", "NELAC accredited"],
+        "website": "https://www.michigan.gov/egle"
+      },
+      {
+        "name": "Great Lakes Water Quality Lab",
+        "address": "6461 Sunset Dr",
+        "city": "Lake Ann",
+        "zip": "49650",
+        "phone": "(231) 275-7382",
+        "certifications": ["drinking water", "Michigan certified"],
+        "website": "https://www.greatlakeswaterlab.net/"
+      },
+      {
+        "name": "B&B Water/Wastewater Consultants Inc",
+        "address": "4402 Division St",
+        "city": "Wayland",
+        "zip": "49348",
+        "phone": "(616) 877-4196",
+        "certifications": ["microbiology", "total coliforms", "E. coli", "inorganic chemistry"],
+        "website": "http://bbwater-wastewater.com/"
+      },
+      {
+        "name": "Enviro Lab Services",
+        "address": "4150 Arrow Street",
+        "city": "Oscoda",
+        "zip": "48750",
+        "phone": "(989) 387-2758",
+        "certifications": ["drinking water", "PFAS", "EGLE certified"],
+        "website": "https://envirolabservice.com/"
+      },
+      {
+        "name": "City of Ann Arbor Environmental Laboratory",
+        "address": "1400 S. State Street",
+        "city": "Ann Arbor",
+        "zip": "48104",
+        "phone": "(734) 794-6426",
+        "certifications": ["drinking water", "EGLE certified"],
+        "website": "https://www.a2gov.org/"
+      }
+    ]
+  },
+  {
+    "state": "AZ",
+    "stateName": "Arizona",
+    "labs": [
+      {
+        "name": "Turner Laboratories Inc",
+        "address": "2445 North Coyote Drive, Suite 104",
+        "city": "Tucson",
+        "zip": "85745",
+        "phone": "(520) 882-5880",
+        "certifications": ["drinking water", "trace metals", "AZDHS certified"],
+        "website": "http://turnerlabs.com/"
+      },
+      {
+        "name": "IAS Laboratories",
+        "address": "2515 E. University Drive",
+        "city": "Phoenix",
+        "zip": "85034",
+        "phone": "(602) 273-7248",
+        "certifications": ["drinking water", "soil analysis", "AZDHS certified"],
+        "website": "https://iaslabs.com/"
+      },
+      {
+        "name": "Chandler Analytical Labs",
+        "address": "571 N. 54th Street",
+        "city": "Chandler",
+        "zip": "85226",
+        "phone": "(480) 963-2495",
+        "certifications": ["drinking water", "agricultural", "AZDHS certified"],
+        "website": ""
+      },
+      {
+        "name": "Arizona Apex Lab",
+        "address": "2105 S. 48th Street, Suite 102",
+        "city": "Tempe",
+        "zip": "85282",
+        "phone": "(602) 437-0762",
+        "certifications": ["drinking water", "trace metals", "mineral analysis", "AZDHS certified"],
+        "website": ""
+      }
+    ]
+  },
+  {
+    "state": "NV",
+    "stateName": "Nevada",
+    "labs": [
+      {
+        "name": "Western Environmental Testing Laboratory",
+        "address": "3230 Polaris Ave, #3",
+        "city": "Las Vegas",
+        "zip": "89102",
+        "phone": "(702) 475-8899",
+        "certifications": ["drinking water", "soil analysis", "hazardous waste"],
+        "website": "https://www.wetlaboratory.com/"
+      },
+      {
+        "name": "Southern Nevada Health District Laboratory",
+        "address": "330 S. Valley View Blvd",
+        "city": "Las Vegas",
+        "zip": "89155",
+        "phone": "(702) 759-1020",
+        "certifications": ["drinking water", "wastewater", "NDEP certified"],
+        "website": "https://www.southernnevadahealthdistrict.org/"
+      },
+      {
+        "name": "Carson City Water Resource Recovery Facility",
+        "address": "3320 E. Fifth Street",
+        "city": "Carson City",
+        "zip": "89701",
+        "phone": "(775) 887-2355",
+        "certifications": ["drinking water", "wastewater", "state certified"],
+        "website": "https://www.carsoncity.gov/"
+      }
+    ]
+  },
+  {
+    "state": "AK",
+    "stateName": "Alaska",
+    "labs": [
+      {
+        "name": "Alaska Water Laboratories LLC",
+        "address": "2913 Bering St",
+        "city": "Anchorage",
+        "zip": "99503",
+        "phone": "(907) 276-3322",
+        "certifications": ["drinking water", "DEC certified", "microbiology", "chemistry"],
+        "website": "https://akwaterlabs.com/"
+      },
+      {
+        "name": "Mat-Su Test Lab LLC",
+        "address": "9131 E Frontage Rd, Suite 15",
+        "city": "Palmer",
+        "zip": "99645",
+        "phone": "(907) 745-3005",
+        "certifications": ["drinking water", "DEC certified"],
+        "website": "https://www.matsutestlab.com/"
+      },
+      {
+        "name": "SGS North America — Alaska Environmental Laboratory",
+        "address": "200 W Potter Dr",
+        "city": "Anchorage",
+        "zip": "99518",
+        "phone": "(907) 562-2343",
+        "certifications": ["drinking water", "chemistry", "microbiology", "DEC certified"],
+        "website": "https://www.sgs.com/"
+      }
+    ]
+  }
+]
