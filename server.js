@@ -2134,6 +2134,22 @@ const renderCitiesHubPage = () => {
 
 // --- LABS DATA LOADING ---
 const LABS = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, 'labs.json'), 'utf8')); } catch(e) { return []; } })();
+
+// --- PUBLIC LAB FILTER ---
+const INTERNAL_LAB_PATTERNS = [
+  /sewage/i, /wastewater/i, /waste water/i, /\bwwtp\b/i, /\bwwtf\b/i, /\bwpcf\b/i, /\bwpcp\b/i,
+  /\bstp\b/i, /water treatment plant/i, /water purification/i, /filtration plant/i, /\bfilter plant\b/i,
+  /sewer authority/i, /sewer district/i, /water works\b/i, /waterworks/i,
+  /water board/i, /water authority/i, /water purification district/i,
+  /water pol.*cntrl/i, /water pollution control/i,
+  /\(v\)\s.*(water|sewage|sewer|plant)/i, /\(c\)\s.*(water|sewage|sewer|plant)/i,
+  /\(t\)\s.*(water|sewage|sewer|plant|wpcf|stp)/i,
+  /\bjwtf\b/i, /\bus epa\b/i, /\bepa region\b/i, /\busgs\b/i,
+  /nycdep/i, /con ed.*lab/i,
+];
+const isPublicLab = lab => !INTERNAL_LAB_PATTERNS.some(p => p.test(lab.name));
+LABS.forEach(st => { st.labs = st.labs.filter(isPublicLab); });
+
 const LABS_BY_STATE = Object.fromEntries(LABS.map(s => [s.state.toUpperCase(), s]));
 
 // --- Water Testing Directory ---
