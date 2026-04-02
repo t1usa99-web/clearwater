@@ -2149,6 +2149,9 @@ const INTERNAL_LAB_PATTERNS = [
 ];
 const isPublicLab = lab => !INTERNAL_LAB_PATTERNS.some(p => p.test(lab.name));
 LABS.forEach(st => { st.labs = st.labs.filter(isPublicLab); });
+// For NY: only show labs that have a website
+const nyEntry = LABS.find(s => s.state === 'NY');
+if (nyEntry) nyEntry.labs = nyEntry.labs.filter(lab => lab.website);
 
 const LABS_BY_STATE = Object.fromEntries(LABS.map(s => [s.state.toUpperCase(), s]));
 
