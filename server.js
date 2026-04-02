@@ -2330,6 +2330,7 @@ const renderArticlePage = (article) => {
         ClearWater
       </a>
       <nav>
+        <a class="header-link" href="/water-testing">Water Testing</a>
         <a class="header-link" href="/blog">&larr; Blog</a>
       </nav>
     </div>
