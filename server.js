@@ -2695,7 +2695,16 @@ const handleRobots = (res) => {
 
 // ─── HTTP Router ──────────────────────────────────────────────────
 const server = http.createServer(async (req, res) => {
-  const u        = new URL(req.url, `http://localhost:${PORT}`);
+  let u;
+  try {
+    u = new URL(req.url, `http://localhost:${PORT}`);
+  } catch {
+    // Malformed request-target (e.g. scanner probes like "//.env.save.2").
+    // Respond 400 instead of letting new URL() throw and crash the process.
+    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('Bad Request');
+    return;
+  }
   const pathname = u.pathname;
 
   // API routes
