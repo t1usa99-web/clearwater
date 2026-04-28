@@ -21,14 +21,26 @@
   - `/sessions/.../all_labs_data.txt` — 511 lines `STATE|||NAME|||CITY|||PHONE|||EMAIL`
 
 ## GitHub Auth Approach
-- The GitHub API returns 401 from external domains — use the **GitHub web editor** (github.com/edit) instead
-- CodeMirror 6 EditorView accessible via: `document.querySelector('.cm-content').cmTile.view`
-- Commit dialog input: `#commit-message-input`
+- **Preferred: GitHub API with fine-grained personal access token (PAT)**
+  - Generate at: https://github.com/settings/tokens?type=beta
+  - Scope: `t1usa99-web/clearwater` repo only, Contents read/write
+  - Use API: `PUT /repos/t1usa99-web/clearwater/contents/{path}` with Base64-encoded content
+  - Tokens expire — regenerate at the URL above when needed
+- **Fallback: GitHub web editor** (if token unavailable)
+  - CodeMirror 6 EditorView accessible via: `document.querySelector('.cm-content').cmTile.view`
+  - Commit dialog input: `#commit-message-input`
 
 ## Site Architecture
 - Frontend fetches `/api/systems?zip=` and `/api/report?pwsid=` (server-side)
 - Labs data served server-side from `labs.json` in this repo (not raw.githubusercontent.com CDN)
 - State lab pages: `/water-testing/{state_abbr}` — server-rendered with lab + website data
+
+## City Pages Expansion (April 2026)
+- **Source**: US Census Bureau API (2022 ACS 5-year estimates), cities with pop ≥ 10,000
+- **File**: `cities.json` — 4,161 cities with `{state, slug, name, pop}`
+- **Before**: ~330 hardcoded cities in `POPULAR_CITY_PAGES` array in server.js
+- **After**: `CITY_PAGES` loaded from `cities.json` at startup; `POPULAR_CITY_PAGES` aliases it (with old array as fallback)
+- **Impact**: Sitemap grows from ~330 → 4,161 city URLs; cities hub & state pages show all cities
 
 ## Data Notes
 - Labs in `labs.json` are matched by `state + "||" + name.toLowerCase().trim()`

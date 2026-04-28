@@ -43,6 +43,16 @@ try {
   }
 } catch (e) { console.error('[articles] Failed to load:', e.message); }
 
+// ─── City pages (loaded from cities.json at startup) ─────────────
+let CITY_PAGES = [];
+try {
+  const citiesPath = path.join(__dirname, 'cities.json');
+  if (fs.existsSync(citiesPath)) {
+    CITY_PAGES = JSON.parse(fs.readFileSync(citiesPath, 'utf8'));
+    console.log(`[cities] Loaded ${CITY_PAGES.length} cities from cities.json`);
+  }
+} catch (e) { console.error('[cities] Failed to load:', e.message); }
+
 // ─── MIME types ───────────────────────────────────────────────────
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -1197,9 +1207,11 @@ const handleContaminantsList = (req, res) => {
   sendHTML(req, res, html);
 };
 
-// ─── Popular cities for sitemap + footer links ────────────────────
-const POPULAR_CITY_PAGES = [
-  // AL
+// ─── City pages list (from cities.json, or fallback) ─────────────
+// CITY_PAGES is loaded at startup from cities.json (4,000+ cities).
+// POPULAR_CITY_PAGES is an alias used throughout the codebase.
+const POPULAR_CITY_PAGES = CITY_PAGES.length > 0 ? CITY_PAGES : [
+  // Fallback: minimal set if cities.json is missing
   { state:'AL', slug:'birmingham',       name:'Birmingham'       },
   { state:'AL', slug:'montgomery',       name:'Montgomery'       },
   { state:'AL', slug:'huntsville',       name:'Huntsville'       },
