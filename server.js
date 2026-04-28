@@ -587,8 +587,7 @@ const renderSSRPage = async (system, violations, samples) => {
         <noscript>Enable JavaScript for the full interactive report.</noscript>
         <span class="js-loading-msg">Loading interactive report…</span>
       </p>
-    </div>
-    ${pfasSummaryHtml ? `<div id="pfas-section" style="max-width:800px;margin:0 auto;padding:0 2rem">${pfasSummaryHtml}</div>` : ''}`;
+    </div>`;
 
   let html = await getIndexHtml();
 
@@ -600,6 +599,11 @@ const renderSSRPage = async (system, violations, samples) => {
 
   // Inject SSR summary into placeholder
   html = html.replace('<!-- SSR_CONTENT_PLACEHOLDER -->', ssrSummary);
+
+  // Inject PFAS section into its dedicated container (below report-stats, above tabs)
+  if (pfasSummaryHtml) {
+    html = html.replace('<div id="pfas-section"></div>', `<div id="pfas-section">${pfasSummaryHtml}</div>`);
+  }
 
   return html;
 };
