@@ -53,6 +53,37 @@ try {
   }
 } catch (e) { console.error('[cities] Failed to load:', e.message); }
 
+// ─── PFAS data (loaded from pfas.json at startup) ────────────────
+let PFAS_DATA = {};
+try {
+  const pfasPath = path.join(__dirname, 'pfas.json');
+  if (fs.existsSync(pfasPath)) {
+    PFAS_DATA = JSON.parse(fs.readFileSync(pfasPath, 'utf8'));
+    console.log(`[pfas] Loaded PFAS data for ${Object.keys(PFAS_DATA).length} water systems`);
+  }
+} catch (e) { console.error('[pfas] Failed to load:', e.message); }
+
+// EPA PFAS MCLs (finalized April 2024) in µg/L
+const PFAS_MCLS = {
+  'PFOA':    { mcl: 0.004, name: 'PFOA (Perfluorooctanoic acid)' },
+  'PFOS':    { mcl: 0.004, name: 'PFOS (Perfluorooctane sulfonate)' },
+  'PFHxS':   { mcl: 0.010, name: 'PFHxS (Perfluorohexane sulfonate)' },
+  'PFNA':    { mcl: 0.010, name: 'PFNA (Perfluorononanoic acid)' },
+  'HFPO-DA': { mcl: 0.010, name: 'GenX (HFPO-DA)' },
+};
+
+const PFAS_NAMES = {
+  'PFOA': 'PFOA', 'PFOS': 'PFOS', 'PFHxS': 'PFHxS', 'PFNA': 'PFNA',
+  'HFPO-DA': 'GenX', 'PFBS': 'PFBS', 'PFHxA': 'PFHxA', 'PFHpA': 'PFHpA',
+  'PFBA': 'PFBA', 'PFDA': 'PFDA', 'PFPeA': 'PFPeA', 'PFDoA': 'PFDoA',
+  'PFUnA': 'PFUnA', '6:2 FTS': '6:2 FTS', '8:2 FTS': '8:2 FTS',
+  '4:2 FTS': '4:2 FTS', 'NEtFOSAA': 'NEtFOSAA', 'NMeFOSAA': 'NMeFOSAA',
+  'PFPeS': 'PFPeS', 'PFHpS': 'PFHpS', 'ADONA': 'ADONA',
+  '11Cl-PF3OUdS': '11Cl-PF3OUdS', '9Cl-PF3ONS': '9Cl-PF3ONS',
+  'PFMBA': 'PFMBA', 'PFMPA': 'PFMPA', 'PFEESA': 'PFEESA',
+  'PFTA': 'PFTA', 'PFTrDA': 'PFTrDA', 'NFDHA': 'NFDHA',
+};
+
 // ─── MIME types ───────────────────────────────────────────────────
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -458,6 +489,64 @@ const renderSSRPage = async (system, violations, samples) => {
     ],
   });
 
+  // ── PFAS data for this system ──
+  const pfasDetections = PFAS_DATA[system.pwsid] || null;
+  let pfasSummaryHtml = '';
+  if (pfasDetections) {
+    const entries = Object.entries(pfasDetections).sort((a, b) => b[1] - a[1]);
+    const overLimit = entries.filter(([c, v]) => PFAS_MCLS[c] && v > PFAS_MCLS[c].mcl);
+    const pfasRows = entries.map(([contam, val]) => {
+      const mclInfo = PFAS_MCLS[contam];
+      const mclText = mclInfo ? `${mclInfo.mcl} µg/L` : '—';
+      const overMcl = mclInfo && val > mclInfo.mcl;
+      const statusStyle = overMcl
+        ? 'color:#ef4444;font-weight:700'
+        : 'color:#22c55e';
+      const statusText = overMcl ? 'OVER LIMIT' : mclInfo ? 'Within limit' : 'No federal MCL';
+      return `<tr>
+        <td style="padding:8px 12px;border-bottom:1px solid #e2e8f0">${escHtml(PFAS_NAMES[contam] || contam)}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;text-align:right;font-family:monospace">${val} µg/L</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;text-align:right;font-family:monospace">${mclText}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #e2e8f0;text-align:center"><span style="${statusStyle}">${statusText}</span></td>
+      </tr>`;
+    }).join('');
+
+    const alertBanner = overLimit.length > 0
+      ? `<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#991b1b">
+          <strong>⚠ ${overLimit.length} PFAS compound${overLimit.length > 1 ? 's' : ''} exceeded EPA limits</strong>
+          — ${overLimit.map(([c]) => PFAS_NAMES[c] || c).join(', ')}
+        </div>`
+      : `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#166534">
+          <strong>✓ All detected PFAS are within EPA limits</strong>
+        </div>`;
+
+    pfasSummaryHtml = `
+      <div style="margin-top:2rem">
+        <h2 style="font-size:1.2rem;margin-bottom:8px">PFAS / Forever Chemicals</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:12px">
+          EPA UCMR5 monitoring data (2023–2025). ${entries.length} PFAS compound${entries.length > 1 ? 's' : ''} detected.
+        </p>
+        ${alertBanner}
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:14px">
+            <thead>
+              <tr style="background:#f8fafc">
+                <th style="padding:8px 12px;text-align:left;border-bottom:2px solid #e2e8f0">Compound</th>
+                <th style="padding:8px 12px;text-align:right;border-bottom:2px solid #e2e8f0">Detected</th>
+                <th style="padding:8px 12px;text-align:right;border-bottom:2px solid #e2e8f0">EPA MCL</th>
+                <th style="padding:8px 12px;text-align:center;border-bottom:2px solid #e2e8f0">Status</th>
+              </tr>
+            </thead>
+            <tbody>${pfasRows}</tbody>
+          </table>
+        </div>
+        <p style="color:#94a3b8;font-size:12px;margin-top:8px">
+          Source: EPA Fifth Unregulated Contaminant Monitoring Rule (UCMR5). MCLs finalized April 2024.
+          Values shown are the maximum detected concentration across all sampling events.
+        </p>
+      </div>`;
+  }
+
   const injectedHead = `
   <title>${escHtml(title)}</title>
   <meta name="description" content="${escHtml(desc)}">
@@ -475,7 +564,7 @@ const renderSSRPage = async (system, violations, samples) => {
   <meta name="twitter:image" content="${BASE_URL}/og-image.png">
   <link rel="canonical" href="${canonical}">
   <script type="application/ld+json">${jsonLd}</script>
-  <script>window.__PRELOADED__=${JSON.stringify({ system, violations, samples })};</script>`;
+  <script>window.__PRELOADED__=${JSON.stringify({ system, violations, samples, pfas: pfasDetections })};</script>`;
 
   // SSR summary injected into the placeholder - visible to non-JS crawlers
   const ssrSummary = `
@@ -494,6 +583,7 @@ const renderSSRPage = async (system, violations, samples) => {
           ? `<strong style="color:#ef4444">${activeHealth} currently active health violation${activeHealth !== 1 ? 's' : ''}.</strong>`
           : 'No currently active health-based violations.'}</p>
       ${healthViolations.length ? `<h2 style="margin-top:1.5rem;font-size:1.1rem">Health-Based Violations</h2>${violationList}` : ''}
+      ${pfasSummaryHtml}
       <p style="margin-top:1.5rem;padding:1rem;background:#f1f5f9;border-radius:8px;font-size:14px;color:#64748b">
         <noscript>Enable JavaScript for the full interactive report.</noscript>
         <span class="js-loading-msg">Loading interactive report…</span>
@@ -2578,6 +2668,7 @@ const handleReport = async (req, res, params) => {
   }
   try {
     const data = await fetchReportData(pwsid);
+    data.pfas = PFAS_DATA[pwsid] || null;
     return sendJSON(req, res, 200, data);
   } catch (err) {
     console.error('[/api/report]', err.message);

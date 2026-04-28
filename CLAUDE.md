@@ -42,6 +42,18 @@
 - **After**: `CITY_PAGES` loaded from `cities.json` at startup; `POPULAR_CITY_PAGES` aliases it (with old array as fallback)
 - **Impact**: Sitemap grows from ~330 → 4,161 city URLs; cities hub & state pages show all cities
 
+## PFAS Integration (April 2026)
+- **Source**: EPA UCMR5 (Fifth Unregulated Contaminant Monitoring Rule), updated quarterly
+  - Download: https://www.epa.gov/dwucmr/occurrence-data-unregulated-contaminant-monitoring-rule
+  - Data covers 29 PFAS compounds tested at water systems 2023–2025
+  - Last refresh: January 15, 2026 (~95% complete); final release fall 2026
+- **File**: `pfas.json` — 3,539 water systems with PFAS detections, keyed by PWSID
+  - Format: `{ "PWSID": { "PFOA": 0.0123, "PFOS": 0.0456, ... }, ... }`
+  - Values are max detected concentration in µg/L across all sampling events
+- **Integration**: Loaded at startup; displayed as PFAS table on SSR report pages
+  - Includes EPA MCLs (finalized April 2024): PFOA/PFOS 0.004, PFHxS/PFNA/GenX 0.010 µg/L
+  - Also injected into `__PRELOADED__` and `/api/report` response as `pfas` field
+
 ## Data Notes
 - Labs in `labs.json` are matched by `state + "||" + name.toLowerCase().trim()`
 - Some lab names contain em dashes (–) — match accordingly
