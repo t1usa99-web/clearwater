@@ -693,17 +693,91 @@ function renderRecommendations(violations, samples, system) {
     tags: ['Consumer Confidence Report', 'Free'],
   });
 
+  // Build the filter comparison card with a visual table
+  const pfasData = window.__PRELOADED__?.pfas;
+  const hasPFAS = pfasData && Object.keys(pfasData).length > 0;
+  const hasLead = samples.some(s => ['PB90','pb90','0006','6'].includes(String(s.contaminantCode)));
+  const hasNitrate = violations.some(v => (v.contaminantName || '').toLowerCase().includes('nitrate'));
+  const hasTHM = violations.some(v => (v.contaminantName || '').toLowerCase().includes('tthm') || (v.contaminantName || '').toLowerCase().includes('haloacetic'));
+
+  // Determine the best filter recommendation based on this system's data
+  let topPick = 'Activated Carbon';
+  let topPickWhy = 'Good all-around protection for chlorine taste, disinfection byproducts, and many organic chemicals.';
+  if (hasPFAS || hasNitrate) {
+    topPick = 'Reverse Osmosis';
+    topPickWhy = hasPFAS
+      ? 'This system has detected PFAS compounds. Reverse osmosis is one of the few filters proven to remove PFAS effectively.'
+      : 'This system has had nitrate issues. Reverse osmosis is needed to remove nitrates — carbon filters cannot.';
+  } else if (hasLead) {
+    topPick = 'NSF 53 Certified';
+    topPickWhy = 'This system has lead testing data. An NSF 53 certified filter is specifically tested for lead reduction.';
+  }
+
   recs.push({
     icon: '🔬',
-    title: 'Know what filters work for what',
+    title: 'Water filter comparison',
     desc: `
-      <strong>Activated carbon (pitcher/faucet):</strong> Removes chlorine, TTHMs, HAAs, some VOCs and pesticides. Does NOT remove lead well on its own.<br>
-      <strong>NSF 53 certified filter:</strong> Specifically tested to reduce lead and other contaminants; look for this certification.<br>
-      <strong>Reverse osmosis:</strong> Removes nearly everything including lead, nitrates, arsenic, radionuclides, and PFAS. More expensive but comprehensive.<br>
-      <strong>Boiling:</strong> Kills bacteria and viruses. Does NOT remove chemical contaminants.
+      <div style="margin-bottom:14px;padding:12px 16px;background:linear-gradient(135deg,#eff6ff,#f0f9ff);border-radius:10px;border:1px solid #bfdbfe">
+        <div style="font-weight:700;color:#1e40af;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Recommended for this system</div>
+        <div style="font-weight:600;font-size:15px;color:#1e293b">${topPick}</div>
+        <div style="font-size:13px;color:#475569;margin-top:2px">${topPickWhy}</div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;line-height:1.4">
+        <thead>
+          <tr style="border-bottom:2px solid #e2e8f0">
+            <th style="text-align:left;padding:8px 8px 8px 0;font-weight:600;color:#334155">Filter Type</th>
+            <th style="text-align:center;padding:8px 4px;font-weight:600;color:#334155">Lead</th>
+            <th style="text-align:center;padding:8px 4px;font-weight:600;color:#334155">PFAS</th>
+            <th style="text-align:center;padding:8px 4px;font-weight:600;color:#334155">Chlorine</th>
+            <th style="text-align:center;padding:8px 4px;font-weight:600;color:#334155">Nitrates</th>
+            <th style="text-align:center;padding:8px 4px;font-weight:600;color:#334155">Bacteria</th>
+            <th style="text-align:right;padding:8px 0 8px 4px;font-weight:600;color:#334155">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 8px 10px 0;font-weight:600">Activated Carbon</td>
+            <td style="text-align:center;padding:10px 4px;color:#f59e0b">~</td>
+            <td style="text-align:center;padding:10px 4px;color:#f59e0b">~</td>
+            <td style="text-align:center;padding:10px 4px;color:#22c55e">✓</td>
+            <td style="text-align:center;padding:10px 4px;color:#ef4444">✗</td>
+            <td style="text-align:center;padding:10px 4px;color:#ef4444">✗</td>
+            <td style="text-align:right;padding:10px 0 10px 4px;color:#64748b">$20–60</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 8px 10px 0;font-weight:600">NSF 53 Certified</td>
+            <td style="text-align:center;padding:10px 4px;color:#22c55e">✓</td>
+            <td style="text-align:center;padding:10px 4px;color:#f59e0b">~</td>
+            <td style="text-align:center;padding:10px 4px;color:#22c55e">✓</td>
+            <td style="text-align:center;padding:10px 4px;color:#ef4444">✗</td>
+            <td style="text-align:center;padding:10px 4px;color:#ef4444">✗</td>
+            <td style="text-align:right;padding:10px 0 10px 4px;color:#64748b">$25–80</td>
+          </tr>
+          <tr style="border-bottom:1px solid #f1f5f9">
+            <td style="padding:10px 8px 10px 0;font-weight:600">Reverse Osmosis</td>
+            <td style="text-align:center;padding:10px 4px;color:#22c55e">✓</td>
+            <td style="text-align:center;padding:10px 4px;color:#22c55e">✓</td>
+            <td style="text-align:center;padding:10px 4px;color:#22c55e">✓</td>
+            <td style="text-align:center;padding:10px 4px;color:#22c55e">✓</td>
+            <td style="text-align:center;padding:10px 4px;color:#22c55e">✓</td>
+            <td style="text-align:right;padding:10px 0 10px 4px;color:#64748b">$150–500</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 8px 10px 0;font-weight:600">Boiling</td>
+            <td style="text-align:center;padding:10px 4px;color:#ef4444">✗</td>
+            <td style="text-align:center;padding:10px 4px;color:#ef4444">✗</td>
+            <td style="text-align:center;padding:10px 4px;color:#ef4444">✗</td>
+            <td style="text-align:center;padding:10px 4px;color:#ef4444">✗</td>
+            <td style="text-align:center;padding:10px 4px;color:#22c55e">✓</td>
+            <td style="text-align:right;padding:10px 0 10px 4px;color:#64748b">Free</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:12px;color:#94a3b8;margin-top:8px">✓ Effective&nbsp;&nbsp; ~ Partial&nbsp;&nbsp; ✗ Not effective</div>
+      <a href="/blog/water-filter-guide-best-home-water-filtration-systems" style="display:inline-block;margin-top:14px;padding:8px 18px;background:#0ea5e9;color:white;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none">Read full filter guide →</a>
     `,
     priority: false,
-    tags: ['Filter Guide'],
+    tags: [],
   });
 
   return `<div class="recs-grid">${recs.map(r => `
