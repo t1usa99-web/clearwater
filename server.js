@@ -583,12 +583,12 @@ const renderSSRPage = async (system, violations, samples) => {
           ? `<strong style="color:#ef4444">${activeHealth} currently active health violation${activeHealth !== 1 ? 's' : ''}.</strong>`
           : 'No currently active health-based violations.'}</p>
       ${healthViolations.length ? `<h2 style="margin-top:1.5rem;font-size:1.1rem">Health-Based Violations</h2>${violationList}` : ''}
-      ${pfasSummaryHtml}
       <p style="margin-top:1.5rem;padding:1rem;background:#f1f5f9;border-radius:8px;font-size:14px;color:#64748b">
         <noscript>Enable JavaScript for the full interactive report.</noscript>
         <span class="js-loading-msg">Loading interactive report…</span>
       </p>
-    </div>`;
+    </div>
+    ${pfasSummaryHtml ? `<div id="pfas-section" style="max-width:800px;margin:0 auto;padding:0 2rem">${pfasSummaryHtml}</div>` : ''}`;
 
   let html = await getIndexHtml();
 
