@@ -695,20 +695,20 @@ function renderRecommendations(violations, samples, system) {
 
   // Build the filter comparison card with a visual table
   const pfasData = window.__PRELOADED__?.pfas;
-  const hasPFAS = pfasData && Object.keys(pfasData).length > 0;
-  const hasLead = samples.some(s => ['PB90','pb90','0006','6'].includes(String(s.contaminantCode)));
-  const hasNitrate = violations.some(v => (v.contaminantName || '').toLowerCase().includes('nitrate'));
-  const hasTHM = violations.some(v => (v.contaminantName || '').toLowerCase().includes('tthm') || (v.contaminantName || '').toLowerCase().includes('haloacetic'));
+  const filterHasPFAS = pfasData && Object.keys(pfasData).length > 0;
+  const filterHasLead = samples.some(s => ['PB90','pb90','0006','6'].includes(String(s.contaminantCode)));
+  const filterHasNitrate = violations.some(v => (v.contaminantName || '').toLowerCase().includes('nitrate'));
+  const filterHasTHM = violations.some(v => (v.contaminantName || '').toLowerCase().includes('tthm') || (v.contaminantName || '').toLowerCase().includes('haloacetic'));
 
   // Determine the best filter recommendation based on this system's data
   let topPick = 'Activated Carbon';
   let topPickWhy = 'Good all-around protection for chlorine taste, disinfection byproducts, and many organic chemicals.';
-  if (hasPFAS || hasNitrate) {
+  if (filterHasPFAS || filterHasNitrate) {
     topPick = 'Reverse Osmosis';
-    topPickWhy = hasPFAS
+    topPickWhy = filterHasPFAS
       ? 'This system has detected PFAS compounds. Reverse osmosis is one of the few filters proven to remove PFAS effectively.'
       : 'This system has had nitrate issues. Reverse osmosis is needed to remove nitrates — carbon filters cannot.';
-  } else if (hasLead) {
+  } else if (filterHasLead) {
     topPick = 'NSF 53 Certified';
     topPickWhy = 'This system has lead testing data. An NSF 53 certified filter is specifically tested for lead reduction.';
   }
