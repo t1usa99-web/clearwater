@@ -86,11 +86,22 @@ const STATE_FIPS = {
 // FIPS county names for display
 const FIPS_COUNTY_NAMES = {};  // populated lazily from EPA response data
 
-const lookupHardness = (stateAbbr, countyServed) => {
+const lookupHardness = (stateAbbr, zip, countyServed) => {
   const stateFips = STATE_FIPS[stateAbbr];
   if (!stateFips) return null;
 
-  // Try county-level first (5-digit FIPS = state 2 + county 3)
+  // Try ZIP -> county FIPS lookup first (most reliable)
+  if (zip && HARDNESS_DATA.zips) {
+    const countyFips = HARDNESS_DATA.zips[String(zip).trim()];
+    if (countyFips) {
+      const county = HARDNESS_DATA.counties[countyFips];
+      if (county) {
+        return { mg_l: county.mg_l, cat: county.cat, n: county.n, level: 'county' };
+      }
+    }
+  }
+
+  // Try county_served from EPA (3-digit county FIPS)
   if (countyServed) {
     const countyCode = String(countyServed).padStart(3, '0');
     const fips5 = stateFips + countyCode;
@@ -596,7 +607,7 @@ const renderSSRPage = async (system, violations, samples) => {
   }
 
   // ── Water hardness for this system ──
-  const hardnessInfo = lookupHardness(system.state, system.county);
+  const hardnessInfo = lookupHardness(system.state, system.zip, system.county);
   let hardnessHtml = '';
   if (hardnessInfo) {
     const mg = hardnessInfo.mg_l;
@@ -2771,7 +2782,7 @@ const handleReport = async (req, res, params) => {
     const data = await fetchReportData(pwsid);
     data.pfas = PFAS_DATA[pwsid] || null;
     if (data.system) {
-      data.hardness = lookupHardness(data.system.state, data.system.county);
+      data.hardness = lookupHardness(data.system.state, data.system.zip, data.system.county);
     }
     return sendJSON(req, res, 200, data);
   } catch (err) {
