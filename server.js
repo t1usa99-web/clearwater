@@ -92,7 +92,8 @@ const lookupHardness = (stateAbbr, zip, countyServed) => {
 
   // Try ZIP -> county FIPS lookup first (most reliable)
   if (zip && HARDNESS_DATA.zips) {
-    const countyFips = HARDNESS_DATA.zips[String(zip).trim()];
+    const z = String(zip).trim();
+    const countyFips = HARDNESS_DATA.zips[z] || (HARDNESS_DATA.zip3 && HARDNESS_DATA.zip3[z.slice(0, 3)]);
     if (countyFips) {
       const county = HARDNESS_DATA.counties[countyFips];
       if (county) {
