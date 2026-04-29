@@ -782,10 +782,11 @@ const renderSSRPage = async (system, violations, samples) => {
         ${escHtml(location)}${pop ? ` · ${escHtml(pop)}` : ''}${source ? ` · ${escHtml(source)}` : ''}
       </p>
       <p style="color:#94a3b8;font-size:12px;margin:0 0 1.5rem">Data last updated: ${today}</p>
-      <div style="display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border:3px solid ${gradeColor};border-radius:12px;margin-bottom:1.5rem">
+      <div style="display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border:3px solid ${gradeColor};border-radius:12px;margin-bottom:0.5rem">
         <span style="font-size:2.5rem;font-weight:800;color:${gradeColor};line-height:1">${escHtml(grade)}</span>
         <span style="color:#334155;font-size:0.95rem">${escHtml(label)}</span>
       </div>
+      <p style="margin:0 0 1.5rem"><a href="/grading" style="color:#94a3b8;font-size:12px;text-decoration:none">How is this graded?</a></p>
       <p><strong>${violations.length} total violations</strong> on record.
         ${activeHealth > 0
           ? `<strong style="color:#ef4444">${activeHealth} currently active health violation${activeHealth !== 1 ? 's' : ''}.</strong>`
@@ -1501,6 +1502,186 @@ const renderContaminantsListPage = () => {
   </footer>
 </body>
 </html>`;
+};
+
+// ─── Grading methodology page ────────────────────────────────────
+const renderGradingPage = () => {
+  const title    = 'How We Grade Water Quality | ClearWater';
+  const desc     = 'Learn how ClearWater assigns water quality grades. Our A-F grading system is based entirely on EPA compliance data, weighted by health-based violations.';
+  const canonical = `${BASE_URL}/grading`;
+
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    'name': title,
+    'description': desc,
+    'url': canonical,
+  });
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+  <meta name="description" content="${escHtml(desc)}">
+  <meta property="og:title" content="${escHtml(title)}">
+  <meta property="og:description" content="${escHtml(desc)}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${canonical}">
+  <meta property="og:image" content="${BASE_URL}/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="${BASE_URL}/og-image.png">
+  <link rel="canonical" href="${canonical}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <script type="application/ld+json">${jsonLd}</script>
+  <link rel="stylesheet" href="/style.css?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <path d="M14 3C14 3 5 12 5 17.5a9 9 0 0 0 18 0C23 12 14 3 14 3z" fill="#0ea5e9"/>
+        </svg>
+        ClearWater
+      </a>
+      <nav>
+        <a class="header-link" href="/">Search by ZIP &rarr;</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="state-page-hero">
+      <div class="container">
+        <p class="state-breadcrumb"><a href="/">ClearWater</a> &rsaquo; Grading</p>
+        <h1 class="state-page-title">How We Grade Water Quality</h1>
+        <p class="state-page-sub">
+          ClearWater grades are not issued by the EPA or any government agency. They are our own system for translating EPA compliance data into a simple A-F score.
+        </p>
+      </div>
+    </div>
+
+    <div class="container" style="max-width:760px;margin:0 auto;padding:2rem 1rem">
+
+      <div style="margin-bottom:2rem">
+        <p style="font-size:1rem;line-height:1.7;color:#334155">
+          Every public water system in the US is required to meet EPA standards and report violations to the Safe Drinking Water Information System (SDWIS). ClearWater pulls this data and computes a grade based on the number, type, and recency of violations. Health-based violations carry the most weight because they indicate actual contamination or treatment failures that could affect your health.
+        </p>
+      </div>
+
+      <h2 style="font-size:1.25rem;color:#0f172a;margin:2rem 0 1rem">The grading criteria</h2>
+
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem">
+
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border-radius:12px;background:#f0fdf4;border:1px solid #bbf7d0">
+          <span style="font-size:2rem;font-weight:800;color:#16a34a;min-width:48px;text-align:center;line-height:1">A</span>
+          <div>
+            <div style="font-weight:600;color:#15803d;margin-bottom:4px">Meets all standards</div>
+            <div style="color:#334155;font-size:0.9rem;line-height:1.6">No health-based violations in the past 5 years, and 3 or fewer active violations of any type (including monitoring and reporting). This is the best possible score.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe">
+          <span style="font-size:2rem;font-weight:800;color:#2563eb;min-width:48px;text-align:center;line-height:1">B</span>
+          <div>
+            <div style="font-weight:600;color:#1d4ed8;margin-bottom:4px">Generally safe</div>
+            <div style="color:#334155;font-size:0.9rem;line-height:1.6">Exactly 1 health-based violation in the past 5 years. The issue may have been brief or already resolved, but it's worth knowing about.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border-radius:12px;background:#fefce8;border:1px solid #fde68a">
+          <span style="font-size:2rem;font-weight:800;color:#ca8a04;min-width:48px;text-align:center;line-height:1">C</span>
+          <div>
+            <div style="font-weight:600;color:#a16207;margin-bottom:4px">Some concern</div>
+            <div style="color:#334155;font-size:0.9rem;line-height:1.6">2 to 4 health-based violations in the past 5 years, or more than 3 active violations of any type. A pattern of issues that warrants attention.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border-radius:12px;background:#fff7ed;border:1px solid #fed7aa">
+          <span style="font-size:2rem;font-weight:800;color:#ea580c;min-width:48px;text-align:center;line-height:1">D</span>
+          <div>
+            <div style="font-weight:600;color:#c2410c;margin-bottom:4px">Significant violations</div>
+            <div style="color:#334155;font-size:0.9rem;line-height:1.6">5 or more health-based violations in the past 5 years. This system has a repeated pattern of health-related compliance failures. Consider testing your tap water independently and using a filter.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border-radius:12px;background:#fef2f2;border:1px solid #fecaca">
+          <span style="font-size:2rem;font-weight:800;color:#dc2626;min-width:48px;text-align:center;line-height:1">F</span>
+          <div>
+            <div style="font-weight:600;color:#b91c1c;margin-bottom:4px">Active health violation</div>
+            <div style="color:#334155;font-size:0.9rem;line-height:1.6">At least one health-based violation is currently active (not yet resolved). This means the EPA considers the system out of compliance right now. Contact your utility and consider using bottled or filtered water until the issue is resolved.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <h2 style="font-size:1.25rem;color:#0f172a;margin:2rem 0 1rem">What the grades don't tell you</h2>
+
+      <div style="font-size:0.95rem;line-height:1.7;color:#334155">
+        <p style="margin-bottom:1rem">
+          An A grade means a system has met all EPA legal requirements. It does not mean the water is free of all contaminants. Many substances (like PFAS until recently) had no federal limit, and some health advocates argue that current EPA limits for certain contaminants are not strict enough. A system can have an A grade while still containing detectable levels of contaminants that are below the legal threshold.
+        </p>
+        <p style="margin-bottom:1rem">
+          Conversely, a low grade doesn't always mean the water is currently unsafe. A system might receive a C or D because of violations that have since been resolved. The grade reflects the recent compliance track record, not necessarily today's water quality.
+        </p>
+        <p style="margin-bottom:1rem">
+          These grades also only cover public water systems. If you're on a private well, there is no EPA oversight and no violation data to grade. See our <a href="/blog/private-well-water-testing-guide" style="color:#0ea5e9">well water testing guide</a> for what to do instead.
+        </p>
+      </div>
+
+      <h2 style="font-size:1.25rem;color:#0f172a;margin:2rem 0 1rem">Where the data comes from</h2>
+
+      <div style="font-size:0.95rem;line-height:1.7;color:#334155">
+        <p style="margin-bottom:1rem">
+          All violation data comes from the EPA's <a href="https://www.epa.gov/ground-water-and-drinking-water/safe-drinking-water-information-system-sdwis-federal-reporting" target="_blank" rel="noopener" style="color:#0ea5e9">Safe Drinking Water Information System (SDWIS)</a>. This is the same database that state regulators and the EPA use to track compliance. ClearWater queries this data through the EPA's public Envirofacts API and updates it quarterly.
+        </p>
+        <p style="margin-bottom:1rem">
+          A violation is classified as "health-based" if it involves a Maximum Contaminant Level (MCL) exceedance or a treatment technique failure. Monitoring and reporting violations (missed deadlines, late paperwork) are tracked separately and carry less weight in the grade.
+        </p>
+        <p>
+          A violation is considered "active" if it has not been marked as returned to compliance in the SDWIS database.
+        </p>
+      </div>
+
+      <div style="margin-top:2.5rem;padding:1.25rem;background:#f0f9ff;border-radius:8px;border:1px solid #bae6fd;text-align:center">
+        <p style="font-weight:600;color:#0c4a6e;margin-bottom:0.5rem">Check your water system</p>
+        <p style="color:#334155;font-size:0.9rem;margin-bottom:1rem">Search your ZIP code to see your system's grade, violations, lead testing, PFAS data, and more.</p>
+        <a href="/" style="display:inline-block;padding:10px 24px;background:#0ea5e9;color:#fff;border-radius:8px;text-decoration:none;font-weight:600">Search your ZIP code</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-text">
+        Data from the EPA's <a href="https://www.epa.gov/ground-water-and-drinking-water/safe-drinking-water-information-system-sdwis-federal-reporting" target="_blank" rel="noopener">Safe Drinking Water Information System (SDWIS)</a>, updated quarterly.
+      </p>
+      <div class="footer-states">
+        <p class="footer-states-label">Water quality by state</p>
+        <div class="footer-states-links">
+          ${Object.entries(US_STATES).map(([code, name]) =>
+            `<a href="/state/${code.toLowerCase()}">${escHtml(name)}</a>`
+          ).join('')}
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>`;
+};
+
+const handleGradingPage = (req, res) => {
+  const html = renderGradingPage();
+  sendHTML(req, res, html);
 };
 
 const handleContaminantPage = (req, res, slug) => {
@@ -2961,6 +3142,7 @@ const handleSitemap = async (res) => {
   const urls = [
     `  <url><loc>${BASE_URL}/</loc><changefreq>weekly</changefreq><priority>1.0</priority><lastmod>${today}</lastmod></url>`,
     // Contaminants hub page
+    `  <url><loc>${BASE_URL}/grading</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>${today}</lastmod></url>`,
     `  <url><loc>${BASE_URL}/contaminants</loc><changefreq>monthly</changefreq><priority>0.9</priority><lastmod>${today}</lastmod></url>`,
     // Individual contaminant pages
     ...Object.keys(CONTAMINANT_PAGES).map(slug =>
@@ -3068,6 +3250,9 @@ const server = http.createServer(async (req, res) => {
   // State hub page: /state/:xx
   const stateMatch = pathname.match(/^\/state\/([a-zA-Z]{2})$/);
   if (stateMatch) return handleStatePage(req, res, stateMatch[1]);
+
+  // Grading methodology page: /grading
+  if (pathname === '/grading') return handleGradingPage(req, res);
 
   // Contaminants list page: /contaminants
   if (pathname === '/contaminants') return handleContaminantsList(req, res);
