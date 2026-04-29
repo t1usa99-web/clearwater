@@ -823,6 +823,55 @@ function renderReport(report) {
   // Recommendations tab
   $('recs-content').innerHTML = renderRecommendations(violations, samples, system);
 
+  // Hardness section (client-side rendering when not SSR)
+  const hardnessEl = $('hardness-section');
+  if (hardnessEl) {
+    const hd = report.hardness || window.__PRELOADED__?.hardness;
+    if (hd && hd.mg_l !== undefined) {
+      const catLabels = { soft: 'Soft', moderate: 'Moderately Hard', hard: 'Hard', very_hard: 'Very Hard' };
+      const catColors = { soft: '#22c55e', moderate: '#3b82f6', hard: '#f59e0b', very_hard: '#ef4444' };
+      const mg = hd.mg_l;
+      const cat = hd.cat || (mg <= 60 ? 'soft' : mg <= 120 ? 'moderate' : mg <= 180 ? 'hard' : 'very_hard');
+      const catLabel = catLabels[cat] || '';
+      const catColor = catColors[cat] || '#64748b';
+      const gpg = (mg / 17.1).toFixed(1);
+      const pct = Math.min(Math.round((mg / 500) * 100), 100);
+      const areaLabel = hd.level === 'county' ? 'your county' : 'your state';
+      const advice = mg > 120
+        ? '<strong>What this means:</strong> Hard water can cause mineral buildup in pipes and appliances, leave spots on dishes, and make soap less effective. A water softener can help.'
+        : mg > 60
+        ? '<strong>What this means:</strong> Your water has a moderate mineral content. Most people won\'t notice significant issues, though you may see some mineral deposits over time.'
+        : '<strong>What this means:</strong> Soft water is gentle on plumbing and appliances. Soap lathers easily and you\'re unlikely to see mineral buildup.';
+
+      hardnessEl.innerHTML = `
+        <div style="margin-top:2rem">
+          <h2 style="font-size:1.2rem;margin-bottom:8px">Water Hardness</h2>
+          <p style="color:#64748b;font-size:14px;margin-bottom:12px">
+            Estimated based on USGS geological survey data for ${areaLabel}.
+          </p>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:12px">
+            <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px">
+              <span style="font-size:2rem;font-weight:800;color:${catColor};line-height:1">${mg}</span>
+              <span style="color:#64748b;font-size:14px">mg/L (${gpg} grains/gal)</span>
+            </div>
+            <div style="font-size:1rem;font-weight:600;color:${catColor};margin-bottom:16px">${catLabel}</div>
+            <div style="position:relative;height:24px;background:linear-gradient(to right, #22c55e 0%, #3b82f6 24%, #f59e0b 48%, #ef4444 72%, #991b1b 100%);border-radius:12px;margin-bottom:8px">
+              <div style="position:absolute;left:${pct}%;top:-2px;transform:translateX(-50%);width:4px;height:28px;background:#1e293b;border-radius:2px"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8">
+              <span>Soft (0–60)</span><span>Moderate (61–120)</span><span>Hard (121–180)</span><span>Very Hard (180+)</span>
+            </div>
+          </div>
+          <div style="font-size:13px;color:#64748b;line-height:1.6">${advice}</div>
+          <p style="color:#94a3b8;font-size:12px;margin-top:8px">
+            Source: USGS National Water Information System. Hardness is not a health concern — it’s a measure of dissolved calcium and magnesium. Contact your water utility for exact values.
+          </p>
+        </div>`;
+    } else if (!hardnessEl.innerHTML.trim()) {
+      hardnessEl.innerHTML = '';
+    }
+  }
+
   showView('report');
 }
 

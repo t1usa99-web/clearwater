@@ -63,6 +63,53 @@ try {
   }
 } catch (e) { console.error('[pfas] Failed to load:', e.message); }
 
+// ─── Hardness data (loaded from hardness.json at startup) ────────
+let HARDNESS_DATA = { counties: {}, states: {} };
+try {
+  const hardnessPath = path.join(__dirname, 'hardness.json');
+  if (fs.existsSync(hardnessPath)) {
+    HARDNESS_DATA = JSON.parse(fs.readFileSync(hardnessPath, 'utf8'));
+    console.log(`[hardness] Loaded hardness data for ${Object.keys(HARDNESS_DATA.counties).length} counties, ${Object.keys(HARDNESS_DATA.states).length} states`);
+  }
+} catch (e) { console.error('[hardness] Failed to load:', e.message); }
+
+// State abbreviation → 2-digit FIPS code
+const STATE_FIPS = {
+  AL:'01',AK:'02',AZ:'04',AR:'05',CA:'06',CO:'08',CT:'09',DE:'10',DC:'11',
+  FL:'12',GA:'13',HI:'15',ID:'16',IL:'17',IN:'18',IA:'19',KS:'20',KY:'21',
+  LA:'22',ME:'23',MD:'24',MA:'25',MI:'26',MN:'27',MS:'28',MO:'29',MT:'30',
+  NE:'31',NV:'32',NH:'33',NJ:'34',NM:'35',NY:'36',NC:'37',ND:'38',OH:'39',
+  OK:'40',OR:'41',PA:'42',RI:'44',SC:'45',SD:'46',TN:'47',TX:'48',UT:'49',
+  VT:'50',VA:'51',WA:'53',WV:'54',WI:'55',WY:'56'
+};
+
+// FIPS county names for display
+const FIPS_COUNTY_NAMES = {};  // populated lazily from EPA response data
+
+const lookupHardness = (stateAbbr, countyServed) => {
+  const stateFips = STATE_FIPS[stateAbbr];
+  if (!stateFips) return null;
+
+  // Try county-level first (5-digit FIPS = state 2 + county 3)
+  if (countyServed) {
+    const countyCode = String(countyServed).padStart(3, '0');
+    const fips5 = stateFips + countyCode;
+    const county = HARDNESS_DATA.counties[fips5];
+    if (county) {
+      return { mg_l: county.mg_l, cat: county.cat, n: county.n, level: 'county' };
+    }
+  }
+
+  // Fall back to state-level
+  const stateMgL = HARDNESS_DATA.states[stateFips];
+  if (stateMgL !== undefined) {
+    const cat = stateMgL <= 60 ? 'soft' : stateMgL <= 120 ? 'moderate' : stateMgL <= 180 ? 'hard' : 'very_hard';
+    return { mg_l: stateMgL, cat, n: 0, level: 'state' };
+  }
+
+  return null;
+};
+
 // EPA PFAS MCLs (finalized April 2024) in µg/L
 const PFAS_MCLS = {
   'PFOA':    { mcl: 0.004, name: 'PFOA (Perfluorooctanoic acid)' },
@@ -219,6 +266,7 @@ const normalizeSystem = (s) => ({
   city:       get(s, 'city_name')             || '',
   state:      get(s, 'state_code')            || get(s, 'primacy_agency_code') || '',
   zip:        get(s, 'zip_code')              || '',
+  county:     get(s, 'county_served')         || '',
   population: parseInt(get(s, 'population_served_count') || 0) || 0,
   sourceType: get(s, 'primary_source_code')   || get(s, 'gw_sw_code') || '',
   pwsType:    get(s, 'pws_type_code')         || '',
@@ -547,6 +595,50 @@ const renderSSRPage = async (system, violations, samples) => {
       </div>`;
   }
 
+  // ── Water hardness for this system ──
+  const hardnessInfo = lookupHardness(system.state, system.county);
+  let hardnessHtml = '';
+  if (hardnessInfo) {
+    const mg = hardnessInfo.mg_l;
+    const catLabel = { soft: 'Soft', moderate: 'Moderately Hard', hard: 'Hard', very_hard: 'Very Hard' }[hardnessInfo.cat] || '';
+    const catColor = { soft: '#22c55e', moderate: '#3b82f6', hard: '#f59e0b', very_hard: '#ef4444' }[hardnessInfo.cat] || '#64748b';
+    const gpg = (mg / 17.1).toFixed(1); // grains per gallon
+    // Scale bar: 0-500 mg/L range, position the marker
+    const pct = Math.min(Math.round((mg / 500) * 100), 100);
+    const areaLabel = hardnessInfo.level === 'county' ? 'your county' : 'your state';
+
+    hardnessHtml = `
+      <div style="margin-top:2rem">
+        <h2 style="font-size:1.2rem;margin-bottom:8px">Water Hardness</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:12px">
+          Estimated based on USGS geological survey data for ${areaLabel}.
+        </p>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:12px">
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px">
+            <span style="font-size:2rem;font-weight:800;color:${catColor};line-height:1">${mg}</span>
+            <span style="color:#64748b;font-size:14px">mg/L (${gpg} grains/gal)</span>
+          </div>
+          <div style="font-size:1rem;font-weight:600;color:${catColor};margin-bottom:16px">${catLabel}</div>
+          <div style="position:relative;height:24px;background:linear-gradient(to right, #22c55e 0%, #3b82f6 24%, #f59e0b 48%, #ef4444 72%, #991b1b 100%);border-radius:12px;margin-bottom:8px">
+            <div style="position:absolute;left:${pct}%;top:-2px;transform:translateX(-50%);width:4px;height:28px;background:#1e293b;border-radius:2px"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8">
+            <span>Soft (0–60)</span><span>Moderate (61–120)</span><span>Hard (121–180)</span><span>Very Hard (180+)</span>
+          </div>
+        </div>
+        <div style="font-size:13px;color:#64748b;line-height:1.6">
+          ${mg > 120
+            ? '<strong>What this means:</strong> Hard water can cause mineral buildup in pipes and appliances, leave spots on dishes, and make soap less effective. A water softener can help.'
+            : mg > 60
+            ? '<strong>What this means:</strong> Your water has a moderate mineral content. Most people won\'t notice significant issues, though you may see some mineral deposits over time.'
+            : '<strong>What this means:</strong> Soft water is gentle on plumbing and appliances. Soap lathers easily and you\'re unlikely to see mineral buildup.'}
+        </div>
+        <p style="color:#94a3b8;font-size:12px;margin-top:8px">
+          Source: USGS National Water Information System. Hardness is not a health concern — it\'s a measure of dissolved calcium and magnesium. Contact your water utility for exact values.
+        </p>
+      </div>`;
+  }
+
   const injectedHead = `
   <title>${escHtml(title)}</title>
   <meta name="description" content="${escHtml(desc)}">
@@ -564,7 +656,7 @@ const renderSSRPage = async (system, violations, samples) => {
   <meta name="twitter:image" content="${BASE_URL}/og-image.png">
   <link rel="canonical" href="${canonical}">
   <script type="application/ld+json">${jsonLd}</script>
-  <script>window.__PRELOADED__=${JSON.stringify({ system, violations, samples, pfas: pfasDetections })};</script>`;
+  <script>window.__PRELOADED__=${JSON.stringify({ system, violations, samples, pfas: pfasDetections, hardness: hardnessInfo })};</script>`;
 
   // SSR summary injected into the placeholder - visible to non-JS crawlers
   const ssrSummary = `
@@ -603,6 +695,11 @@ const renderSSRPage = async (system, violations, samples) => {
   // Inject PFAS section into its dedicated container (below report-stats, above tabs)
   if (pfasSummaryHtml) {
     html = html.replace('<div id="pfas-section"></div>', `<div id="pfas-section">${pfasSummaryHtml}</div>`);
+  }
+
+  // Inject hardness section
+  if (hardnessHtml) {
+    html = html.replace('<div id="hardness-section"></div>', `<div id="hardness-section">${hardnessHtml}</div>`);
   }
 
   return html;
@@ -2673,6 +2770,9 @@ const handleReport = async (req, res, params) => {
   try {
     const data = await fetchReportData(pwsid);
     data.pfas = PFAS_DATA[pwsid] || null;
+    if (data.system) {
+      data.hardness = lookupHardness(data.system.state, data.system.county);
+    }
     return sendJSON(req, res, 200, data);
   } catch (err) {
     console.error('[/api/report]', err.message);
