@@ -122,6 +122,44 @@ const lookupHardness = (stateAbbr, zip, countyServed) => {
   return null;
 };
 
+const lookupPH = (stateAbbr, zip, countyServed) => {
+  const stateFips = STATE_FIPS[stateAbbr];
+  if (!stateFips) return null;
+
+  // Try ZIP -> county FIPS lookup first
+  if (zip && HARDNESS_DATA.zips) {
+    const z = String(zip).trim();
+    const countyFips = HARDNESS_DATA.zips[z] || (HARDNESS_DATA.zip3 && HARDNESS_DATA.zip3[z.slice(0, 3)]);
+    if (countyFips && HARDNESS_DATA.ph_counties) {
+      const county = HARDNESS_DATA.ph_counties[countyFips];
+      if (county) {
+        return { ph: county.ph, cat: county.cat, n: county.n, level: 'county' };
+      }
+    }
+  }
+
+  // Try county_served from EPA
+  if (countyServed && HARDNESS_DATA.ph_counties) {
+    const countyCode = String(countyServed).padStart(3, '0');
+    const fips5 = stateFips + countyCode;
+    const county = HARDNESS_DATA.ph_counties[fips5];
+    if (county) {
+      return { ph: county.ph, cat: county.cat, n: county.n, level: 'county' };
+    }
+  }
+
+  // Fall back to state-level
+  if (HARDNESS_DATA.ph_states) {
+    const statePH = HARDNESS_DATA.ph_states[stateFips];
+    if (statePH !== undefined) {
+      const cat = statePH < 6.5 ? 'acidic' : statePH < 7.5 ? 'neutral' : statePH <= 8.5 ? 'alkaline' : 'very_alkaline';
+      return { ph: statePH, cat, n: 0, level: 'state' };
+    }
+  }
+
+  return null;
+};
+
 // EPA PFAS MCLs (finalized April 2024) in µg/L
 const PFAS_MCLS = {
   'PFOA':    { mcl: 0.004, name: 'PFOA (Perfluorooctanoic acid)' },
@@ -651,6 +689,53 @@ const renderSSRPage = async (system, violations, samples) => {
       </div>`;
   }
 
+  // ── pH data for this system ──
+  const phInfo = lookupPH(system.state, system.zip, system.county);
+  let phHtml = '';
+  if (phInfo) {
+    const ph = phInfo.ph;
+    const catLabel = { acidic: 'Acidic', neutral: 'Neutral', alkaline: 'Slightly Alkaline', very_alkaline: 'Highly Alkaline' }[phInfo.cat] || '';
+    const catColor = { acidic: '#ef4444', neutral: '#22c55e', alkaline: '#3b82f6', very_alkaline: '#f59e0b' }[phInfo.cat] || '#64748b';
+    // Position on 4-10 scale (covers virtually all natural water)
+    const pct = Math.min(Math.max(Math.round(((ph - 4) / 6) * 100), 0), 100);
+    const areaLabel = phInfo.level === 'county' ? 'your county' : 'your state';
+    const advice = ph < 6.5
+      ? '<strong>What this means:</strong> Acidic water can corrode copper and lead pipes, potentially leaching metals into your drinking water. If your home has older plumbing, consider testing for lead.'
+      : ph > 8.5
+      ? '<strong>What this means:</strong> Highly alkaline water may taste bitter or soda-like, and can reduce the effectiveness of chlorine disinfection. Generally safe to drink but may affect taste.'
+      : ph >= 7.5
+      ? '<strong>What this means:</strong> Slightly alkaline water is very common and perfectly safe. This is within the EPA recommended range of 6.5–8.5.'
+      : '<strong>What this means:</strong> Neutral pH is ideal for drinking water. Your water is well within the EPA recommended range of 6.5–8.5.';
+
+    phHtml = `
+      <div style="margin-top:2rem">
+        <h2 style="font-size:1.2rem;margin-bottom:8px">Water pH Level</h2>
+        <p style="color:#64748b;font-size:14px;margin-bottom:12px">
+          Estimated based on USGS water monitoring data for ${areaLabel}.
+        </p>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:12px">
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px">
+            <span style="font-size:2rem;font-weight:800;color:${catColor};line-height:1">${ph}</span>
+            <span style="color:#64748b;font-size:14px">pH</span>
+          </div>
+          <div style="font-size:1rem;font-weight:600;color:${catColor};margin-bottom:16px">${catLabel}</div>
+          <div style="position:relative;height:24px;background:linear-gradient(to right, #ef4444 0%, #f97316 15%, #eab308 30%, #22c55e 42%, #3b82f6 58%, #6366f1 75%, #7c3aed 100%);border-radius:12px;margin-bottom:8px">
+            <div style="position:absolute;left:${pct}%;top:-2px;transform:translateX(-50%);width:4px;height:28px;background:#1e293b;border-radius:2px"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8">
+            <span>Acidic (4)</span><span>Neutral (7)</span><span>Alkaline (10)</span>
+          </div>
+          <div style="margin-top:8px;padding:6px 10px;background:${ph >= 6.5 && ph <= 8.5 ? '#f0fdf4' : '#fef2f2'};border-radius:6px;font-size:12px;color:${ph >= 6.5 && ph <= 8.5 ? '#166534' : '#991b1b'}">
+            ${ph >= 6.5 && ph <= 8.5 ? '✓ Within EPA recommended range (6.5–8.5)' : '⚠ Outside EPA recommended range (6.5–8.5)'}
+          </div>
+        </div>
+        <div style="font-size:13px;color:#64748b;line-height:1.6">${advice}</div>
+        <p style="color:#94a3b8;font-size:12px;margin-top:8px">
+          Source: USGS National Water Information System. EPA secondary standard for pH is 6.5–8.5. Contact your water utility for exact values.
+        </p>
+      </div>`;
+  }
+
   const injectedHead = `
   <title>${escHtml(title)}</title>
   <meta name="description" content="${escHtml(desc)}">
@@ -668,7 +753,7 @@ const renderSSRPage = async (system, violations, samples) => {
   <meta name="twitter:image" content="${BASE_URL}/og-image.png">
   <link rel="canonical" href="${canonical}">
   <script type="application/ld+json">${jsonLd}</script>
-  <script>window.__PRELOADED__=${JSON.stringify({ system, violations, samples, pfas: pfasDetections, hardness: hardnessInfo })};</script>`;
+  <script>window.__PRELOADED__=${JSON.stringify({ system, violations, samples, pfas: pfasDetections, hardness: hardnessInfo, ph: phInfo })};</script>`;
 
   // SSR summary injected into the placeholder - visible to non-JS crawlers
   const ssrSummary = `
@@ -712,6 +797,11 @@ const renderSSRPage = async (system, violations, samples) => {
   // Inject hardness section
   if (hardnessHtml) {
     html = html.replace('<div id="hardness-section"></div>', `<div id="hardness-section">${hardnessHtml}</div>`);
+  }
+
+  // Inject pH section
+  if (phHtml) {
+    html = html.replace('<div id="ph-section"></div>', `<div id="ph-section">${phHtml}</div>`);
   }
 
   return html;
@@ -2784,6 +2874,7 @@ const handleReport = async (req, res, params) => {
     data.pfas = PFAS_DATA[pwsid] || null;
     if (data.system) {
       data.hardness = lookupHardness(data.system.state, data.system.zip, data.system.county);
+      data.ph = lookupPH(data.system.state, data.system.zip, data.system.county);
     }
     return sendJSON(req, res, 200, data);
   } catch (err) {

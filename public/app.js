@@ -872,6 +872,60 @@ function renderReport(report) {
     }
   }
 
+  // pH section (client-side rendering when not SSR)
+  const phEl = $('ph-section');
+  if (phEl) {
+    const pd = report.ph || window.__PRELOADED__?.ph;
+    if (pd && pd.ph !== undefined) {
+      const catLabels = { acidic: 'Acidic', neutral: 'Neutral', alkaline: 'Slightly Alkaline', very_alkaline: 'Highly Alkaline' };
+      const catColors = { acidic: '#ef4444', neutral: '#22c55e', alkaline: '#3b82f6', very_alkaline: '#f59e0b' };
+      const ph = pd.ph;
+      const cat = pd.cat || (ph < 6.5 ? 'acidic' : ph < 7.5 ? 'neutral' : ph <= 8.5 ? 'alkaline' : 'very_alkaline');
+      const catLabel = catLabels[cat] || '';
+      const catColor = catColors[cat] || '#64748b';
+      const pct = Math.min(Math.max(Math.round(((ph - 4) / 6) * 100), 0), 100);
+      const areaLabel = pd.level === 'county' ? 'your county' : 'your state';
+      const inRange = ph >= 6.5 && ph <= 8.5;
+      const advice = ph < 6.5
+        ? '<strong>What this means:</strong> Acidic water can corrode copper and lead pipes, potentially leaching metals into your drinking water. If your home has older plumbing, consider testing for lead.'
+        : ph > 8.5
+        ? '<strong>What this means:</strong> Highly alkaline water may taste bitter or soda-like, and can reduce the effectiveness of chlorine disinfection. Generally safe to drink but may affect taste.'
+        : ph >= 7.5
+        ? '<strong>What this means:</strong> Slightly alkaline water is very common and perfectly safe. This is within the EPA recommended range of 6.5–8.5.'
+        : '<strong>What this means:</strong> Neutral pH is ideal for drinking water. Your water is well within the EPA recommended range of 6.5–8.5.';
+
+      phEl.innerHTML = `
+        <div style="margin-top:2rem">
+          <h2 style="font-size:1.2rem;margin-bottom:8px">Water pH Level</h2>
+          <p style="color:#64748b;font-size:14px;margin-bottom:12px">
+            Estimated based on USGS water monitoring data for ${areaLabel}.
+          </p>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:12px">
+            <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px">
+              <span style="font-size:2rem;font-weight:800;color:${catColor};line-height:1">${ph}</span>
+              <span style="color:#64748b;font-size:14px">pH</span>
+            </div>
+            <div style="font-size:1rem;font-weight:600;color:${catColor};margin-bottom:16px">${catLabel}</div>
+            <div style="position:relative;height:24px;background:linear-gradient(to right, #ef4444 0%, #f97316 15%, #eab308 30%, #22c55e 42%, #3b82f6 58%, #6366f1 75%, #7c3aed 100%);border-radius:12px;margin-bottom:8px">
+              <div style="position:absolute;left:${pct}%;top:-2px;transform:translateX(-50%);width:4px;height:28px;background:#1e293b;border-radius:2px"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8">
+              <span>Acidic (4)</span><span>Neutral (7)</span><span>Alkaline (10)</span>
+            </div>
+            <div style="margin-top:8px;padding:6px 10px;background:${inRange ? '#f0fdf4' : '#fef2f2'};border-radius:6px;font-size:12px;color:${inRange ? '#166534' : '#991b1b'}">
+              ${inRange ? '✓ Within EPA recommended range (6.5–8.5)' : '⚠ Outside EPA recommended range (6.5–8.5)'}
+            </div>
+          </div>
+          <div style="font-size:13px;color:#64748b;line-height:1.6">${advice}</div>
+          <p style="color:#94a3b8;font-size:12px;margin-top:8px">
+            Source: USGS National Water Information System. EPA secondary standard for pH is 6.5–8.5. Contact your water utility for exact values.
+          </p>
+        </div>`;
+    } else if (!phEl.innerHTML.trim()) {
+      phEl.innerHTML = '';
+    }
+  }
+
   showView('report');
 }
 
