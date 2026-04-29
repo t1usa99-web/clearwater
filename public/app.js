@@ -415,6 +415,7 @@ function renderReportHeader(system, gradeData) {
         <span>ID: ${escapeHtml(system.pwsid)}</span>
       </div>
       <div class="report-grade-label grade-label-${grade}">${escapeHtml(gradeData.label)}</div>
+      <div style="color:#94a3b8;font-size:12px;margin-top:0.25rem">Data last updated: ${new Date().toISOString().split('T')[0]}</div>
     </div>
   `;
 }

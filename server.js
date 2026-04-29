@@ -515,9 +515,25 @@ const renderSSRPage = async (system, violations, samples) => {
     ? [system.name, system.state].filter(Boolean).join(', ')   // "CHICAGO, IL"
     : `${system.name}${location ? `, ${location}` : ''}`;     // "Metro Water, Chicago, IL"
 
-  const title = `${titleLocation} Water Quality | ClearWater`;
+  // Build descriptive title with grade + key finding
+  const pfasDetectionsForTitle = PFAS_DATA[system.pwsid];
+  const pfasOverLimit = pfasDetectionsForTitle
+    ? Object.entries(pfasDetectionsForTitle).filter(([c, v]) => PFAS_MCLS[c] && v > PFAS_MCLS[c].mcl)
+    : [];
+  let titleSuffix = '';
+  if (pfasOverLimit.length > 0) {
+    titleSuffix = ` — ${pfasOverLimit.map(([c]) => PFAS_NAMES[c] || c).slice(0, 2).join(', ')} Over Limit`;
+  } else if (activeHealth > 0) {
+    const topViol = violations.find(v => v.isHealthBased && isActiveServer(v));
+    titleSuffix = topViol && topViol.contaminantName ? ` — ${topViol.contaminantName}` : ' — Active Violations';
+  } else if (grade === 'A') {
+    titleSuffix = ' — Meets All Standards';
+  }
+  const title = `${titleLocation} Water Quality: Grade ${grade}${titleSuffix} | ClearWater`;
   const desc  = `Water quality for ${system.name}${location ? `, ${location}` : ''}. `
-    + `Grade ${grade}: ${label}. ${violations.length} total violations on record. Free EPA data.`;
+    + `Grade ${grade}: ${label}. ${violations.length} total violations on record. `
+    + (pfasOverLimit.length > 0 ? `${pfasOverLimit.length} PFAS compound${pfasOverLimit.length > 1 ? 's' : ''} over EPA limits. ` : '')
+    + 'Free EPA data.';
   const canonical = `${BASE_URL}/report/${escHtml(system.pwsid)}`;
   const gradeColor = GRADE_COLORS[grade] || '#64748b';
 
@@ -548,6 +564,7 @@ const renderSSRPage = async (system, violations, samples) => {
     ? `Recent health-based violations at ${system.name} include: ${recentViolations.join(', ')}. See the full violation history on this page for dates, status, and details.`
     : `${system.name} has ${violations.length} total violations on record, but none are currently active health-based violations.`;
 
+  const today = new Date().toISOString().split('T')[0];
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
@@ -556,6 +573,7 @@ const renderSSRPage = async (system, violations, samples) => {
         'name':     title,
         'description': desc,
         'url':      canonical,
+        'dateModified': today,
         'creator':  { '@type': 'Organization', 'name': 'U.S. Environmental Protection Agency' },
         'temporalCoverage': '2000/..',
         'spatialCoverage':  location,
@@ -760,9 +778,10 @@ const renderSSRPage = async (system, violations, samples) => {
     <div id="ssr-summary" style="padding:2rem;max-width:800px;margin:0 auto;font-family:system-ui,sans-serif">
       <a href="/" style="color:#0ea5e9;text-decoration:none;font-size:14px">← Search another ZIP code</a>
       <h1 style="margin:1rem 0 0.25rem;font-size:1.75rem">${escHtml(system.name)}</h1>
-      <p style="color:#64748b;margin:0 0 1.5rem">
+      <p style="color:#64748b;margin:0 0 0.5rem">
         ${escHtml(location)}${pop ? ` · ${escHtml(pop)}` : ''}${source ? ` · ${escHtml(source)}` : ''}
       </p>
+      <p style="color:#94a3b8;font-size:12px;margin:0 0 1.5rem">Data last updated: ${today}</p>
       <div style="display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border:3px solid ${gradeColor};border-radius:12px;margin-bottom:1.5rem">
         <span style="font-size:2.5rem;font-weight:800;color:${gradeColor};line-height:1">${escHtml(grade)}</span>
         <span style="color:#334155;font-size:0.95rem">${escHtml(label)}</span>
