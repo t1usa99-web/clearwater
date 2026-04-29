@@ -708,7 +708,7 @@ function renderRecommendations(violations, samples, system) {
     topPick = 'Reverse Osmosis';
     topPickWhy = filterHasPFAS
       ? 'This system has detected PFAS compounds. Reverse osmosis is one of the few filters proven to remove PFAS effectively.'
-      : 'This system has had nitrate issues. Reverse osmosis is needed to remove nitrates — carbon filters cannot.';
+      : 'This system has had nitrate issues. Reverse osmosis is needed to remove nitrates. Carbon filters cannot.';
   } else if (filterHasLead) {
     topPick = 'NSF 53 Certified';
     topPickWhy = 'This system has lead testing data. An NSF 53 certified filter is specifically tested for lead reduction.';
@@ -865,7 +865,7 @@ function renderReport(report) {
           </div>
           <div style="font-size:13px;color:#64748b;line-height:1.6">${advice}</div>
           <p style="color:#94a3b8;font-size:12px;margin-top:8px">
-            Source: USGS National Water Information System. Hardness is not a health concern — it’s a measure of dissolved calcium and magnesium. Contact your water utility for exact values.
+            Source: USGS National Water Information System. Hardness is not a health concern. It’s a measure of dissolved calcium and magnesium. Contact your water utility for exact values.
           </p>
         </div>`;
     } else if (!hardnessEl.innerHTML.trim()) {

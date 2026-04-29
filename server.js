@@ -522,12 +522,12 @@ const renderSSRPage = async (system, violations, samples) => {
     : [];
   let titleSuffix = '';
   if (pfasOverLimit.length > 0) {
-    titleSuffix = ` — ${pfasOverLimit.map(([c]) => PFAS_NAMES[c] || c).slice(0, 2).join(', ')} Over Limit`;
+    titleSuffix = ` - ${pfasOverLimit.map(([c]) => PFAS_NAMES[c] || c).slice(0, 2).join(', ')} Over Limit`;
   } else if (activeHealth > 0) {
     const topViol = violations.find(v => v.isHealthBased && isActiveServer(v));
-    titleSuffix = topViol && topViol.contaminantName ? ` — ${topViol.contaminantName}` : ' — Active Violations';
+    titleSuffix = topViol && topViol.contaminantName ? ` - ${topViol.contaminantName}` : ' - Active Violations';
   } else if (grade === 'A') {
-    titleSuffix = ' — Meets All Standards';
+    titleSuffix = ' - Meets All Standards';
   }
   const title = `${titleLocation} Water Quality: Grade ${grade}${titleSuffix} | ClearWater`;
   const desc  = `Water quality for ${system.name}${location ? `, ${location}` : ''}. `
@@ -613,7 +613,7 @@ const renderSSRPage = async (system, violations, samples) => {
     const overLimit = entries.filter(([c, v]) => PFAS_MCLS[c] && v > PFAS_MCLS[c].mcl);
     const pfasRows = entries.map(([contam, val]) => {
       const mclInfo = PFAS_MCLS[contam];
-      const mclText = mclInfo ? `${mclInfo.mcl} µg/L` : '—';
+      const mclText = mclInfo ? `${mclInfo.mcl} µg/L` : '-';
       const overMcl = mclInfo && val > mclInfo.mcl;
       const statusStyle = overMcl
         ? 'color:#ef4444;font-weight:700'
@@ -630,7 +630,7 @@ const renderSSRPage = async (system, violations, samples) => {
     const alertBanner = overLimit.length > 0
       ? `<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#991b1b">
           <strong>⚠ ${overLimit.length} PFAS compound${overLimit.length > 1 ? 's' : ''} exceeded EPA limits</strong>
-          — ${overLimit.map(([c]) => PFAS_NAMES[c] || c).join(', ')}
+          - ${overLimit.map(([c]) => PFAS_NAMES[c] || c).join(', ')}
         </div>`
       : `<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#166534">
           <strong>✓ All detected PFAS are within EPA limits</strong>
@@ -702,7 +702,7 @@ const renderSSRPage = async (system, violations, samples) => {
             : '<strong>What this means:</strong> Soft water is gentle on plumbing and appliances. Soap lathers easily and you\'re unlikely to see mineral buildup.'}
         </div>
         <p style="color:#94a3b8;font-size:12px;margin-top:8px">
-          Source: USGS National Water Information System. Hardness is not a health concern — it\'s a measure of dissolved calcium and magnesium. Contact your water utility for exact values.
+          Source: USGS National Water Information System. Hardness is not a health concern. It\'s a measure of dissolved calcium and magnesium. Contact your water utility for exact values.
         </p>
       </div>`;
   }
@@ -2347,7 +2347,7 @@ const handleRankingsPage = (req, res) => {
 // ─── /cities hub page ─────────────────────────────────────────────
 const renderCitiesHubPage = () => {
   const title    = 'Browse US Cities: Tap Water Quality by City | ClearWater';
-  const desc     = 'Find EPA tap water quality data for every major US city. Browse 300+ cities organized by state — see water safety grades, violations, and lead test results.';
+  const desc     = 'Find EPA tap water quality data for every major US city. Browse 300+ cities organized by state. See water safety grades, violations, and lead test results.';
   const canonical = `${BASE_URL}/cities`;
 
   const jsonLd = JSON.stringify({
@@ -2536,7 +2536,7 @@ const renderBlogListPage = () => {
   });
 
   const cardHtml = ARTICLES.length === 0
-    ? '<p style="color:var(--text-muted);text-align:center;padding:40px 0">Articles coming soon — check back daily.</p>'
+    ? '<p style="color:var(--text-muted);text-align:center;padding:40px 0">Articles coming soon. Check back daily.</p>'
     : ARTICLES.map(a => {
         const catLabel = CATEGORY_LABELS[a.category] || a.category;
         const dateStr  = new Date(a.date + 'T12:00:00').toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
@@ -3084,7 +3084,7 @@ const server = http.createServer(async (req, res) => {
     const wtStateMatch = pathname.match(/^\/water-testing\/([a-zA-Z]{2})$/);
     if (wtStateMatch) return handleWaterTestingState(req, res, wtStateMatch[1]);
 
-      // Cities hub page: /cities — MUST be before the city catch-all
+      // Cities hub page: /cities - MUST be before the city catch-all
   if (pathname === '/cities') return handleCitiesHub(req, res);
 
   // Blog hub: /blog
@@ -3094,7 +3094,7 @@ const server = http.createServer(async (req, res) => {
   const blogMatch = pathname.match(/^\/blog\/([\w-]{2,80})$/);
   if (blogMatch) return handleBlogPost(req, res, blogMatch[1]);
 
-  // City pages: /[state-abbr]/[city-slug] — MUST be last before static fallback
+  // City pages: /[state-abbr]/[city-slug] - MUST be last before static fallback
   const cityMatch = pathname.match(/^\/([a-z]{2})\/([a-z0-9-]{2,60})$/);
   if (cityMatch) return handleCityPage(req, res, cityMatch[1], cityMatch[2]);
 
