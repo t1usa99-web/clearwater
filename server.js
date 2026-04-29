@@ -780,9 +780,9 @@ const renderSSRPage = async (system, violations, samples) => {
 
   let html = await getIndexHtml();
 
-  // Replace <title> with injected head tags
+  // Replace entire SSR head block (title, meta, OG, canonical, schema)
   html = html.replace(
-    /<title>[^<]*<\/title>/,
+    /<!-- SSR_HEAD_START -->[\s\S]*?<!-- SSR_HEAD_END -->/,
     injectedHead
   );
 
