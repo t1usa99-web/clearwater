@@ -282,37 +282,36 @@ const PFAS_MCLS = {
 
 function computeGrade(violations, pfasDetections) {
   const now = new Date();
-  const fiveYearsAgo = new Date(now.getFullYear() - 5, now.getMonth(), now.getDate());
+  const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
 
-  // Health-based violations in last 5 years
+  // Health-based violations in last year
   const recentHealth = violations.filter(v => {
     if (!v.isHealthBased) return false;
     const date = parseDate(v.beginDate);
-    return date && date >= fiveYearsAgo;
+    return date && date >= oneYearAgo;
   });
 
   // Currently active violations
   const activeViolations = violations.filter(v => isActive(v));
   const activeHealth = activeViolations.filter(v => v.isHealthBased);
 
-  // Count PFAS compounds over EPA MCL as active health concerns
+  // Count PFAS compounds over EPA MCL as recent health concerns
   let pfasOverCount = 0;
   if (pfasDetections) {
     pfasOverCount = Object.entries(pfasDetections)
       .filter(([c, v]) => PFAS_MCLS[c] && v > PFAS_MCLS[c]).length;
   }
 
-  const effectiveActiveHealth = activeHealth.length + pfasOverCount;
   const effectiveRecentHealth = recentHealth.length + pfasOverCount;
 
   const score = {
-    activeHealth: effectiveActiveHealth,
+    activeHealth: activeHealth.length,
     recentHealth: effectiveRecentHealth,
     active: activeViolations.length,
   };
 
   let grade;
-  if      (effectiveActiveHealth > 0)       grade = 'F';
+  if      (activeHealth.length > 0)         grade = 'F';
   else if (effectiveRecentHealth >= 5)      grade = 'D';
   else if (effectiveRecentHealth >= 2)      grade = 'C';
   else if (effectiveRecentHealth === 1)     grade = 'B';
@@ -320,19 +319,14 @@ function computeGrade(violations, pfasDetections) {
   else                                      grade = 'A';
 
   const labels = {
-    A: 'Meets all standards: no recent health-based violations',
-    B: '1 recent health-based violation, generally safe',
-    C: 'Multiple violations, some concern warranted',
-    D: 'Significant health-based violations: take precautions',
+    A: 'Meets all standards: no recent violations',
+    B: 'Minor concern: 1 health-based issue in the past year',
+    C: 'Some concern: multiple health-based issues found',
+    D: 'Significant concern: take precautions',
     F: 'Active health violation: check with your utility immediately',
   };
 
-  let label = labels[grade];
-  if (pfasOverCount > 0 && activeHealth.length === 0 && grade === 'F') {
-    label = `${pfasOverCount} PFAS compound${pfasOverCount > 1 ? 's' : ''} over EPA limit: consider filtration`;
-  }
-
-  return { grade, label, score };
+  return { grade, label: labels[grade], score };
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────

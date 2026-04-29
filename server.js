@@ -370,23 +370,22 @@ const isActiveServer = (v) => {
 
 const computeGradeServer = (violations, pfasDetections) => {
   const now = new Date();
-  const fiveYearsAgo = new Date(now.getFullYear() - 5, now.getMonth(), now.getDate());
-  const recentHealth  = violations.filter(v => v.isHealthBased && new Date(v.beginDate) > fiveYearsAgo);
+  const oneYearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
+  const recentHealth  = violations.filter(v => v.isHealthBased && new Date(v.beginDate) > oneYearAgo);
   const activeHealth  = violations.filter(v => v.isHealthBased && isActiveServer(v));
   const activeAll     = violations.filter(v => isActiveServer(v));
 
-  // Count PFAS compounds over EPA MCL as active health concerns
+  // Count PFAS compounds over EPA MCL as recent health concerns
   let pfasOverCount = 0;
   if (pfasDetections) {
     pfasOverCount = Object.entries(pfasDetections)
       .filter(([c, v]) => PFAS_MCLS[c] && v > PFAS_MCLS[c].mcl).length;
   }
 
-  const effectiveActiveHealth = activeHealth.length + pfasOverCount;
   const effectiveRecentHealth = recentHealth.length + pfasOverCount;
 
   let grade;
-  if      (effectiveActiveHealth > 0)       grade = 'F';
+  if      (activeHealth.length > 0)         grade = 'F';
   else if (effectiveRecentHealth >= 5)      grade = 'D';
   else if (effectiveRecentHealth >= 2)      grade = 'C';
   else if (effectiveRecentHealth === 1)     grade = 'B';
@@ -394,20 +393,14 @@ const computeGradeServer = (violations, pfasDetections) => {
   else                                      grade = 'A';
 
   const labels = {
-    A: 'Meets all standards: no recent health-based violations',
-    B: '1 recent health-based violation, generally safe',
-    C: 'Multiple violations, some concern warranted',
-    D: 'Significant health-based violations: take precautions',
+    A: 'Meets all standards: no recent violations',
+    B: 'Minor concern: 1 health-based issue in the past year',
+    C: 'Some concern: multiple health-based issues found',
+    D: 'Significant concern: take precautions',
     F: 'Active health violation: check with your utility immediately',
   };
 
-  // Adjust label if PFAS is the primary driver
-  let label = labels[grade];
-  if (pfasOverCount > 0 && activeHealth.length === 0 && grade === 'F') {
-    label = `${pfasOverCount} PFAS compound${pfasOverCount > 1 ? 's' : ''} over EPA limit: consider filtration`;
-  }
-
-  return { grade, label, activeHealth: effectiveActiveHealth, recentHealth: effectiveRecentHealth, pfasOverCount };
+  return { grade, label: labels[grade], activeHealth: activeHealth.length, recentHealth: effectiveRecentHealth, pfasOverCount };
 };
 
 // ─── ZIP → City/State lookup ──────────────────────────────────────
@@ -1590,10 +1583,10 @@ const renderGradingPage = () => {
 
       <div style="margin-bottom:2rem">
         <p style="font-size:1rem;line-height:1.7;color:#334155">
-          Every public water system in the US is required to meet EPA standards and report violations to the Safe Drinking Water Information System (SDWIS). ClearWater pulls this data and computes a grade based on the number, type, and recency of violations. Health-based violations carry the most weight because they indicate actual contamination or treatment failures that could affect your health.
+          Every public water system in the US is required to meet EPA standards and report violations to the Safe Drinking Water Information System (SDWIS). ClearWater pulls this data and computes a grade based on violations from the past 12 months, weighted by type and severity. Health-based violations carry the most weight because they indicate actual contamination or treatment failures that could affect your health.
         </p>
         <p style="font-size:1rem;line-height:1.7;color:#334155;margin-top:1rem">
-          We also factor in PFAS data from the EPA's UCMR5 monitoring program. If a water system has any PFAS compounds (PFOA, PFOS, PFHxS, PFNA, or GenX) detected above the EPA's Maximum Contaminant Levels, each over-limit compound is treated as equivalent to an active health-based violation for grading purposes. This reflects the serious, ongoing nature of PFAS contamination even though formal SDWIS enforcement is still being phased in.
+          We also factor in PFAS data from the EPA's UCMR5 monitoring program. If a water system has any PFAS compounds (PFOA, PFOS, PFHxS, PFNA, or GenX) detected above the EPA's Maximum Contaminant Levels, each over-limit compound counts as one recent health-based issue for grading purposes. This means PFAS contamination affects the grade the same way a recent violation would, even though formal SDWIS enforcement is still being phased in.
         </p>
       </div>
 
@@ -1605,7 +1598,7 @@ const renderGradingPage = () => {
           <span style="font-size:2rem;font-weight:800;color:#16a34a;min-width:48px;text-align:center;line-height:1">A</span>
           <div>
             <div style="font-weight:600;color:#15803d;margin-bottom:4px">Meets all standards</div>
-            <div style="color:#334155;font-size:0.9rem;line-height:1.6">No health-based violations in the past 5 years, and 3 or fewer active violations of any type (including monitoring and reporting). This is the best possible score.</div>
+            <div style="color:#334155;font-size:0.9rem;line-height:1.6">No health-based violations in the past year, no PFAS over the EPA limit, and 3 or fewer active violations of any type (including monitoring and reporting). This is the best possible score.</div>
           </div>
         </div>
 
@@ -1613,7 +1606,7 @@ const renderGradingPage = () => {
           <span style="font-size:2rem;font-weight:800;color:#2563eb;min-width:48px;text-align:center;line-height:1">B</span>
           <div>
             <div style="font-weight:600;color:#1d4ed8;margin-bottom:4px">Generally safe</div>
-            <div style="color:#334155;font-size:0.9rem;line-height:1.6">Exactly 1 health-based violation in the past 5 years. The issue may have been brief or already resolved, but it's worth knowing about.</div>
+            <div style="color:#334155;font-size:0.9rem;line-height:1.6">Exactly 1 health-based issue in the past year (a recent violation or one PFAS compound over the limit). The issue may have been brief or already resolved, but it's worth knowing about.</div>
           </div>
         </div>
 
@@ -1621,7 +1614,7 @@ const renderGradingPage = () => {
           <span style="font-size:2rem;font-weight:800;color:#ca8a04;min-width:48px;text-align:center;line-height:1">C</span>
           <div>
             <div style="font-weight:600;color:#a16207;margin-bottom:4px">Some concern</div>
-            <div style="color:#334155;font-size:0.9rem;line-height:1.6">2 to 4 health-based violations in the past 5 years, or more than 3 active violations of any type. A pattern of issues that warrants attention.</div>
+            <div style="color:#334155;font-size:0.9rem;line-height:1.6">2 to 4 health-based issues in the past year (violations plus any PFAS over the limit), or more than 3 active violations of any type. A pattern of issues that warrants attention.</div>
           </div>
         </div>
 
@@ -1629,7 +1622,7 @@ const renderGradingPage = () => {
           <span style="font-size:2rem;font-weight:800;color:#ea580c;min-width:48px;text-align:center;line-height:1">D</span>
           <div>
             <div style="font-weight:600;color:#c2410c;margin-bottom:4px">Significant violations</div>
-            <div style="color:#334155;font-size:0.9rem;line-height:1.6">5 or more health-based violations in the past 5 years. This system has a repeated pattern of health-related compliance failures. Consider testing your tap water independently and using a filter.</div>
+            <div style="color:#334155;font-size:0.9rem;line-height:1.6">5 or more health-based issues in the past year. This system has a serious pattern of recent compliance failures. Consider testing your tap water independently and using a filter.</div>
           </div>
         </div>
 
@@ -1650,7 +1643,7 @@ const renderGradingPage = () => {
           An A grade means a system has met all EPA legal requirements. It does not mean the water is free of all contaminants. Many substances (like PFAS until recently) had no federal limit, and some health advocates argue that current EPA limits for certain contaminants are not strict enough. A system can have an A grade while still containing detectable levels of contaminants that are below the legal threshold.
         </p>
         <p style="margin-bottom:1rem">
-          Conversely, a low grade doesn't always mean the water is currently unsafe. A system might receive a C or D because of violations that have since been resolved. The grade reflects the recent compliance track record, not necessarily today's water quality.
+          Conversely, a low grade doesn't always mean the water is currently unsafe. A system might receive a C or D because of violations from the past year that have since been resolved. The grade reflects the last 12 months of compliance, not necessarily today's water quality.
         </p>
         <p style="margin-bottom:1rem">
           These grades also only cover public water systems. If you're on a private well, there is no EPA oversight and no violation data to grade. See our <a href="/blog/private-well-water-testing-guide" style="color:#0ea5e9">well water testing guide</a> for what to do instead.
