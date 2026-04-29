@@ -2880,17 +2880,28 @@ const handleSitemap = async (res) => {
     ),
   ];
 
-  // Attempt to add top 1,000 water systems (best-effort, non-blocking)
+  // Add all water systems with PFAS detections (unique, high-value pages)
+  const pfasSystemIds = Object.keys(PFAS_DATA);
+  const reportPwsids = new Set();
+  for (const pwsid of pfasSystemIds) {
+    if (!reportPwsids.has(pwsid)) {
+      urls.push(`  <url><loc>${BASE_URL}/report/${escHtml(pwsid)}</loc><changefreq>monthly</changefreq><priority>0.7</priority><lastmod>${today}</lastmod></url>`);
+      reportPwsids.add(pwsid);
+    }
+  }
+
+  // Attempt to add top 1,000 water systems by population (best-effort, non-blocking)
   try {
     const topSystems = await fetchJSON(`${EPA_BASE}/WATER_SYSTEM/pws_activity_code/A/pws_type_code/CWS/rows/0:1000/JSON`, 20000);
     if (Array.isArray(topSystems)) {
       const sorted = topSystems
         .map(normalizeSystem)
-        .filter(s => s.pwsid && s.population > 0)
+        .filter(s => s.pwsid && s.population > 0 && !reportPwsids.has(s.pwsid))
         .sort((a, b) => b.population - a.population)
         .slice(0, 1000);
       for (const s of sorted) {
         urls.push(`  <url><loc>${BASE_URL}/report/${escHtml(s.pwsid)}</loc><changefreq>monthly</changefreq><priority>0.6</priority><lastmod>${today}</lastmod></url>`);
+        reportPwsids.add(s.pwsid);
       }
     }
   } catch (_) { /* non-fatal */ }
