@@ -368,20 +368,30 @@ const isActiveServer = (v) => {
   return end > new Date();
 };
 
-const computeGradeServer = (violations) => {
+const computeGradeServer = (violations, pfasDetections) => {
   const now = new Date();
   const fiveYearsAgo = new Date(now.getFullYear() - 5, now.getMonth(), now.getDate());
   const recentHealth  = violations.filter(v => v.isHealthBased && new Date(v.beginDate) > fiveYearsAgo);
   const activeHealth  = violations.filter(v => v.isHealthBased && isActiveServer(v));
   const activeAll     = violations.filter(v => isActiveServer(v));
 
+  // Count PFAS compounds over EPA MCL as active health concerns
+  let pfasOverCount = 0;
+  if (pfasDetections) {
+    pfasOverCount = Object.entries(pfasDetections)
+      .filter(([c, v]) => PFAS_MCLS[c] && v > PFAS_MCLS[c].mcl).length;
+  }
+
+  const effectiveActiveHealth = activeHealth.length + pfasOverCount;
+  const effectiveRecentHealth = recentHealth.length + pfasOverCount;
+
   let grade;
-  if      (activeHealth.length > 0)       grade = 'F';
-  else if (recentHealth.length >= 5)      grade = 'D';
-  else if (recentHealth.length >= 2)      grade = 'C';
-  else if (recentHealth.length === 1)     grade = 'B';
-  else if (activeAll.length > 3)          grade = 'C';
-  else                                    grade = 'A';
+  if      (effectiveActiveHealth > 0)       grade = 'F';
+  else if (effectiveRecentHealth >= 5)      grade = 'D';
+  else if (effectiveRecentHealth >= 2)      grade = 'C';
+  else if (effectiveRecentHealth === 1)     grade = 'B';
+  else if (activeAll.length > 3)            grade = 'C';
+  else                                      grade = 'A';
 
   const labels = {
     A: 'Meets all standards: no recent health-based violations',
@@ -391,7 +401,13 @@ const computeGradeServer = (violations) => {
     F: 'Active health violation: check with your utility immediately',
   };
 
-  return { grade, label: labels[grade], activeHealth: activeHealth.length, recentHealth: recentHealth.length };
+  // Adjust label if PFAS is the primary driver
+  let label = labels[grade];
+  if (pfasOverCount > 0 && activeHealth.length === 0 && grade === 'F') {
+    label = `${pfasOverCount} PFAS compound${pfasOverCount > 1 ? 's' : ''} over EPA limit: consider filtration`;
+  }
+
+  return { grade, label, activeHealth: effectiveActiveHealth, recentHealth: effectiveRecentHealth, pfasOverCount };
 };
 
 // ─── ZIP → City/State lookup ──────────────────────────────────────
@@ -503,7 +519,8 @@ const SOURCE_LABELS = { GW:'Groundwater', SW:'Surface Water', GU:'GWUDI', GWP:'G
 const GRADE_COLORS  = { A:'#22c55e', B:'#84cc16', C:'#f59e0b', D:'#f97316', F:'#ef4444' };
 
 const renderSSRPage = async (system, violations, samples) => {
-  const { grade, label, activeHealth } = computeGradeServer(violations);
+  const pfasDetectionsForGrade = PFAS_DATA[system.pwsid] || null;
+  const { grade, label, activeHealth } = computeGradeServer(violations, pfasDetectionsForGrade);
   const location = [system.city, system.state].filter(Boolean).join(', ');
   const pop      = system.population > 0 ? `${system.population.toLocaleString()} people served` : '';
   const source   = SOURCE_LABELS[system.sourceType] || '';
@@ -1575,6 +1592,9 @@ const renderGradingPage = () => {
         <p style="font-size:1rem;line-height:1.7;color:#334155">
           Every public water system in the US is required to meet EPA standards and report violations to the Safe Drinking Water Information System (SDWIS). ClearWater pulls this data and computes a grade based on the number, type, and recency of violations. Health-based violations carry the most weight because they indicate actual contamination or treatment failures that could affect your health.
         </p>
+        <p style="font-size:1rem;line-height:1.7;color:#334155;margin-top:1rem">
+          We also factor in PFAS data from the EPA's UCMR5 monitoring program. If a water system has any PFAS compounds (PFOA, PFOS, PFHxS, PFNA, or GenX) detected above the EPA's Maximum Contaminant Levels, each over-limit compound is treated as equivalent to an active health-based violation for grading purposes. This reflects the serious, ongoing nature of PFAS contamination even though formal SDWIS enforcement is still being phased in.
+        </p>
       </div>
 
       <h2 style="font-size:1.25rem;color:#0f172a;margin:2rem 0 1rem">The grading criteria</h2>
@@ -2126,7 +2146,8 @@ const fetchViolationsForCity = async (systems) => {
     const violations = (result.status === 'fulfilled' && Array.isArray(result.value))
       ? result.value.map(normalizeViolation)
       : [];
-    const g = computeGradeServer(violations);
+    const pfas = PFAS_DATA[pwsid] || null;
+    const g = computeGradeServer(violations, pfas);
     grades[pwsid] = {
       ...g,
       totalViolations:  violations.length,

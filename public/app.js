@@ -271,7 +271,16 @@ async function fetchReport(pwsid) {
 }
 
 // ─── Grade Computation ────────────────────────────────────────────
-function computeGrade(violations) {
+// PFAS MCLs (EPA final rule, April 2024)
+const PFAS_MCLS = {
+  'PFOA':    0.004,
+  'PFOS':    0.004,
+  'PFHxS':   0.010,
+  'PFNA':    0.010,
+  'HFPO-DA': 0.010,
+};
+
+function computeGrade(violations, pfasDetections) {
   const now = new Date();
   const fiveYearsAgo = new Date(now.getFullYear() - 5, now.getMonth(), now.getDate());
 
@@ -286,19 +295,29 @@ function computeGrade(violations) {
   const activeViolations = violations.filter(v => isActive(v));
   const activeHealth = activeViolations.filter(v => v.isHealthBased);
 
+  // Count PFAS compounds over EPA MCL as active health concerns
+  let pfasOverCount = 0;
+  if (pfasDetections) {
+    pfasOverCount = Object.entries(pfasDetections)
+      .filter(([c, v]) => PFAS_MCLS[c] && v > PFAS_MCLS[c]).length;
+  }
+
+  const effectiveActiveHealth = activeHealth.length + pfasOverCount;
+  const effectiveRecentHealth = recentHealth.length + pfasOverCount;
+
   const score = {
-    activeHealth: activeHealth.length,
-    recentHealth: recentHealth.length,
+    activeHealth: effectiveActiveHealth,
+    recentHealth: effectiveRecentHealth,
     active: activeViolations.length,
   };
 
   let grade;
-  if (activeHealth.length > 0)            grade = 'F';
-  else if (recentHealth.length >= 5)      grade = 'D';
-  else if (recentHealth.length >= 2)      grade = 'C';
-  else if (recentHealth.length === 1)     grade = 'B';
-  else if (activeViolations.length > 3)   grade = 'C';
-  else                                    grade = 'A';
+  if      (effectiveActiveHealth > 0)       grade = 'F';
+  else if (effectiveRecentHealth >= 5)      grade = 'D';
+  else if (effectiveRecentHealth >= 2)      grade = 'C';
+  else if (effectiveRecentHealth === 1)     grade = 'B';
+  else if (activeViolations.length > 3)     grade = 'C';
+  else                                      grade = 'A';
 
   const labels = {
     A: 'Meets all standards: no recent health-based violations',
@@ -308,7 +327,12 @@ function computeGrade(violations) {
     F: 'Active health violation: check with your utility immediately',
   };
 
-  return { grade, label: labels[grade], score };
+  let label = labels[grade];
+  if (pfasOverCount > 0 && activeHealth.length === 0 && grade === 'F') {
+    label = `${pfasOverCount} PFAS compound${pfasOverCount > 1 ? 's' : ''} over EPA limit: consider filtration`;
+  }
+
+  return { grade, label, score };
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────
@@ -798,7 +822,8 @@ function renderRecommendations(violations, samples, system) {
 function renderReport(report) {
   const { system, violations, samples } = report;
 
-  const gradeData = computeGrade(violations);
+  const pfas = report.pfas || window.__PRELOADED__?.pfas || null;
+  const gradeData = computeGrade(violations, pfas);
 
   // Header
   $('report-header').innerHTML = renderReportHeader(system, gradeData);
